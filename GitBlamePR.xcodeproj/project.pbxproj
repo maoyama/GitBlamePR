@@ -15,7 +15,7 @@
 		61C4FC58239B894C00F75B8D /* GitBlamePRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC57239B894C00F75B8D /* GitBlamePRTests.swift */; };
 		61C4FC69239B8A7B00F75B8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C4FC68239B8A7B00F75B8D /* Cocoa.framework */; };
 		61C4FC6C239B8A7B00F75B8D /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC6B239B8A7B00F75B8D /* SourceEditorExtension.swift */; };
-		61C4FC6E239B8A7B00F75B8D /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC6D239B8A7B00F75B8D /* SourceEditorCommand.swift */; };
+		61C4FC6E239B8A7B00F75B8D /* OpenGitHubCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC6D239B8A7B00F75B8D /* OpenGitHubCommand.swift */; };
 		61C4FC73239B8A7B00F75B8D /* EditorExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 61C4FC66239B8A7B00F75B8D /* EditorExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -65,7 +65,7 @@
 		61C4FC66239B8A7B00F75B8D /* EditorExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EditorExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4FC68239B8A7B00F75B8D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		61C4FC6B239B8A7B00F75B8D /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
-		61C4FC6D239B8A7B00F75B8D /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
+		61C4FC6D239B8A7B00F75B8D /* OpenGitHubCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGitHubCommand.swift; sourceTree = "<group>"; };
 		61C4FC6F239B8A7B00F75B8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61C4FC70239B8A7B00F75B8D /* EditorExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EditorExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				61C4FC6B239B8A7B00F75B8D /* SourceEditorExtension.swift */,
-				61C4FC6D239B8A7B00F75B8D /* SourceEditorCommand.swift */,
+				61C4FC6D239B8A7B00F75B8D /* OpenGitHubCommand.swift */,
 				61C4FC6F239B8A7B00F75B8D /* Info.plist */,
 				61C4FC70239B8A7B00F75B8D /* EditorExtension.entitlements */,
 			);
@@ -316,7 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61C4FC6C239B8A7B00F75B8D /* SourceEditorExtension.swift in Sources */,
-				61C4FC6E239B8A7B00F75B8D /* SourceEditorCommand.swift in Sources */,
+				61C4FC6E239B8A7B00F75B8D /* OpenGitHubCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
