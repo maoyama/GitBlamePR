@@ -12,16 +12,18 @@ import XcodeKit
 class OpenGitHubCommand: NSObject, XCSourceEditorCommand {
     
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
-        // Implement your command here, invoking the completion handler when done. Pass it nil on success, and an NSError on failure.
+        let connection = NSXPCConnection(serviceName: "dev.aoyama.XcodeHelper")
+        connection.remoteObjectInterface = NSXPCInterface(with: XcodeHelperProtocol.self)
+        connection.resume()
+        let xcode = connection.remoteObjectProxy as! XcodeHelperProtocol
 
-        // Retrieve the contents of the current source editor.
-        let lines = invocation.buffer.lines
-        // Reverse the order of the lines in a copy.
-        let updatedText = Array(lines.reversed())
-        lines.removeAllObjects()
-        lines.addObjects(from: updatedText)
-        // Signal to Xcode that the command has completed.
-
+        let semaphore = DispatchSemaphore(value: 0)
+        xcode.upperCaseString("aaa") { (str) in
+            invocation.buffer.lines.add(str!)
+            semaphore.signal()
+        }
+        _ = semaphore.wait(timeout: .now() + 1)
+        invocation.buffer.lines.add("Hoge")
         completionHandler(nil)
     }
     
