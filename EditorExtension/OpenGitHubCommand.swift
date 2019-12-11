@@ -16,13 +16,13 @@ class OpenGitHubCommand: NSObject, XCSourceEditorCommand {
         connection.remoteObjectInterface = NSXPCInterface(with: XcodeHelperProtocol.self)
         connection.resume()
         let xcode = connection.remoteObjectProxy as! XcodeHelperProtocol
-
+        
         let semaphore = DispatchSemaphore(value: 0)
         xcode.upperCaseString("aaa") { (str) in
             invocation.buffer.lines.add(str!)
             semaphore.signal()
         }
-        _ = semaphore.wait(timeout: .now() + 1)
+        _ = semaphore.wait(timeout: .now() + 10)
         invocation.buffer.lines.add("Hoge")
         completionHandler(nil)
     }
