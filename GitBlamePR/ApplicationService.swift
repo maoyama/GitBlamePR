@@ -9,20 +9,36 @@
 import Foundation
 
 class ApplicationService {
+    var fileFullPath = "/Users/aoyama/Projects/SpreadsheetView"
 
     init() {
-        getRemote()
+        executeRemote()
+        executeGitBlamePR()
     }
 
-    func getRemote() {
+    func executeRemote() {
         let process = Process()
-        let output = Pipe()
-        process.launchPath = "/usr/bin/git"
-        process.arguments = ["remove", "-v"]
-        process.currentDirectoryPath = "/Users/aoyama/Projects/SpreadsheetView"
-        process.standardOutput = output
-        process.launch()
-        print(output)
+        let stdOutput = Pipe()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/git")
+        process.arguments = ["remote", "-v"]
+        process.currentDirectoryPath = fileFullPath
+        process.standardOutput = stdOutput
+        try! process.run()
+        let output = String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
+        print(output!)
+    }
+
+    func executeGitBlamePR() {
+        let path = Bundle.main.resourcePath!;
+        let process = Process()
+        let stdOutput = Pipe()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/perl")
+        process.arguments = [path + "/git-blame-pr.pl", fileFullPath + "/README.md"]
+        process.currentDirectoryPath = fileFullPath
+        process.standardOutput = stdOutput
+        try! process.run()
+        let output = String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
+        print(output!)
     }
 
 }

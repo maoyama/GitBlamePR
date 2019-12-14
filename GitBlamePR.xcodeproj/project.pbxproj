@@ -12,6 +12,7 @@
 		611DC77B239C03F9000CB2F3 /* XcodeHelper.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 611DC770239C03F9000CB2F3 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		611DC781239C045A000CB2F3 /* XcodeHelper.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 611DC770239C03F9000CB2F3 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		615C393E23A46E530036FB97 /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C393D23A46E530036FB97 /* ApplicationService.swift */; };
+		615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */ = {isa = PBXBuildFile; fileRef = 615C395723A4BBEF0036FB97 /* git-blame-pr.pl */; };
 		61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC41239B894700F75B8D /* AppDelegate.swift */; };
 		61C4FC44239B894700F75B8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC43239B894700F75B8D /* ContentView.swift */; };
 		61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC45239B894B00F75B8D /* Assets.xcassets */; };
@@ -93,6 +94,7 @@
 		611DC783239E9142000CB2F3 /* EditorExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EditorExtension-Bridging-Header.h"; sourceTree = "<group>"; };
 		615C393D23A46E530036FB97 /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		615C393F23A4718A0036FB97 /* Xcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xcode.h; sourceTree = "<group>"; };
+		615C395723A4BBEF0036FB97 /* git-blame-pr.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "git-blame-pr.pl"; sourceTree = "<group>"; };
 		61C4FC3E239B894700F75B8D /* GitBlamePR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBlamePR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4FC41239B894700F75B8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61C4FC43239B894700F75B8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				61C4FC43239B894700F75B8D /* ContentView.swift */,
 				615C393D23A46E530036FB97 /* ApplicationService.swift */,
 				61C4FC45239B894B00F75B8D /* Assets.xcassets */,
+				615C395723A4BBEF0036FB97 /* git-blame-pr.pl */,
 				61C4FC4A239B894B00F75B8D /* Main.storyboard */,
 				61C4FC4D239B894B00F75B8D /* Info.plist */,
 				61C4FC4E239B894B00F75B8D /* GitBlamePR.entitlements */,
@@ -325,6 +328,7 @@
 					};
 					61C4FC3D239B894700F75B8D = {
 						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1130;
 					};
 					61C4FC52239B894C00F75B8D = {
 						CreatedOnToolsVersion = 11.2.1;
@@ -371,6 +375,7 @@
 			files = (
 				61C4FC4C239B894B00F75B8D /* Main.storyboard in Resources */,
 				61C4FC49239B894B00F75B8D /* Preview Assets.xcassets in Resources */,
+				615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */,
 				61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,6 +611,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GitBlamePR/GitBlamePR.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -621,6 +627,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -630,6 +637,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GitBlamePR/GitBlamePR.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
