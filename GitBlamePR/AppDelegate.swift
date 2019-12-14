@@ -25,14 +25,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     code: "// hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello"
                 ),
                 (
-                    message: "# PR2021",
+                    message: "PR #2020",
                     url: URL(string: "https://github.com")!,
-                    code: "// hello"
+                    code: "ContentView("
                 ),
                 (
-                    message: "# fe12b",
+                    message: "fe214",
                     url: URL(string: "https://github.com")!,
-                    code: "// hello"
+                    code: "    model: ContentViewModel(lines: ["
                 ),
             ])
         )
@@ -42,6 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered, defer: false)
+        window.title = "GitBlamePR"
         window.center()
         window.setFrameAutosaveName("Main Window")
         window.contentView = NSHostingView(rootView: contentView)

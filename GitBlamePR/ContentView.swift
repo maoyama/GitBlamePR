@@ -21,6 +21,7 @@ struct ContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             TextField("Full Path", text: $filePath)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             Divider()
             List {
@@ -33,7 +34,9 @@ struct ContentView: View {
                                 NSWorkspace.shared.open(self.model.lines[i].url)
                             }
                         Text(self.model.lines[i].code)
+                            .font(Font.system(.caption, design: .monospaced))
                             .frame(width: nil, height: nil, alignment: .leading)
+
                     }
                 }
             }
@@ -55,12 +58,12 @@ struct ContentView_Previews: PreviewProvider {
                     (
                         message: "PR #2020",
                         url: URL(string: "https://github.com")!,
-                        code: "// hello"
+                        code: "ContentView("
                     ),
                     (
                         message: "fe214",
                         url: URL(string: "https://github.com")!,
-                        code: "// hello"
+                        code: "    model: ContentViewModel(lines: ["
                     ),
                 ])
             )
