@@ -12,11 +12,11 @@ class ApplicationService {
     var fileFullPath = "/Users/aoyama/Projects/SpreadsheetView"
 
     init() {
-        executeRemote()
+        executeGitRemote()
         executeGitBlamePR()
     }
 
-    func executeRemote() {
+    private func executeGitRemote() {
         let process = Process()
         let stdOutput = Pipe()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/git")
@@ -28,7 +28,7 @@ class ApplicationService {
         print(output!)
     }
 
-    func executeGitBlamePR() {
+    private func executeGitBlamePR() {
         let path = Bundle.main.resourcePath!;
         let process = Process()
         let stdOutput = Pipe()
@@ -40,5 +40,6 @@ class ApplicationService {
         let output = String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
         print(output!)
     }
+
 
 }
