@@ -14,6 +14,7 @@ struct ContentViewModel {
 }
 
 struct ContentView: View {
+    let service = ApplicationService()
     var model: ContentViewModel
     @State private var filePath: String = ""
 

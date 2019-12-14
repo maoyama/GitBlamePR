@@ -11,6 +11,7 @@
 		611DC777239C03F9000CB2F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 611DC776239C03F9000CB2F3 /* main.m */; };
 		611DC77B239C03F9000CB2F3 /* XcodeHelper.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 611DC770239C03F9000CB2F3 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		611DC781239C045A000CB2F3 /* XcodeHelper.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 611DC770239C03F9000CB2F3 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		615C393E23A46E530036FB97 /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C393D23A46E530036FB97 /* ApplicationService.swift */; };
 		61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC41239B894700F75B8D /* AppDelegate.swift */; };
 		61C4FC44239B894700F75B8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC43239B894700F75B8D /* ContentView.swift */; };
 		61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC45239B894B00F75B8D /* Assets.xcassets */; };
@@ -90,6 +91,8 @@
 		611DC776239C03F9000CB2F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		611DC778239C03F9000CB2F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		611DC783239E9142000CB2F3 /* EditorExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EditorExtension-Bridging-Header.h"; sourceTree = "<group>"; };
+		615C393D23A46E530036FB97 /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
+		615C393F23A4718A0036FB97 /* Xcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xcode.h; sourceTree = "<group>"; };
 		61C4FC3E239B894700F75B8D /* GitBlamePR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBlamePR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4FC41239B894700F75B8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61C4FC43239B894700F75B8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -146,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				611DC772239C03F9000CB2F3 /* XcodeHelperProtocol.h */,
+				615C393F23A4718A0036FB97 /* Xcode.h */,
 				611DC773239C03F9000CB2F3 /* XcodeHelper.h */,
 				611DC774239C03F9000CB2F3 /* XcodeHelper.m */,
 				611DC776239C03F9000CB2F3 /* main.m */,
@@ -182,6 +186,7 @@
 			children = (
 				61C4FC41239B894700F75B8D /* AppDelegate.swift */,
 				61C4FC43239B894700F75B8D /* ContentView.swift */,
+				615C393D23A46E530036FB97 /* ApplicationService.swift */,
 				61C4FC45239B894B00F75B8D /* Assets.xcassets */,
 				61C4FC4A239B894B00F75B8D /* Main.storyboard */,
 				61C4FC4D239B894B00F75B8D /* Info.plist */,
@@ -401,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61C4FC44239B894700F75B8D /* ContentView.swift in Sources */,
+				615C393E23A46E530036FB97 /* ApplicationService.swift in Sources */,
 				61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
