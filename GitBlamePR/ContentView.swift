@@ -9,52 +9,39 @@
 import SwiftUI
 import AppKit
 
+
+struct ContentView: View {
+    @ObservedObject var service = ApplicationService()
+
+    var body: some View {
+        GitBlamePRView(model: service.viewModel, textOnCommit: {text in
+            self.service.fullPath = text
+        })
+    }
+}
+
 struct GitBlamePRViewModel {
     var lines: [(message: String, url: URL, code: String)]
 }
 
-struct ContentView: View {
-    let service = ApplicationService()
-
-    var body: some View {
-        GitBlamePRView(model: service.viewModel)
-    }
-}
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            GitBlamePRView(
-                model: GitBlamePRViewModel(lines: [
-                    (
-                        message: "PR #2020",
-                        url: URL(string: "https://github.com")!,
-                        code: "// hello hello hello"
-                    ),
-                    (
-                        message: "PR #2020",
-                        url: URL(string: "https://github.com")!,
-                        code: "ContentView("
-                    ),
-                    (
-                        message: "fe214",
-                        url: URL(string: "https://github.com")!,
-                        code: "    model: ContentViewModel(lines: ["
-                    ),
-                ])
-            )
-        }
-    }
-}
-
 struct GitBlamePRView: View {
     var model: GitBlamePRViewModel
-    @State private var filePath: String = ""
+    var textOnCommit: (String) -> Void
+
+    @State private(set) var fullPath: String = ""
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            TextField("Full Path", text: $filePath)
+            TextField(
+                "Enter full path",
+                text: $fullPath,
+                onEditingChanged: {_ in
+                },
+                onCommit: {
+                    self.textOnCommit(self.fullPath)
+                }
+            )
+                .lineLimit(1)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             Divider()
@@ -77,3 +64,30 @@ struct GitBlamePRView: View {
         }
     }
 }
+
+struct GitBlamePRView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            GitBlamePRView(
+                model: GitBlamePRViewModel(lines: [
+                    (
+                        message: "PR #2020",
+                        url: URL(string: "https://github.com")!,
+                        code: "// hello hello hello"
+                    ),
+                    (
+                        message: "PR #2020",
+                        url: URL(string: "https://github.com")!,
+                        code: "ContentView("
+                    ),
+                    (
+                        message: "fe214",
+                        url: URL(string: "https://github.com")!,
+                        code: "    model: ContentViewModel(lines: ["
+                    ),
+                ]), textOnCommit: {_ in }
+            )
+        }
+    }
+}
+

@@ -9,12 +9,15 @@
 import Foundation
 
 class ApplicationService: ObservableObject {
-    var fileFullPath = "/Users/aoyama/Projects/SpreadsheetView"
-    @Published var viewModel = GitBlamePRViewModel(lines: [])
-
-    init() {
-        execute()
+    var fullPath: String = "" {
+        didSet {
+            execute()
+        }
     }
+    private var fullPathDirectoryPath: String {
+        return URL(fileURLWithPath: fullPath).deletingLastPathComponent().path
+    }
+    @Published var viewModel = GitBlamePRViewModel(lines: [])
 
     func execute() {
         viewModel = GitBlamePRViewModel(
@@ -28,7 +31,7 @@ class ApplicationService: ObservableObject {
         let stdOutput = Pipe()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/git")
         process.arguments = ["remote", "-v"]
-        process.currentDirectoryPath = fileFullPath
+        process.currentDirectoryPath = fullPathDirectoryPath
         process.standardOutput = stdOutput
         try! process.run()
         return String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
@@ -39,8 +42,8 @@ class ApplicationService: ObservableObject {
         let process = Process()
         let stdOutput = Pipe()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/perl")
-        process.arguments = [path + "/git-blame-pr.pl", fileFullPath + "/Framework/Sources/CellRange.swift"]
-        process.currentDirectoryPath = fileFullPath
+        process.arguments = [path + "/git-blame-pr.pl", fullPath]
+        process.currentDirectoryPath = fullPathDirectoryPath
         process.standardOutput = stdOutput
         try! process.run()
         return String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
