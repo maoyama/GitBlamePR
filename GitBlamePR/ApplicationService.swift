@@ -8,15 +8,22 @@
 
 import Foundation
 
-class ApplicationService {
+class ApplicationService: ObservableObject {
     var fileFullPath = "/Users/aoyama/Projects/SpreadsheetView"
+    @Published var viewModel = ContentViewModel(lines: [])
 
     init() {
-        executeGitRemote()
-        executeGitBlamePR()
+        execute()
     }
 
-    private func executeGitRemote() {
+    func execute() {
+        viewModel = ContentViewModel(
+            gitRemoteStandardOutput: executeGitRemote()!,
+            gitBlamePRStandardOutput: executeGitBlamePR()!
+        )!
+    }
+
+    private func executeGitRemote() -> String? {
         let process = Process()
         let stdOutput = Pipe()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/git")
@@ -24,21 +31,19 @@ class ApplicationService {
         process.currentDirectoryPath = fileFullPath
         process.standardOutput = stdOutput
         try! process.run()
-        let output = String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
-        print(output!)
+        return String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
     }
 
-    private func executeGitBlamePR() {
+    private func executeGitBlamePR() -> String? {
         let path = Bundle.main.resourcePath!;
         let process = Process()
         let stdOutput = Pipe()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/perl")
-        process.arguments = [path + "/git-blame-pr.pl", fileFullPath + "/README.md"]
+        process.arguments = [path + "/git-blame-pr.pl", fileFullPath + "/Framework/Sources/CellRange.swift"]
         process.currentDirectoryPath = fileFullPath
         process.standardOutput = stdOutput
         try! process.run()
-        let output = String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
-        print(output!)
+        return String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
     }
 
 

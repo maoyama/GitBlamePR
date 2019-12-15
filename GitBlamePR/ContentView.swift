@@ -15,32 +15,9 @@ struct ContentViewModel {
 
 struct ContentView: View {
     let service = ApplicationService()
-    var model: ContentViewModel
-    @State private var filePath: String = ""
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            TextField("Full Path", text: $filePath)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            Divider()
-            List {
-                ForEach(0..<model.lines.count) { i in
-                    HStack {
-                        Text(self.model.lines[i].message)
-                            .foregroundColor(.accentColor)
-                            .frame(width: 100, height: nil, alignment: .leading)
-                            .onTapGesture {
-                                NSWorkspace.shared.open(self.model.lines[i].url)
-                            }
-                        Text(self.model.lines[i].code)
-                            .font(Font.system(.caption, design: .monospaced))
-                            .frame(width: nil, height: nil, alignment: .leading)
-
-                    }
-                }
-            }
-        }
+        GitBlamePRView(model: service.viewModel)
     }
 }
 
@@ -48,7 +25,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView(
+            GitBlamePRView(
                 model: ContentViewModel(lines: [
                     (
                         message: "PR #2020",
@@ -67,6 +44,36 @@ struct ContentView_Previews: PreviewProvider {
                     ),
                 ])
             )
+        }
+    }
+}
+
+struct GitBlamePRView: View {
+    var model: ContentViewModel
+    @State private var filePath: String = ""
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            TextField("Full Path", text: $filePath)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            Divider()
+            List {
+                ForEach(0..<model.lines.count) { i in
+                    HStack {
+                        Text(self.model.lines[i].message)
+                            .foregroundColor(.accentColor)
+                            .frame(width: 100, height: nil, alignment: .leading)
+                            .onTapGesture {
+                                NSWorkspace.shared.open(self.model.lines[i].url)
+                        }
+                        Text(self.model.lines[i].code)
+                            .font(Font.system(.caption, design: .monospaced))
+                            .frame(width: nil, height: nil, alignment: .leading)
+
+                    }
+                }
+            }
         }
     }
 }

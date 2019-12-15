@@ -17,25 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView(
-            model: ContentViewModel(lines: [
-                (
-                    message: "# PR2020",
-                    url: URL(string: "https://github.com")!,
-                    code: "// hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello"
-                ),
-                (
-                    message: "PR #2020",
-                    url: URL(string: "https://github.com")!,
-                    code: "ContentView("
-                ),
-                (
-                    message: "fe214",
-                    url: URL(string: "https://github.com")!,
-                    code: "    model: ContentViewModel(lines: ["
-                ),
-            ])
-        )
+        let contentView = ContentView()
 
         // Create the window and set the content view. 
         window = NSWindow(
