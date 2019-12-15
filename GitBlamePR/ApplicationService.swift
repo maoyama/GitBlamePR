@@ -63,7 +63,7 @@ extension GitBlamePRViewModel {
         let repoURL = "https://github.com/" + repo
 
         let strLines = gitBlamePRStandardOutput.components(separatedBy: .newlines)
-        self.lines = strLines.map { (line) -> (message: String, url: URL, code: String) in
+        self.lines = strLines.map { (line) -> (message: String, url: URL, code: String, id: UUID) in
             let linePrefix = line.prefix(9)
             let code = line.suffix(line.count - linePrefix.count)
             let trimdlinePrefix = linePrefix.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -71,7 +71,8 @@ extension GitBlamePRViewModel {
             return (
                 message: message,
                 url: Self.url(message: message, repoURL: repoURL),
-                code: String(code)
+                code: String(code),
+                id: UUID()
             )
         }
     }

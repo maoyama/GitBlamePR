@@ -21,7 +21,7 @@ struct ContentView: View {
 }
 
 struct GitBlamePRViewModel {
-    var lines: [(message: String, url: URL, code: String)]
+    var lines: [(message: String, url: URL, code: String, id:UUID)]
 }
 
 struct GitBlamePRView: View {
@@ -46,15 +46,15 @@ struct GitBlamePRView: View {
                 .padding()
             Divider()
             List {
-                ForEach(0..<model.lines.count) { i in
+                ForEach(model.lines, id: \.id) { line in
                     HStack {
-                        Text(self.model.lines[i].message)
+                        Text(line.message)
                             .foregroundColor(.accentColor)
                             .frame(width: 100, height: nil, alignment: .leading)
                             .onTapGesture {
-                                NSWorkspace.shared.open(self.model.lines[i].url)
+                                NSWorkspace.shared.open(line.url)
                         }
-                        Text(self.model.lines[i].code)
+                        Text(line.code)
                             .font(Font.system(.caption, design: .monospaced))
                             .frame(width: nil, height: nil, alignment: .leading)
 
@@ -73,17 +73,20 @@ struct GitBlamePRView_Previews: PreviewProvider {
                     (
                         message: "PR #2020",
                         url: URL(string: "https://github.com")!,
-                        code: "// hello hello hello"
+                        code: "// hello hello hello",
+                        id: UUID()
                     ),
                     (
                         message: "PR #2020",
                         url: URL(string: "https://github.com")!,
-                        code: "ContentView("
+                        code: "ContentView(",
+                        id: UUID()
                     ),
                     (
                         message: "fe214",
                         url: URL(string: "https://github.com")!,
-                        code: "    model: ContentViewModel(lines: ["
+                        code: "    model: ContentViewModel(lines: [",
+                        id: UUID()
                     ),
                 ]), textOnCommit: {_ in }
             )
