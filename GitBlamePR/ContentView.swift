@@ -9,7 +9,7 @@
 import SwiftUI
 import AppKit
 
-struct ContentViewModel {
+struct GitBlamePRViewModel {
     var lines: [(message: String, url: URL, code: String)]
 }
 
@@ -26,7 +26,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             GitBlamePRView(
-                model: ContentViewModel(lines: [
+                model: GitBlamePRViewModel(lines: [
                     (
                         message: "PR #2020",
                         url: URL(string: "https://github.com")!,
@@ -49,7 +49,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct GitBlamePRView: View {
-    var model: ContentViewModel
+    var model: GitBlamePRViewModel
     @State private var filePath: String = ""
 
     var body: some View {

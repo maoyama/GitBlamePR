@@ -10,14 +10,14 @@ import Foundation
 
 class ApplicationService: ObservableObject {
     var fileFullPath = "/Users/aoyama/Projects/SpreadsheetView"
-    @Published var viewModel = ContentViewModel(lines: [])
+    @Published var viewModel = GitBlamePRViewModel(lines: [])
 
     init() {
         execute()
     }
 
     func execute() {
-        viewModel = ContentViewModel(
+        viewModel = GitBlamePRViewModel(
             gitRemoteStandardOutput: executeGitRemote()!,
             gitBlamePRStandardOutput: executeGitBlamePR()!
         )!
@@ -49,7 +49,7 @@ class ApplicationService: ObservableObject {
 
 }
 
-extension ContentViewModel {
+extension GitBlamePRViewModel {
     init?(gitRemoteStandardOutput: String, gitBlamePRStandardOutput: String) {
         guard let repo = gitRemoteStandardOutput
             .components(separatedBy: .newlines)[0]

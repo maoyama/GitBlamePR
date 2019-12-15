@@ -87,7 +87,7 @@ PR #71
 """
 
     func testContentViewModelInit() {
-        let vm = ContentViewModel(gitRemoteStandardOutput: gitRemoteOutput, gitBlamePRStandardOutput: gitBlamePROutput)!
+        let vm = GitBlamePRViewModel(gitRemoteStandardOutput: gitRemoteOutput, gitBlamePRStandardOutput: gitBlamePROutput)!
         XCTAssertEqual(vm.lines.count, 69)
         XCTAssertEqual(vm.lines[24].message, "PR #71")
         XCTAssertEqual(vm.lines[24].url, URL(string: "https://github.com/kishikawakatsumi/SpreadsheetView/pull/71")!)
