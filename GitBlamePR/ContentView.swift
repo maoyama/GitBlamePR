@@ -36,33 +36,38 @@ struct GitBlamePRView: View {
             TextField(
                 "Enter full path",
                 text: $fullPath,
-                onEditingChanged: {_ in
-                },
+                onEditingChanged: {_ in },
                 onCommit: {
                     self.textOnCommit(self.fullPath)
                 }
-            )
-                .lineLimit(1)
+            ).lineLimit(1)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             Divider()
-            Text(model.error)
-            List {
-                ForEach(model.lines, id: \.id) { line in
-                    HStack {
-                        Text(line.message)
-                            .foregroundColor(.accentColor)
-                            .frame(width: 100, height: nil, alignment: .leading)
-                            .onTapGesture {
-                                NSWorkspace.shared.open(line.url)
-                        }
-                        Text(line.code)
-                            .font(Font.system(.caption, design: .monospaced))
-                            .frame(width: nil, height: nil, alignment: .leading)
-
+            ScrollView(.vertical, showsIndicators: true) {
+                VStack(alignment: .leading) {
+                    if !model.error.isEmpty {
+                        Text(model.error)
                     }
-                }
-            }
+                    ForEach(model.lines, id: \.id) { line in
+                        HStack {
+                            Text(line.message)
+                                .foregroundColor(.accentColor)
+                                .frame(width: 100, height: nil, alignment: .leading)
+                                .onTapGesture {
+                                    NSWorkspace.shared.open(line.url)
+                            }
+                            Text(line.code)
+                                .font(Font.system(.caption, design: .monospaced))
+                                .frame(width: nil, height: nil, alignment: .leading)
+                        }
+                    }
+                    HStack {
+                        Spacer()
+                        EmptyView()
+                    }
+                }.padding()
+            }.background(Color.init(NSColor.textBackgroundColor))
         }
     }
 }
