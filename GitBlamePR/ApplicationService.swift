@@ -8,47 +8,82 @@
 
 import Foundation
 
+enum ApplicationServiceError: Error {
+    case unknown
+    case standardError(String)
+}
+
 class ApplicationService: ObservableObject {
     var fullPath: String = "" {
         didSet {
             execute()
         }
     }
-    private var fullPathDirectoryPath: String {
-        return URL(fileURLWithPath: fullPath).deletingLastPathComponent().path
+    @Published private(set) var viewModel = GitBlamePRViewModel(lines: [])
+    private var trimedFullPath: String {
+        fullPath.trimmingCharacters(in: .whitespacesAndNewlines)
     }
-    @Published var viewModel = GitBlamePRViewModel(lines: [])
+    private var fullPathDirectoryPath: String {
+        URL(fileURLWithPath: trimedFullPath).deletingLastPathComponent().path
+    }
 
     func execute() {
+        var remoteOut = ""
+        var blamePROut = ""
+        do {
+            remoteOut = try executeGitRemote()
+            blamePROut = try executeGitBlamePR()
+        } catch ApplicationServiceError.standardError(let description) {
+            viewModel = GitBlamePRViewModel(lines: [], error: description)
+            return
+        } catch let e {
+            viewModel = GitBlamePRViewModel(lines: [], error: e.localizedDescription)
+            return
+        }
         viewModel = GitBlamePRViewModel(
-            gitRemoteStandardOutput: executeGitRemote()!,
-            gitBlamePRStandardOutput: executeGitBlamePR()!
+            gitRemoteStandardOutput: remoteOut,
+            gitBlamePRStandardOutput: blamePROut
         )!
     }
 
-    private func executeGitRemote() -> String? {
-        let process = Process()
-        let stdOutput = Pipe()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/git")
-        process.arguments = ["remote", "-v"]
-        process.currentDirectoryPath = fullPathDirectoryPath
-        process.standardOutput = stdOutput
-        try! process.run()
-        return String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
+    private func executeGitRemote() throws -> String {
+        return try runProcess(
+            executableURL: URL(fileURLWithPath: "/usr/bin/git"),
+            arguments: ["remote", "-v"],
+            currentDirectoryPath: fullPathDirectoryPath
+        )
     }
 
-    private func executeGitBlamePR() -> String? {
-        let path = Bundle.main.resourcePath!;
-        let process = Process()
-        let stdOutput = Pipe()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/perl")
-        process.arguments = [path + "/git-blame-pr.pl", fullPath]
-        process.currentDirectoryPath = fullPathDirectoryPath
-        process.standardOutput = stdOutput
-        try! process.run()
-        return String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
+    private func executeGitBlamePR() throws -> String {
+        return try runProcess(
+            executableURL: URL(fileURLWithPath: "/usr/bin/perl"),
+            arguments: [Bundle.main.resourcePath! + "/git-blame-pr.pl", trimedFullPath],
+            currentDirectoryPath: fullPathDirectoryPath
+        )
     }
 
+    private func runProcess(executableURL: URL, arguments: [String], currentDirectoryPath: String) throws -> String {
+        let process = Process()
+        let stdOutput = Pipe()
+        let stdError = Pipe()
+        process.executableURL = executableURL
+        process.arguments = arguments
+        process.currentDirectoryPath = currentDirectoryPath
+        process.standardOutput = stdOutput
+        process.standardError = stdError
+        try process.run()
+        guard let errOut = String(data: stdError.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) else {
+            throw ApplicationServiceError.unknown
+        }
+        guard errOut.isEmpty else {
+            throw ApplicationServiceError.standardError(errOut)
+        }
+        guard let stdOut = String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) else {
+            throw ApplicationServiceError.unknown
+        }
+        return stdOut
+
+    }
 
 }
 
@@ -85,3 +120,5 @@ extension GitBlamePRViewModel {
         return URL(string: repoURL + "/commit/" + message)!
     }
 }
+
+

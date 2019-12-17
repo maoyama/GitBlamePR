@@ -22,6 +22,7 @@ struct ContentView: View {
 
 struct GitBlamePRViewModel {
     var lines: [(message: String, url: URL, code: String, id:UUID)]
+    var error = ""
 }
 
 struct GitBlamePRView: View {
@@ -45,6 +46,7 @@ struct GitBlamePRView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             Divider()
+            Text(model.error)
             List {
                 ForEach(model.lines, id: \.id) { line in
                     HStack {
