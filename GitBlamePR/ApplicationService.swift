@@ -23,8 +23,8 @@ class ApplicationService: ObservableObject {
     private var trimedFullPath: String {
         fullPath.trimmingCharacters(in: .whitespacesAndNewlines)
     }
-    private var fullPathDirectoryPath: String {
-        URL(fileURLWithPath: trimedFullPath).deletingLastPathComponent().path
+    private var fullPathDirectoryURL: URL {
+        URL(fileURLWithPath: trimedFullPath).deletingLastPathComponent()
     }
 
     func execute() {
@@ -50,7 +50,7 @@ class ApplicationService: ObservableObject {
         return try runProcess(
             executableURL: URL(fileURLWithPath: "/usr/bin/git"),
             arguments: ["remote", "-v"],
-            currentDirectoryPath: fullPathDirectoryPath
+            currentDirectoryURL: fullPathDirectoryURL
         )
     }
 
@@ -58,17 +58,17 @@ class ApplicationService: ObservableObject {
         return try runProcess(
             executableURL: URL(fileURLWithPath: "/usr/bin/perl"),
             arguments: [Bundle.main.resourcePath! + "/git-blame-pr.pl", trimedFullPath],
-            currentDirectoryPath: fullPathDirectoryPath
+            currentDirectoryURL: fullPathDirectoryURL
         )
     }
 
-    private func runProcess(executableURL: URL, arguments: [String], currentDirectoryPath: String) throws -> String {
+    private func runProcess(executableURL: URL, arguments: [String], currentDirectoryURL: URL?) throws -> String {
         let process = Process()
         let stdOutput = Pipe()
         let stdError = Pipe()
         process.executableURL = executableURL
         process.arguments = arguments
-        process.currentDirectoryPath = currentDirectoryPath
+        process.currentDirectoryURL = currentDirectoryURL
         process.standardOutput = stdOutput
         process.standardError = stdError
         try process.run()
@@ -120,5 +120,3 @@ extension GitBlamePRViewModel {
         return URL(string: repoURL + "/commit/" + message)!
     }
 }
-
-
