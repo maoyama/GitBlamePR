@@ -16,6 +16,10 @@ enum ApplicationServiceError: Error {
 class ApplicationService: ObservableObject {
     var fullPath: String = "" {
         didSet {
+            guard !fullPath.isEmpty else {
+                viewModel = GitBlamePRViewModel(lines: [])
+                return
+            }
             execute()
         }
     }

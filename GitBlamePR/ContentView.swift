@@ -68,7 +68,7 @@ struct GitBlamePRView: View {
                         EmptyView()
                     }
                 }.padding()
-            }.background(Color.init(NSColor.textBackgroundColor))
+            }.background(Color(NSColor.textBackgroundColor))
         }
     }
 }
