@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		611DC775239C03F9000CB2F3 /* XcodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 611DC774239C03F9000CB2F3 /* XcodeHelper.m */; };
-		611DC777239C03F9000CB2F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 611DC776239C03F9000CB2F3 /* main.m */; };
-		611DC77B239C03F9000CB2F3 /* XcodeHelper.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 611DC770239C03F9000CB2F3 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		611DC781239C045A000CB2F3 /* XcodeHelper.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 611DC770239C03F9000CB2F3 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		615C393E23A46E530036FB97 /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C393D23A46E530036FB97 /* ApplicationService.swift */; };
 		615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */ = {isa = PBXBuildFile; fileRef = 615C395723A4BBEF0036FB97 /* git-blame-pr.pl */; };
 		61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC41239B894700F75B8D /* AppDelegate.swift */; };
@@ -19,20 +15,9 @@
 		61C4FC49239B894B00F75B8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC48239B894B00F75B8D /* Preview Assets.xcassets */; };
 		61C4FC4C239B894B00F75B8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC4A239B894B00F75B8D /* Main.storyboard */; };
 		61C4FC58239B894C00F75B8D /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC57239B894C00F75B8D /* ContentViewModelTests.swift */; };
-		61C4FC69239B8A7B00F75B8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C4FC68239B8A7B00F75B8D /* Cocoa.framework */; };
-		61C4FC6C239B8A7B00F75B8D /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC6B239B8A7B00F75B8D /* SourceEditorExtension.swift */; };
-		61C4FC6E239B8A7B00F75B8D /* OpenGitHubCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC6D239B8A7B00F75B8D /* OpenGitHubCommand.swift */; };
-		61C4FC73239B8A7B00F75B8D /* EditorExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 61C4FC66239B8A7B00F75B8D /* EditorExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		611DC779239C03F9000CB2F3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 61C4FC36239B894700F75B8D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 611DC76F239C03F9000CB2F3;
-			remoteInfo = XcodeHelper;
-		};
 		61C4FC54239B894C00F75B8D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 61C4FC36239B894700F75B8D /* Project object */;
@@ -40,60 +25,10 @@
 			remoteGlobalIDString = 61C4FC3D239B894700F75B8D;
 			remoteInfo = GitBlamePR;
 		};
-		61C4FC71239B8A7B00F75B8D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 61C4FC36239B894700F75B8D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 61C4FC65239B8A7B00F75B8D;
-			remoteInfo = EditorExtension;
-		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		611DC77F239C03F9000CB2F3 /* Embed XPC Services */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
-			dstSubfolderSpec = 16;
-			files = (
-				611DC77B239C03F9000CB2F3 /* XcodeHelper.xpc in Embed XPC Services */,
-			);
-			name = "Embed XPC Services";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		611DC780239C0440000CB2F3 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
-			dstSubfolderSpec = 16;
-			files = (
-				611DC781239C045A000CB2F3 /* XcodeHelper.xpc in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		61C4FC77239B8A7B00F75B8D /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				61C4FC73239B8A7B00F75B8D /* EditorExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		611DC770239C03F9000CB2F3 /* XcodeHelper.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = XcodeHelper.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
-		611DC772239C03F9000CB2F3 /* XcodeHelperProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XcodeHelperProtocol.h; sourceTree = "<group>"; };
-		611DC773239C03F9000CB2F3 /* XcodeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XcodeHelper.h; sourceTree = "<group>"; };
-		611DC774239C03F9000CB2F3 /* XcodeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XcodeHelper.m; sourceTree = "<group>"; };
-		611DC776239C03F9000CB2F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		611DC778239C03F9000CB2F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		611DC783239E9142000CB2F3 /* EditorExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EditorExtension-Bridging-Header.h"; sourceTree = "<group>"; };
 		615C393D23A46E530036FB97 /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
-		615C393F23A4718A0036FB97 /* Xcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xcode.h; sourceTree = "<group>"; };
 		615C395723A4BBEF0036FB97 /* git-blame-pr.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "git-blame-pr.pl"; sourceTree = "<group>"; };
 		61C4FC3E239B894700F75B8D /* GitBlamePR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBlamePR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4FC41239B894700F75B8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,22 +41,10 @@
 		61C4FC53239B894C00F75B8D /* GitBlamePRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitBlamePRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4FC57239B894C00F75B8D /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
 		61C4FC59239B894C00F75B8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		61C4FC66239B8A7B00F75B8D /* EditorExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EditorExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4FC68239B8A7B00F75B8D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		61C4FC6B239B8A7B00F75B8D /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
-		61C4FC6D239B8A7B00F75B8D /* OpenGitHubCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGitHubCommand.swift; sourceTree = "<group>"; };
-		61C4FC6F239B8A7B00F75B8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		61C4FC70239B8A7B00F75B8D /* EditorExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EditorExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		611DC76D239C03F9000CB2F3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		61C4FC3B239B894700F75B8D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -136,37 +59,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		61C4FC63239B8A7B00F75B8D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				61C4FC69239B8A7B00F75B8D /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		611DC771239C03F9000CB2F3 /* XcodeHelper */ = {
-			isa = PBXGroup;
-			children = (
-				611DC772239C03F9000CB2F3 /* XcodeHelperProtocol.h */,
-				615C393F23A4718A0036FB97 /* Xcode.h */,
-				611DC773239C03F9000CB2F3 /* XcodeHelper.h */,
-				611DC774239C03F9000CB2F3 /* XcodeHelper.m */,
-				611DC776239C03F9000CB2F3 /* main.m */,
-				611DC778239C03F9000CB2F3 /* Info.plist */,
-			);
-			path = XcodeHelper;
-			sourceTree = "<group>";
-		};
 		61C4FC35239B894700F75B8D = {
 			isa = PBXGroup;
 			children = (
 				61C4FC40239B894700F75B8D /* GitBlamePR */,
 				61C4FC56239B894C00F75B8D /* GitBlamePRTests */,
-				61C4FC6A239B8A7B00F75B8D /* EditorExtension */,
-				611DC771239C03F9000CB2F3 /* XcodeHelper */,
 				61C4FC67239B8A7B00F75B8D /* Frameworks */,
 				61C4FC3F239B894700F75B8D /* Products */,
 			);
@@ -177,8 +77,6 @@
 			children = (
 				61C4FC3E239B894700F75B8D /* GitBlamePR.app */,
 				61C4FC53239B894C00F75B8D /* GitBlamePRTests.xctest */,
-				61C4FC66239B8A7B00F75B8D /* EditorExtension.appex */,
-				611DC770239C03F9000CB2F3 /* XcodeHelper.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,38 +122,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		61C4FC6A239B8A7B00F75B8D /* EditorExtension */ = {
-			isa = PBXGroup;
-			children = (
-				61C4FC6B239B8A7B00F75B8D /* SourceEditorExtension.swift */,
-				61C4FC6D239B8A7B00F75B8D /* OpenGitHubCommand.swift */,
-				61C4FC6F239B8A7B00F75B8D /* Info.plist */,
-				61C4FC70239B8A7B00F75B8D /* EditorExtension.entitlements */,
-				611DC783239E9142000CB2F3 /* EditorExtension-Bridging-Header.h */,
-			);
-			path = EditorExtension;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		611DC76F239C03F9000CB2F3 /* XcodeHelper */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 611DC77C239C03F9000CB2F3 /* Build configuration list for PBXNativeTarget "XcodeHelper" */;
-			buildPhases = (
-				611DC76C239C03F9000CB2F3 /* Sources */,
-				611DC76D239C03F9000CB2F3 /* Frameworks */,
-				611DC76E239C03F9000CB2F3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = XcodeHelper;
-			productName = XcodeHelper;
-			productReference = 611DC770239C03F9000CB2F3 /* XcodeHelper.xpc */;
-			productType = "com.apple.product-type.xpc-service";
-		};
 		61C4FC3D239B894700F75B8D /* GitBlamePR */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61C4FC5C239B894C00F75B8D /* Build configuration list for PBXNativeTarget "GitBlamePR" */;
@@ -263,14 +132,10 @@
 				61C4FC3A239B894700F75B8D /* Sources */,
 				61C4FC3B239B894700F75B8D /* Frameworks */,
 				61C4FC3C239B894700F75B8D /* Resources */,
-				61C4FC77239B8A7B00F75B8D /* Embed App Extensions */,
-				611DC77F239C03F9000CB2F3 /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				61C4FC72239B8A7B00F75B8D /* PBXTargetDependency */,
-				611DC77A239C03F9000CB2F3 /* PBXTargetDependency */,
 			);
 			name = GitBlamePR;
 			productName = GitBlamePR;
@@ -295,24 +160,6 @@
 			productReference = 61C4FC53239B894C00F75B8D /* GitBlamePRTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		61C4FC65239B8A7B00F75B8D /* EditorExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 61C4FC74239B8A7B00F75B8D /* Build configuration list for PBXNativeTarget "EditorExtension" */;
-			buildPhases = (
-				61C4FC62239B8A7B00F75B8D /* Sources */,
-				61C4FC63239B8A7B00F75B8D /* Frameworks */,
-				61C4FC64239B8A7B00F75B8D /* Resources */,
-				611DC780239C0440000CB2F3 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = EditorExtension;
-			productName = EditorExtension;
-			productReference = 61C4FC66239B8A7B00F75B8D /* EditorExtension.appex */;
-			productType = "com.apple.product-type.xcode-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -323,9 +170,6 @@
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = dev.aoyama;
 				TargetAttributes = {
-					611DC76F239C03F9000CB2F3 = {
-						CreatedOnToolsVersion = 11.2.1;
-					};
 					61C4FC3D239B894700F75B8D = {
 						CreatedOnToolsVersion = 11.2.1;
 						LastSwiftMigration = 1130;
@@ -333,10 +177,6 @@
 					61C4FC52239B894C00F75B8D = {
 						CreatedOnToolsVersion = 11.2.1;
 						TestTargetID = 61C4FC3D239B894700F75B8D;
-					};
-					61C4FC65239B8A7B00F75B8D = {
-						CreatedOnToolsVersion = 11.2.1;
-						LastSwiftMigration = 1120;
 					};
 				};
 			};
@@ -355,20 +195,11 @@
 			targets = (
 				61C4FC3D239B894700F75B8D /* GitBlamePR */,
 				61C4FC52239B894C00F75B8D /* GitBlamePRTests */,
-				61C4FC65239B8A7B00F75B8D /* EditorExtension */,
-				611DC76F239C03F9000CB2F3 /* XcodeHelper */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		611DC76E239C03F9000CB2F3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		61C4FC3C239B894700F75B8D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -387,25 +218,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		61C4FC64239B8A7B00F75B8D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		611DC76C239C03F9000CB2F3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				611DC777239C03F9000CB2F3 /* main.m in Sources */,
-				611DC775239C03F9000CB2F3 /* XcodeHelper.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		61C4FC3A239B894700F75B8D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,32 +239,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		61C4FC62239B8A7B00F75B8D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				61C4FC6C239B8A7B00F75B8D /* SourceEditorExtension.swift in Sources */,
-				61C4FC6E239B8A7B00F75B8D /* OpenGitHubCommand.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		611DC77A239C03F9000CB2F3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 611DC76F239C03F9000CB2F3 /* XcodeHelper */;
-			targetProxy = 611DC779239C03F9000CB2F3 /* PBXContainerItemProxy */;
-		};
 		61C4FC55239B894C00F75B8D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 61C4FC3D239B894700F75B8D /* GitBlamePR */;
 			targetProxy = 61C4FC54239B894C00F75B8D /* PBXContainerItemProxy */;
-		};
-		61C4FC72239B8A7B00F75B8D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 61C4FC65239B8A7B00F75B8D /* EditorExtension */;
-			targetProxy = 61C4FC71239B8A7B00F75B8D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -465,34 +261,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		611DC77D239C03F9000CB2F3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = JRA6VW2DG4;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = XcodeHelper/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.XcodeHelper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		611DC77E239C03F9000CB2F3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = JRA6VW2DG4;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = XcodeHelper/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.XcodeHelper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		61C4FC5A239B894C00F75B8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -609,7 +377,6 @@
 		61C4FC5D239B894C00F75B8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GitBlamePR/GitBlamePR.entitlements;
@@ -635,7 +402,6 @@
 		61C4FC5E239B894C00F75B8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GitBlamePR/GitBlamePR.entitlements;
@@ -701,65 +467,9 @@
 			};
 			name = Release;
 		};
-		61C4FC75239B8A7B00F75B8D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = EditorExtension/EditorExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = JRA6VW2DG4;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = EditorExtension/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR.EditorExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "EditorExtension/EditorExtension-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		61C4FC76239B8A7B00F75B8D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = EditorExtension/EditorExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = JRA6VW2DG4;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = EditorExtension/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR.EditorExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "EditorExtension/EditorExtension-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		611DC77C239C03F9000CB2F3 /* Build configuration list for PBXNativeTarget "XcodeHelper" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				611DC77D239C03F9000CB2F3 /* Debug */,
-				611DC77E239C03F9000CB2F3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		61C4FC39239B894700F75B8D /* Build configuration list for PBXProject "GitBlamePR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -783,15 +493,6 @@
 			buildConfigurations = (
 				61C4FC60239B894C00F75B8D /* Debug */,
 				61C4FC61239B894C00F75B8D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		61C4FC74239B8A7B00F75B8D /* Build configuration list for PBXNativeTarget "EditorExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				61C4FC75239B8A7B00F75B8D /* Debug */,
-				61C4FC76239B8A7B00F75B8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
