@@ -50,10 +50,11 @@ struct GitBlamePRView: View {
                         Text(model.error)
                     }
                     ForEach(model.lines, id: \.id) { line in
-                        HStack {
+                        HStack(alignment: .top, spacing: 0) {
                             Text(line.message)
+                                .font(Font.system(.caption, design: .monospaced))
                                 .foregroundColor(.accentColor)
-                                .frame(width: 100, height: nil, alignment: .leading)
+                                .frame(width: 80, height: nil, alignment: .leading)
                                 .onTapGesture {
                                     NSWorkspace.shared.open(line.url)
                             }
@@ -90,7 +91,7 @@ struct GitBlamePRView_Previews: PreviewProvider {
                         id: UUID()
                     ),
                     (
-                        message: "fe214",
+                        message: "fe21fe29",
                         url: URL(string: "https://github.com")!,
                         code: "    model: ContentViewModel(lines: [",
                         id: UUID()
