@@ -50,11 +50,11 @@ struct GitBlamePRView: View {
                         Text(model.error)
                     }
                     ForEach(model.lines, id: \.id) { line in
-                        HStack(alignment: .top, spacing: 0) {
+                        HStack(alignment: .top, spacing: 12) {
                             Text(line.message)
                                 .font(Font.system(.caption, design: .monospaced))
                                 .foregroundColor(.accentColor)
-                                .frame(width: 80, height: nil, alignment: .leading)
+                                .frame(width: 80, height: nil, alignment: .trailing)
                                 .onTapGesture {
                                     NSWorkspace.shared.open(line.url)
                             }
