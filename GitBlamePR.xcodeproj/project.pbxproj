@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		612768B823AD04BE003397B7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 612768B723AD04BE003397B7 /* README.md */; };
 		615C393E23A46E530036FB97 /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C393D23A46E530036FB97 /* ApplicationService.swift */; };
 		615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */ = {isa = PBXBuildFile; fileRef = 615C395723A4BBEF0036FB97 /* git-blame-pr.pl */; };
 		61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC41239B894700F75B8D /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		612768B723AD04BE003397B7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		615C393D23A46E530036FB97 /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		615C395723A4BBEF0036FB97 /* git-blame-pr.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "git-blame-pr.pl"; sourceTree = "<group>"; };
 		61C4FC3E239B894700F75B8D /* GitBlamePR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBlamePR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +93,7 @@
 				61C4FC45239B894B00F75B8D /* Assets.xcassets */,
 				61C4FC4A239B894B00F75B8D /* Main.storyboard */,
 				61C4FC4D239B894B00F75B8D /* Info.plist */,
+				612768B723AD04BE003397B7 /* README.md */,
 				61C4FC4E239B894B00F75B8D /* GitBlamePR.entitlements */,
 				61C4FC47239B894B00F75B8D /* Preview Content */,
 			);
@@ -206,6 +209,7 @@
 			files = (
 				61C4FC4C239B894B00F75B8D /* Main.storyboard in Resources */,
 				61C4FC49239B894B00F75B8D /* Preview Assets.xcassets in Resources */,
+				612768B823AD04BE003397B7 /* README.md in Resources */,
 				615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */,
 				61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */,
 			);
