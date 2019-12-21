@@ -17,13 +17,23 @@ class ApplicationService: ObservableObject {
     var fullPath: String = "" {
         didSet {
             guard !fullPath.isEmpty else {
-                viewModel = GitBlamePRViewModel(lines: [])
+                viewModel = GitBlamePRViewModel()
+                viewModel.recent = RecentViewModel(fullPaths: [
+                    (value: "/Users/aoyama/Dropbox/GitBlamePR/README.md", id: UUID())
+                ]) // TODO
                 return
             }
             execute()
         }
     }
-    @Published private(set) var viewModel = GitBlamePRViewModel(lines: [])
+    @Published private(set) var viewModel = GitBlamePRViewModel(
+        lines: [],
+        recent: RecentViewModel(
+            fullPaths: [
+                (value: "/Users/aoyama/Dropbox/GitBlamePR/README.md", id: UUID())
+            ]
+        )
+    )
     private var trimedFullPath: String {
         fullPath.trimmingCharacters(in: .whitespacesAndNewlines)
     }
@@ -38,10 +48,12 @@ class ApplicationService: ObservableObject {
             remoteOut = try executeGitRemote()
             blamePROut = try executeGitBlamePR()
         } catch ApplicationServiceError.standardError(let description) {
-            viewModel = GitBlamePRViewModel(lines: [], error: description)
+            viewModel = GitBlamePRViewModel()
+            viewModel.error = description
             return
         } catch let e {
-            viewModel = GitBlamePRViewModel(lines: [], error: e.localizedDescription)
+            viewModel = GitBlamePRViewModel()
+            viewModel.error = e.localizedDescription
             return
         }
         viewModel = GitBlamePRViewModel(
@@ -86,12 +98,17 @@ class ApplicationService: ObservableObject {
             throw ApplicationServiceError.unknown
         }
         return stdOut
-
     }
 
 }
 
 extension GitBlamePRViewModel {
+    init() {
+        self.lines = []
+        self.recent = RecentViewModel(fullPaths: [])
+        self.error = ""
+    }
+
     init?(gitRemoteStandardOutput: String, gitBlamePRStandardOutput: String) {
         guard let repo = gitRemoteStandardOutput
             .components(separatedBy: .newlines)[0]
@@ -114,6 +131,7 @@ extension GitBlamePRViewModel {
                 id: UUID()
             )
         }
+        self.recent = RecentViewModel(fullPaths: [])
     }
 
     private static func url(message: String, repoURL: String) -> URL {

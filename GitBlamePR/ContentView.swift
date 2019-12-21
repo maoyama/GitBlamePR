@@ -22,6 +22,7 @@ struct ContentView: View {
 
 struct GitBlamePRViewModel {
     var lines: [(message: String, url: URL, code: String, id: UUID)]
+    var recent: RecentViewModel
     var error = ""
 }
 
@@ -48,6 +49,15 @@ struct GitBlamePRView: View {
                 VStack(alignment: .leading) {
                     if !model.error.isEmpty {
                         Text(model.error)
+                    }
+                    if !model.recent.fullPaths.isEmpty {
+                        RecentView(
+                            model: model.recent,
+                            textOnTap: { text in
+                                self.fullPath = text
+                            },
+                            clearOnTap: {}
+                        ).padding()
                     }
                     ForEach(model.lines, id: \.id) { line in
                         HStack(alignment: .top, spacing: 12) {
@@ -77,27 +87,41 @@ struct GitBlamePRView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             GitBlamePRView(
-                model: GitBlamePRViewModel(lines: [
-                    (
-                        message: "PR #2020",
-                        url: URL(string: "https://github.com")!,
-                        code: "// hello hello hello",
-                        id: UUID()
-                    ),
-                    (
-                        message: "PR #2020",
-                        url: URL(string: "https://github.com")!,
-                        code: "ContentView(",
-                        id: UUID()
-                    ),
-                    (
-                        message: "fe21fe29",
-                        url: URL(string: "https://github.com")!,
-                        code: "    model: ContentViewModel(lines: [",
-                        id: UUID()
-                    ),
-                ]), textOnCommit: {_ in }
+                model: GitBlamePRViewModel(
+                    lines: [
+                        (
+                            message: "PR #2020",
+                            url: URL(string: "https://github.com")!,
+                            code: "// hello hello hello",
+                            id: UUID()
+                        ),
+                        (
+                            message: "PR #2020",
+                            url: URL(string: "https://github.com")!,
+                            code: "ContentView(",
+                            id: UUID()
+                        ),
+                        (
+                            message: "fe21fe29",
+                            url: URL(string: "https://github.com")!,
+                            code: "    model: ContentViewModel(lines: [",
+                            id: UUID()
+                        ),
+                    ],
+                    recent: RecentViewModel(fullPaths: [])
+                ), textOnCommit: {_ in }
             )
+
+            GitBlamePRView(
+                model: GitBlamePRViewModel(
+                    lines: [],
+                    recent: RecentViewModel(fullPaths: [
+                        (value: "/Users/aoyama/Dropbox/GitBlamePR/README.md", id: UUID())
+
+                    ])
+                ), textOnCommit: {_ in }
+            )
+
         }
     }
 }
