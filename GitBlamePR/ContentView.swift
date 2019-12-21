@@ -21,7 +21,7 @@ struct ContentView: View {
 }
 
 struct GitBlamePRViewModel {
-    var lines: [(message: String, url: URL, code: String, id:UUID)]
+    var lines: [(message: String, url: URL, code: String, id: UUID)]
     var error = ""
 }
 
@@ -101,4 +101,3 @@ struct GitBlamePRView_Previews: PreviewProvider {
         }
     }
 }
-

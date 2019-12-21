@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		612768B823AD04BE003397B7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 612768B723AD04BE003397B7 /* README.md */; };
+		61375FD823AE71A000BFD5F9 /* RecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD723AE71A000BFD5F9 /* RecentView.swift */; };
 		615C393E23A46E530036FB97 /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C393D23A46E530036FB97 /* ApplicationService.swift */; };
 		615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */ = {isa = PBXBuildFile; fileRef = 615C395723A4BBEF0036FB97 /* git-blame-pr.pl */; };
 		61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC41239B894700F75B8D /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		612768B723AD04BE003397B7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		61375FD723AE71A000BFD5F9 /* RecentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentView.swift; sourceTree = "<group>"; };
 		615C393D23A46E530036FB97 /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		615C395723A4BBEF0036FB97 /* git-blame-pr.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "git-blame-pr.pl"; sourceTree = "<group>"; };
 		61C4FC3E239B894700F75B8D /* GitBlamePR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBlamePR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +90,7 @@
 			children = (
 				61C4FC41239B894700F75B8D /* AppDelegate.swift */,
 				61C4FC43239B894700F75B8D /* ContentView.swift */,
+				61375FD723AE71A000BFD5F9 /* RecentView.swift */,
 				615C393D23A46E530036FB97 /* ApplicationService.swift */,
 				615C395723A4BBEF0036FB97 /* git-blame-pr.pl */,
 				61C4FC45239B894B00F75B8D /* Assets.xcassets */,
@@ -232,6 +235,7 @@
 				61C4FC44239B894700F75B8D /* ContentView.swift in Sources */,
 				615C393E23A46E530036FB97 /* ApplicationService.swift in Sources */,
 				61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */,
+				61375FD823AE71A000BFD5F9 /* RecentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
