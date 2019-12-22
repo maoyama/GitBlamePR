@@ -18,6 +18,9 @@ struct ContentView: View {
             model: service.viewModel,
             textOnCommit: {text in
                 self.service.fullPath = text
+            },
+            clearOnTap: {
+                self.service.clearHistory()
             }
         )
     }
@@ -32,6 +35,7 @@ struct GitBlamePRViewModel {
 struct GitBlamePRView: View {
     var model: GitBlamePRViewModel
     var textOnCommit: (String) -> Void
+    var clearOnTap: () -> Void
 
     @State private(set) var fullPath: String = ""
 
@@ -59,7 +63,9 @@ struct GitBlamePRView: View {
                             textOnTap: { text in
                                 self.fullPath = text
                             },
-                            clearOnTap: {}
+                            clearOnTap: {
+                                self.clearOnTap()
+                            }
                         ).padding()
                     }
                     ForEach(model.lines, id: \.id) { line in
@@ -142,7 +148,10 @@ struct GitBlamePRView_Previews: PreviewProvider {
                         ),
                     ],
                     recent: RecentViewModel(fullPaths: [])
-                ), textOnCommit: {_ in }
+                ),
+                textOnCommit: {_ in },
+                clearOnTap: {}
+
             )
 
             GitBlamePRView(
@@ -152,7 +161,9 @@ struct GitBlamePRView_Previews: PreviewProvider {
                         (value: "/Users/aoyama/Dropbox/GitBlamePR/README.md", id: UUID())
 
                     ])
-                ), textOnCommit: {_ in }
+                ),
+                textOnCommit: {_ in },
+                clearOnTap: {}
             )
 
         }

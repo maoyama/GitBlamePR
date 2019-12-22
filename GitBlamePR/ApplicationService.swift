@@ -36,6 +36,15 @@ class ApplicationService: ObservableObject {
         )
     }
 
+    func clearHistory() {
+        do {
+            try historyRepository.save(history: History(inputFullPaths: []))
+        } catch let e {
+            viewModel.error = e.localizedDescription
+        }
+        viewModel.recent = RecentViewModel(fullPaths: [])
+    }
+
     private func execute() {
         var remoteOut = ""
         var blamePROut = ""
