@@ -13,11 +13,13 @@ extension UserDefaults {
         case fullPathHistory
     }
 
-    func array(forKey key: UserDefaults.Key) -> [Any]? {
-        array(forKey: key.rawValue)
+
+    func data(forKey key: UserDefaults.Key) -> Data? {
+        data(forKey: key.rawValue)
     }
 
     func set(_ value: Any?, forKey key: UserDefaults.Key) {
         set(value, forKey: key.rawValue)
     }
+
 }

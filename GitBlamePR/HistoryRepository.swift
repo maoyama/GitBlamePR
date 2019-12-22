@@ -16,11 +16,16 @@ struct HistoryRepository {
     }
 
     func findAll() -> History {
-        let fullPaths = db.array(forKey: .fullPathHistory) as! [URL]
-        return History(fullPaths: fullPaths)
+        if let data = db.data(forKey: .fullPathHistory) {
+            if let fullPaths = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [String] {
+                return History(inputFullPaths: fullPaths)
+            }
+        }
+        return History(inputFullPaths: [])
     }
 
-    func save(history: History) {
-        db.set(history.fullPaths, forKey: .fullPathHistory)
+    func save(history: History) throws {
+        let data = try NSKeyedArchiver.archivedData(withRootObject: history.inputFullPaths, requiringSecureCoding: true)
+        db.set(data, forKey: .fullPathHistory)
     }
 }

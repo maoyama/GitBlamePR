@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6114CDDC23AFBAF700EF6B88 /* RecentViewModel+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114CDDB23AFBAF700EF6B88 /* RecentViewModel+Init.swift */; };
 		612768B823AD04BE003397B7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 612768B723AD04BE003397B7 /* README.md */; };
 		61375FD823AE71A000BFD5F9 /* RecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD723AE71A000BFD5F9 /* RecentView.swift */; };
 		61375FDA23AFA3AF00BFD5F9 /* Process+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6114CDDB23AFBAF700EF6B88 /* RecentViewModel+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentViewModel+Init.swift"; sourceTree = "<group>"; };
 		612768B723AD04BE003397B7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		61375FD723AE71A000BFD5F9 /* RecentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentView.swift; sourceTree = "<group>"; };
 		61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process+Run.swift"; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				61375FDF23AFA84B00BFD5F9 /* History.swift */,
 				61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */,
 				615C393D23A46E530036FB97 /* ApplicationService.swift */,
+				6114CDDB23AFBAF700EF6B88 /* RecentViewModel+Init.swift */,
 				61375FDB23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift */,
 				61375FE323AFB86D00BFD5F9 /* View */,
 				61C4FC41239B894700F75B8D /* AppDelegate.swift */,
@@ -264,6 +267,7 @@
 				61375FE223AFB7F700BFD5F9 /* UserDefaults+Key.swift in Sources */,
 				61375FD823AE71A000BFD5F9 /* RecentView.swift in Sources */,
 				61375FDC23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift in Sources */,
+				6114CDDC23AFBAF700EF6B88 /* RecentViewModel+Init.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,20 +9,20 @@
 import Foundation
 
 struct History {
-    static var fullPathLimit = 100
-    private(set) var fullPaths: [URL]
+    static var inputFullPathLimit = 100
+    private(set) var inputFullPaths: [String]
 
-    private static func validate(forFullPaths fullPaths: [URL]) -> [URL] {
-        return Array(fullPaths.prefix(fullPathLimit)).unique
+    private static func validate(forInputFullPaths fullPaths: [String]) -> [String] {
+        return Array(fullPaths.prefix(inputFullPathLimit)).unique
     }
 
-    init(fullPaths: [URL]) {
-        self.fullPaths = Self.validate(forFullPaths: fullPaths)
+    init(inputFullPaths: [String]) {
+        self.inputFullPaths = Self.validate(forInputFullPaths: inputFullPaths)
     }
 
-    mutating func addFullPath(_ url: URL) {
-        fullPaths.insert(url, at: 0)
-        fullPaths = Self.validate(forFullPaths: fullPaths)
+    mutating func addInputFullPath(_ string: String) {
+        inputFullPaths.insert(string, at: 0)
+        inputFullPaths = Self.validate(forInputFullPaths: inputFullPaths)
     }
 }
 
