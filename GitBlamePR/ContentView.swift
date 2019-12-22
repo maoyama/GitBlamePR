@@ -14,9 +14,12 @@ struct ContentView: View {
     @ObservedObject var service = ApplicationService()
 
     var body: some View {
-        GitBlamePRView(model: service.viewModel, textOnCommit: {text in
-            self.service.fullPath = text
-        })
+        GitBlamePRView(
+            model: service.viewModel,
+            textOnCommit: {text in
+                self.service.fullPath = text
+            }
+        )
     }
 }
 
@@ -92,19 +95,49 @@ struct GitBlamePRView_Previews: PreviewProvider {
                         (
                             message: "PR #2020",
                             url: URL(string: "https://github.com")!,
-                            code: "// hello hello hello",
+                            code: "struct ContentView: View {",
                             id: UUID()
                         ),
                         (
                             message: "PR #2020",
                             url: URL(string: "https://github.com")!,
-                            code: "ContentView(",
+                            code: "",
                             id: UUID()
                         ),
                         (
                             message: "fe21fe29",
                             url: URL(string: "https://github.com")!,
-                            code: "    model: ContentViewModel(lines: [",
+                            code: "    var body: some View {",
+                            id: UUID()
+                        ),
+                        (
+                            message: "fe21fe29",
+                            url: URL(string: "https://github.com")!,
+                            code: "        GitBlamePRView(",
+                            id: UUID()
+                        ),
+                        (
+                            message: "fe21fe29",
+                            url: URL(string: "https://github.com")!,
+                            code: "            model: service.viewModel,",
+                            id: UUID()
+                        ),
+                        (
+                            message: "fe21fe29",
+                            url: URL(string: "https://github.com")!,
+                            code: "            textOnCommit: {text in",
+                            id: UUID()
+                        ),
+                        (
+                            message: "fe21fe29",
+                            url: URL(string: "https://github.com")!,
+                            code: "                self.service.fullPath = text",
+                            id: UUID()
+                        ),
+                        (
+                            message: "fe21fe29",
+                            url: URL(string: "https://github.com")!,
+                            code: "            }",
                             id: UUID()
                         ),
                     ],
