@@ -76,6 +76,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61375FE323AFB86D00BFD5F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				61C4FC43239B894700F75B8D /* ContentView.swift */,
+				61375FD723AE71A000BFD5F9 /* RecentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		61C4FC35239B894700F75B8D = {
 			isa = PBXGroup;
 			children = (
@@ -98,15 +107,14 @@
 		61C4FC40239B894700F75B8D /* GitBlamePR */ = {
 			isa = PBXGroup;
 			children = (
-				61C4FC41239B894700F75B8D /* AppDelegate.swift */,
-				61C4FC43239B894700F75B8D /* ContentView.swift */,
-				61375FD723AE71A000BFD5F9 /* RecentView.swift */,
-				615C393D23A46E530036FB97 /* ApplicationService.swift */,
+				61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */,
 				61375FDD23AFA62B00BFD5F9 /* HistoryRepository.swift */,
 				61375FDF23AFA84B00BFD5F9 /* History.swift */,
-				61375FDB23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift */,
-				61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */,
 				61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */,
+				615C393D23A46E530036FB97 /* ApplicationService.swift */,
+				61375FDB23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift */,
+				61375FE323AFB86D00BFD5F9 /* View */,
+				61C4FC41239B894700F75B8D /* AppDelegate.swift */,
 				615C395723A4BBEF0036FB97 /* git-blame-pr.pl */,
 				61C4FC45239B894B00F75B8D /* Assets.xcassets */,
 				61C4FC4A239B894B00F75B8D /* Main.storyboard */,
