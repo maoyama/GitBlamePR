@@ -17,6 +17,7 @@
 		61375FE223AFB7F700BFD5F9 /* UserDefaults+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */; };
 		615C393E23A46E530036FB97 /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C393D23A46E530036FB97 /* ApplicationService.swift */; };
 		615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */ = {isa = PBXBuildFile; fileRef = 615C395723A4BBEF0036FB97 /* git-blame-pr.pl */; };
+		618A775E23F92F7A00D11BDC /* build.yml in Resources */ = {isa = PBXBuildFile; fileRef = 618A775D23F92F7900D11BDC /* build.yml */; };
 		61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC41239B894700F75B8D /* AppDelegate.swift */; };
 		61C4FC44239B894700F75B8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC43239B894700F75B8D /* ContentView.swift */; };
 		61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC45239B894B00F75B8D /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift"; sourceTree = "<group>"; };
 		615C393D23A46E530036FB97 /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		615C395723A4BBEF0036FB97 /* git-blame-pr.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "git-blame-pr.pl"; sourceTree = "<group>"; };
+		618A775D23F92F7900D11BDC /* build.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = build.yml; sourceTree = "<group>"; };
 		61C4FC3E239B894700F75B8D /* GitBlamePR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBlamePR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4FC41239B894700F75B8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61C4FC43239B894700F75B8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,6 +89,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		618A775B23F92F7900D11BDC /* .github */ = {
+			isa = PBXGroup;
+			children = (
+				618A775C23F92F7900D11BDC /* workflows */,
+			);
+			path = .github;
+			sourceTree = "<group>";
+		};
+		618A775C23F92F7900D11BDC /* workflows */ = {
+			isa = PBXGroup;
+			children = (
+				618A775D23F92F7900D11BDC /* build.yml */,
+			);
+			path = workflows;
+			sourceTree = "<group>";
+		};
 		61C4FC35239B894700F75B8D = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +112,7 @@
 				61C4FC56239B894C00F75B8D /* GitBlamePRTests */,
 				61C4FC67239B8A7B00F75B8D /* Frameworks */,
 				61C4FC3F239B894700F75B8D /* Products */,
+				618A775B23F92F7900D11BDC /* .github */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,6 +259,7 @@
 				61C4FC49239B894B00F75B8D /* Preview Assets.xcassets in Resources */,
 				612768B823AD04BE003397B7 /* README.md in Resources */,
 				615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */,
+				618A775E23F92F7A00D11BDC /* build.yml in Resources */,
 				61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,11 +440,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GitBlamePR/GitBlamePR.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"GitBlamePR/Preview Content\"";
-				DEVELOPMENT_TEAM = JRA6VW2DG4;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = GitBlamePR/Info.plist;
@@ -436,6 +457,7 @@
 				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -447,11 +469,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GitBlamePR/GitBlamePR.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"GitBlamePR/Preview Content\"";
-				DEVELOPMENT_TEAM = JRA6VW2DG4;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = GitBlamePR/Info.plist;
@@ -463,6 +486,7 @@
 				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
