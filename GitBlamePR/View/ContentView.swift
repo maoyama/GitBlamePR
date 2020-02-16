@@ -36,8 +36,8 @@ struct GitBlamePRView: View {
     var model: GitBlamePRViewModel
     var textOnCommit: (String) -> Void
     var clearOnTap: () -> Void
+
     @State private(set) var fullPath: String = ""
-    @State private var hoverLineID: UUID?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -76,19 +76,11 @@ struct GitBlamePRView: View {
                                 .frame(width: 80, height: nil, alignment: .trailing)
                                 .onTapGesture {
                                     NSWorkspace.shared.open(line.url)
-                                }
+                            }
                             Text(line.code)
                                 .font(Font.system(.caption, design: .monospaced))
                                 .frame(width: nil, height: nil, alignment: .leading)
-                            Spacer()
-                        }.onHover { (action) in
-                            if action {
-                                self.hoverLineID = line.id
-                            }
                         }
-                        .background(
-                            self.hoverLineID == line.id ? Color(NSColor.windowBackgroundColor).opacity(0.5) : Color(NSColor.textBackgroundColor)
-                        )
                     }
                     HStack {
                         Spacer()
