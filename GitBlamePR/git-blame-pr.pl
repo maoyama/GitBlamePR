@@ -17,7 +17,7 @@ while (my $line = <$fh>) {
     my ($commit, $src) = split / .*?\) /, $line, 2;
     $cached{$commit} = lookup($commit)
         unless $cached{$commit};
-    print $cached{$commit}, ' ', $src;
+    print $cached{$commit}, ',', $src;
 }
 
 while (waitpid($git_blame_pid, 0) != $git_blame_pid) {}
