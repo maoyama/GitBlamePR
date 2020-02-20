@@ -26,10 +26,13 @@ extension GitBlamePRViewModel {
 
         let strLines = gitBlamePRStandardOutput.components(separatedBy: .newlines)
         self.lines = strLines.map { (line) -> (message: String, url: URL, code: String, id: UUID) in
-            let linePrefix = line.prefix(9)
-            let code = line.suffix(line.count - linePrefix.count)
-            let trimdlinePrefix = linePrefix.trimmingCharacters(in: .whitespacesAndNewlines)
-            let message = trimdlinePrefix.replacingOccurrences(of: "^", with: "")
+            let separatedBy = ","
+            let splitted = line.components(separatedBy: separatedBy)
+            let linePrefix = splitted[0]
+            
+            let code = line.suffix(max(line.count - (linePrefix.count + separatedBy.count), 0))
+            let trimmedLinePrefix = linePrefix.trimmingCharacters(in: .whitespacesAndNewlines)
+            let message = trimmedLinePrefix.replacingOccurrences(of: "^", with: "")
             return (
                 message: message,
                 url: Self.url(message: message, repoURL: repoURL),

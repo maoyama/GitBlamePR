@@ -21,11 +21,11 @@ class ApplicationService: ObservableObject {
     }
     @Published private(set) var viewModel: GitBlamePRViewModel
     private var historyRepository: HistoryRepository
-    private var trimedFullPath: String {
+    private var trimmedFullPath: String {
         fullPath.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     private var fullPathDirectoryURL: URL {
-        URL(fileURLWithPath: trimedFullPath).deletingLastPathComponent()
+        URL(fileURLWithPath: trimmedFullPath).deletingLastPathComponent()
     }
 
     init() {
@@ -88,7 +88,7 @@ class ApplicationService: ObservableObject {
     private func executeGitBlamePR() throws -> String {
         return try Process.run(
             executableURL: URL(fileURLWithPath: "/usr/bin/perl"),
-            arguments: [Bundle.main.resourcePath! + "/git-blame-pr.pl", trimedFullPath],
+            arguments: [Bundle.main.resourcePath! + "/git-blame-pr.pl", trimmedFullPath],
             currentDirectoryURL: fullPathDirectoryURL
         )
     }
