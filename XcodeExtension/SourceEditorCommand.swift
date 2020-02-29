@@ -22,7 +22,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         let xcode = connection.remoteObjectProxy as! XcodeHelperProtocol
 
         let semaphore = DispatchSemaphore(value: 0)
-        xcode.upperCaseString("aaaa") { (str) in
+        xcode.currentFileFullPath { (str) in
             invocation.buffer.lines.add(str!)
             semaphore.signal()
         }

@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let xcode = connection.remoteObjectProxy as! XcodeHelperProtocol
 
         let semaphore = DispatchSemaphore(value: 0)
-        xcode.upperCaseString("aaaa") { (str) in
+        xcode.currentFileFullPath { (str) in
             print(str ?? "")
             semaphore.signal()
         }
