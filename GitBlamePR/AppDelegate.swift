@@ -13,11 +13,10 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
-
+    var urlScheme: URLScheme!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
 
         // Create the window and set the content view. 
         window = NSWindow(
@@ -27,9 +26,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.title = "GitBlamePR"
         window.center()
         window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: contentView)
+        window.contentView = NSHostingView(rootView: ContentView())
         window.makeKeyAndOrderFront(nil)
 
+        
         // TODO Move connection to xcode
         let connection = NSXPCConnection(serviceName: "dev.aoyama.XcodeHelper")
         connection.remoteObjectInterface = NSXPCInterface(with: XcodeHelperProtocol.self)
@@ -43,12 +43,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         _ = semaphore.wait(timeout: .now() + 10)
 
+        urlScheme = URLScheme(willOpenWithFileFullPath: { [weak window](fullPath) in
+            window?.contentView = NSHostingView(rootView: ContentView(fullPath: fullPath))
+        })
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
-
 }
-

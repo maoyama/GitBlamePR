@@ -11,11 +11,24 @@ import AppKit
 
 
 struct ContentView: View {
-    @ObservedObject var service = ApplicationService()
+    @ObservedObject private var service: ApplicationService
+    private var fullPath: String
+
+    init() {
+        self.service = ApplicationService()
+        self.fullPath = ""
+    }
+
+    init(fullPath: String) {
+        self.service = ApplicationService()
+        self.fullPath = fullPath
+        self.service.fullPath = self.fullPath
+    }
 
     var body: some View {
         GitBlamePRView(
             model: service.viewModel,
+            fullPath: fullPath,
             textOnCommit: {text in
                 self.service.fullPath = text
             },
@@ -34,10 +47,9 @@ struct GitBlamePRViewModel {
 
 struct GitBlamePRView: View {
     var model: GitBlamePRViewModel
+    @State var fullPath: String
     var textOnCommit: (String) -> Void
     var clearOnTap: () -> Void
-
-    @State private(set) var fullPath: String = ""
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -149,6 +161,7 @@ struct GitBlamePRView_Previews: PreviewProvider {
                     ],
                     recent: RecentViewModel(fullPaths: [])
                 ),
+                fullPath: "",
                 textOnCommit: {_ in },
                 clearOnTap: {}
 
@@ -162,6 +175,7 @@ struct GitBlamePRView_Previews: PreviewProvider {
 
                     ])
                 ),
+                fullPath: "",
                 textOnCommit: {_ in },
                 clearOnTap: {}
             )
