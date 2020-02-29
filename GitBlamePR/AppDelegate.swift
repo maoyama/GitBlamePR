@@ -29,6 +29,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.setFrameAutosaveName("Main Window")
         window.contentView = NSHostingView(rootView: contentView)
         window.makeKeyAndOrderFront(nil)
+
+        // TODO Move connection to xcode
+        let connection = NSXPCConnection(serviceName: "dev.aoyama.XcodeHelper")
+        connection.remoteObjectInterface = NSXPCInterface(with: XcodeHelperProtocol.self)
+        connection.resume()
+        let xcode = connection.remoteObjectProxy as! XcodeHelperProtocol
+
+        let semaphore = DispatchSemaphore(value: 0)
+        xcode.upperCaseString("aaaa") { (str) in
+            print(str ?? "")
+            semaphore.signal()
+        }
+        _ = semaphore.wait(timeout: .now() + 10)
+
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

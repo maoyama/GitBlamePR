@@ -131,6 +131,7 @@
 		61C4FC57239B894C00F75B8D /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
 		61C4FC59239B894C00F75B8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61C4FC68239B8A7B00F75B8D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		61E2C9602409DE830011CB6D /* GitBlamePR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GitBlamePR-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +261,7 @@
 				612768B723AD04BE003397B7 /* README.md */,
 				61C4FC4E239B894B00F75B8D /* GitBlamePR.entitlements */,
 				61C4FC47239B894B00F75B8D /* Preview Content */,
+				61E2C9602409DE830011CB6D /* GitBlamePR-Bridging-Header.h */,
 			);
 			path = GitBlamePR;
 			sourceTree = "<group>";
@@ -746,6 +748,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "GitBlamePR/GitBlamePR-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -776,6 +779,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "GitBlamePR/GitBlamePR-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

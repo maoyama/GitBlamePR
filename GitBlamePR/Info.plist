@@ -22,6 +22,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Hello!</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 dev.aoyama. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
