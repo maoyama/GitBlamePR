@@ -13,7 +13,7 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
-    var urlScheme: URLScheme!
+    var urlSchemeService: URLSchemeService!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         _ = semaphore.wait(timeout: .now() + 10)
 
-        urlScheme = URLScheme(willOpenWithFileFullPath: { [weak window](fullPath) in
+        urlSchemeService = URLSchemeService(appWillOpenWithFileFullPath: { [weak window](fullPath) in
             window?.contentView = NSHostingView(rootView: ContentView(fullPath: fullPath))
         })
     }

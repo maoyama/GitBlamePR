@@ -1,5 +1,5 @@
 //
-//  URLScheme.swift
+//  URLSchemeService.swift
 //  GitBlamePR
 //
 //  Created by Makoto Aoyama on 2020/02/29.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-class URLScheme {
+class URLSchemeService {
     private var willOpen: (_ fullPath: String) -> Void
 
-    init(willOpenWithFileFullPath:@escaping (String) -> Void) {
-        self.willOpen = willOpenWithFileFullPath
+    init(appWillOpenWithFileFullPath:@escaping (String) -> Void) {
+        self.willOpen = appWillOpenWithFileFullPath
         NSAppleEventManager.shared().setEventHandler(
             self,
             andSelector: #selector(handle(event:replyEvent:)),
