@@ -18,13 +18,21 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         connection.resume()
         let xcode = connection.remoteObjectProxy as! XcodeHelperProtocol
         let semaphore = DispatchSemaphore(value: 0)
-        xcode.currentFileFullPath { (str) in
-            let fullPath = str?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-            let _ = try! Process.run(
-                executableURL: URL(fileURLWithPath: "/usr/bin/open"),
-                arguments: ["gitblamepr://\(fullPath!)"],
-                currentDirectoryURL: nil
-            )
+        xcode.currentFileFullPath { (fullPath) in
+            if let fullPath = fullPath {
+                let encoded = fullPath.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+                let _ = try! Process.run(
+                    executableURL: URL(fileURLWithPath: "/usr/bin/open"),
+                    arguments: ["gitblamepr://\(encoded)"],
+                    currentDirectoryURL: nil
+                )
+            } else {
+                let _ = try! Process.run(
+                    executableURL: URL(fileURLWithPath: "/usr/bin/open"),
+                    arguments: ["gitblamepr://access/xcode"],
+                    currentDirectoryURL: nil
+                )
+            }
             semaphore.signal()
         }
         _ = semaphore.wait(timeout: .now() + 10)
