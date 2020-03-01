@@ -24,20 +24,32 @@ class URLSchemeService {
     }
 
     @objc func handle(event: NSAppleEventDescriptor?, replyEvent: NSAppleEventDescriptor?) {
-        guard let urlStr =  event?.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue else {
-            return
-        }
-        guard let url = URL(string: urlStr) else {
-            return
-        }
-        guard let urlScheme = URLScheme(url: url) else {
+        guard
+            let urlStr =  event?.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue,
+            let url = URL(string: urlStr),
+            let urlScheme = URLScheme(url: url)
+        else {
             return
         }
         switch urlScheme {
         case .fileFullPath(let value):
             willOpen(value)
             return
-        default:
+        case .accessToXcode:
+            let connection = NSXPCConnection(serviceName: "dev.aoyama.XcodeHelper")
+            connection.remoteObjectInterface = NSXPCInterface(with: XcodeHelperProtocol.self)
+            connection.resume()
+            let xcode = connection.remoteObjectProxy as! XcodeHelperProtocol
+            let semaphore = DispatchSemaphore(value: 0)
+            xcode.currentFileFullPath { [weak self] (value) in
+                semaphore.signal()
+                DispatchQueue.main.async {
+                    if let value = value {
+                        self?.willOpen(value)
+                    }
+                }
+            }
+            _ = semaphore.wait(timeout: .now() + 10)
             return
         }
     }
