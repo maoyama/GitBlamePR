@@ -30,16 +30,15 @@ class URLSchemeService {
         guard let url = URL(string: urlStr) else {
             return
         }
-        guard let fullPath = fullPath(url: url) else {
+        guard let urlScheme = URLScheme(url: url) else {
             return
         }
-        willOpen(fullPath)
-    }
-
-    private func fullPath(url: URL) -> String? {
-        guard let fullPath = url.host?.removingPercentEncoding else {
-            return nil
+        switch urlScheme {
+        case .fileFullPath(let value):
+            willOpen(value)
+            return
+        default:
+            return
         }
-        return fullPath
     }
 }
