@@ -13,7 +13,7 @@
 		612F669C2400AFF8001975A6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C4FC68239B8A7B00F75B8D /* Cocoa.framework */; };
 		612F669F2400AFF8001975A6 /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F669E2400AFF8001975A6 /* SourceEditorExtension.swift */; };
 		612F66A12400AFF8001975A6 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F66A02400AFF8001975A6 /* SourceEditorCommand.swift */; };
-		612F66A62400AFF8001975A6 /* XcodeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 612F669B2400AFF8001975A6 /* XcodeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		612F66A62400AFF8001975A6 /* GitBlamePR.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 612F669B2400AFF8001975A6 /* GitBlamePR.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		61375FD823AE71A000BFD5F9 /* RecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD723AE71A000BFD5F9 /* RecentView.swift */; };
 		61375FDA23AFA3AF00BFD5F9 /* Process+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */; };
 		61375FDC23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FDB23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift */; };
@@ -79,7 +79,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				612F66A62400AFF8001975A6 /* XcodeExtension.appex in Embed App Extensions */,
+				612F66A62400AFF8001975A6 /* GitBlamePR.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,7 +103,7 @@
 		6121EA5B240136C600982682 /* Xcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xcode.h; sourceTree = "<group>"; };
 		6121EA5C2403329E00982682 /* XcodeHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XcodeHelper.entitlements; sourceTree = "<group>"; };
 		612768B723AD04BE003397B7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		612F669B2400AFF8001975A6 /* XcodeExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = XcodeExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		612F669B2400AFF8001975A6 /* GitBlamePR.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GitBlamePR.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		612F669E2400AFF8001975A6 /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
 		612F66A02400AFF8001975A6 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
 		612F66A22400AFF8001975A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 			children = (
 				61C4FC3E239B894700F75B8D /* GitBlamePR.app */,
 				61C4FC53239B894C00F75B8D /* GitBlamePRTests.xctest */,
-				612F669B2400AFF8001975A6 /* XcodeExtension.appex */,
+				612F669B2400AFF8001975A6 /* GitBlamePR.appex */,
 				614894B62401344D00AB4788 /* XcodeHelper.xpc */,
 			);
 			name = Products;
@@ -319,7 +319,7 @@
 			);
 			name = XcodeExtension;
 			productName = XcodeExtension;
-			productReference = 612F669B2400AFF8001975A6 /* XcodeExtension.appex */;
+			productReference = 612F669B2400AFF8001975A6 /* GitBlamePR.appex */;
 			productType = "com.apple.product-type.xcode-extension";
 		};
 		614894B52401344D00AB4788 /* XcodeHelper */ = {
@@ -560,7 +560,8 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR.XcodeExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = XcodeExtension;
+				PRODUCT_NAME = GitBlamePR;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodeExtension/XcodeExtension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -585,7 +586,8 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR.XcodeExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = XcodeExtension;
+				PRODUCT_NAME = GitBlamePR;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodeExtension/XcodeExtension-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
