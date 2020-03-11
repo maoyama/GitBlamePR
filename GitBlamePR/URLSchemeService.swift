@@ -9,31 +9,15 @@
 import Foundation
 
 class URLSchemeService {
-    private var willOpen: (_ fullPath: String) -> Void
-
-    init(appWillOpenWithFileFullPath:@escaping (String) -> Void) {
-        self.willOpen = appWillOpenWithFileFullPath
-        NSAppleEventManager.shared().setEventHandler(
-            self,
-            andSelector: #selector(handle(event:replyEvent:)),
-            forEventClass: AEEventClass(kInternetEventClass),
-            andEventID: AEEventID(kAEGetURL)
-        )
-        let appURL = Bundle.main.bundleURL.appendingPathComponent("", isDirectory: true)
-        LSRegisterURL(appURL as CFURL, false)
-    }
-
-    @objc func handle(event: NSAppleEventDescriptor?, replyEvent: NSAppleEventDescriptor?) {
+    static func handle(url: URL, fileFullPath: @escaping(String) -> Void) {
         guard
-            let urlStr =  event?.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue,
-            let url = URL(string: urlStr),
             let urlScheme = URLScheme(url: url)
         else {
             return
         }
         switch urlScheme {
         case .fileFullPath(let value):
-            willOpen(value)
+            fileFullPath(value)
             return
         case .accessToXcode:
             let connection = NSXPCConnection(serviceName: "dev.aoyama.XcodeHelper")
@@ -41,11 +25,11 @@ class URLSchemeService {
             connection.resume()
             let xcode = connection.remoteObjectProxy as! XcodeHelperProtocol
             let semaphore = DispatchSemaphore(value: 0)
-            xcode.currentFileFullPath { [weak self] (value) in
+            xcode.currentFileFullPath {(value) in
                 semaphore.signal()
                 DispatchQueue.main.async {
                     if let value = value {
-                        self?.willOpen(value)
+                        fileFullPath(value)
                     }
                 }
             }
