@@ -10,18 +10,18 @@ import Foundation
 
 enum URLScheme {
     case fileFullPath(String) // ://{fileFullPath}
-    case accessToXcode        // ://access/xcode  Request the ability to send Apple events & Get file full path on Xcode
+    case xcodeFileFullPath    // ://xcode/filefullpath  Request the ability to send Apple events & Get file full path on Xcode
 
     private static func makeAccessToXcode(url:URL) -> URLScheme? {
         guard
             let host = url.host,
-            host == "access",
+            host == "xcode",
             url.pathComponents.count == 2,
-            url.pathComponents[1] == "xcode"
+            url.pathComponents[1] == "filefullpath"
         else {
             return nil
         }
-        return .accessToXcode
+        return .xcodeFileFullPath
     }
 
     private static func makeFileFullPath(url:URL) -> URLScheme? {
@@ -51,7 +51,7 @@ enum URLScheme {
         case .fileFullPath(let value):
             fileFullPath(value)
             return
-        case .accessToXcode:
+        case .xcodeFileFullPath:
             let connection = NSXPCConnection(serviceName: "dev.aoyama.XcodeHelper")
             connection.remoteObjectInterface = NSXPCInterface(with: XcodeHelperProtocol.self)
             connection.resume()

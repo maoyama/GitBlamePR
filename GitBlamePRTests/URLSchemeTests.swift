@@ -36,13 +36,13 @@ class URLSchemeTests: XCTestCase {
     }
 
     func testAccessToXcode() {
-        let url = URL(string: "hoge://access/xcode")!
+        let url = URL(string: "hoge://xcode/filefullpath")!
 
         guard let urlScheme = URLScheme(url:url) else {
             return XCTFail()
         }
         switch urlScheme {
-        case .accessToXcode:
+        case .xcodeFileFullPath:
             break
         default:
             XCTFail()
