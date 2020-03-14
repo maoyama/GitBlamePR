@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
-        URLSchemeService.handle(url: urls[0]) { [weak self](fullPath) in
+        URLScheme(url: urls[0])?.handle { [weak self](fullPath) in
             guard let fullPath = fullPath else {
                 return
             }
