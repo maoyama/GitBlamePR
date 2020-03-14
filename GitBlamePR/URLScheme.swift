@@ -10,7 +10,7 @@ import Foundation
 
 enum URLScheme {
     case fileFullPath(String) // ://{fileFullPath}
-    case xcodeFileFullPath    // ://xcode/filefullpath  Request the ability to send Apple events & Get file full path on Xcode
+    case xcodeFileFullPath    // ://xcode/filefullpath
 
     private static func makeAccessToXcode(url:URL) -> URLScheme? {
         guard
@@ -44,33 +44,5 @@ enum URLScheme {
             return
         }
         return nil
-    }
-
-    func handle(fileFullPath: @escaping(String?) -> Void) {
-        switch self {
-        case .fileFullPath(let value):
-            fileFullPath(value)
-            return
-        case .xcodeFileFullPath:
-            let connection = NSXPCConnection(serviceName: "dev.aoyama.XcodeHelper")
-            connection.remoteObjectInterface = NSXPCInterface(with: XcodeHelperProtocol.self)
-            connection.resume()
-            let xcode = connection.remoteObjectProxy as! XcodeHelperProtocol
-            let semaphore = DispatchSemaphore(value: 0)
-            xcode.currentFileFullPath {(value) in
-                DispatchQueue.main.async {
-                    fileFullPath(value)
-                }
-                semaphore.signal()
-            }
-            let result = semaphore.wait(timeout: .now() + 10)
-            switch result {
-            case .success:
-                break;
-            case .timedOut:
-                fileFullPath(nil)
-            }
-            return
-        }
     }
 }

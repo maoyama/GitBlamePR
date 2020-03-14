@@ -26,11 +26,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
-        URLScheme(url: urls[0])?.handle { [weak self](fullPath) in
-            guard let fullPath = fullPath else {
-                return
+        if let urlScheme = URLScheme(url: urls[0]) {
+            switch urlScheme {
+            case .fileFullPath(let value):
+                window?.contentView = NSHostingView(rootView: ContentView(fullPath: value))
+            case .xcodeFileFullPath:
+                XcodeConnection.resume { [weak self](fullPath) in
+                    if let fullPath = fullPath {
+                        self?.window?.contentView = NSHostingView(rootView: ContentView(fullPath: fullPath))
+                    }
+                }
             }
-            self?.window?.contentView = NSHostingView(rootView: ContentView(fullPath: fullPath))
         }
     }
 
