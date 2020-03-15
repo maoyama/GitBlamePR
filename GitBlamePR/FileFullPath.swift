@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct FileFullPath {
+struct FileFullPath: Equatable {
+    static func == (lhs: FileFullPath, rhs: FileFullPath) -> Bool {
+        return
+            lhs.rawValue == rhs.rawValue
+    }
+
     var rawValue: String
     var trimmed: String {
         rawValue.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -23,4 +28,5 @@ struct FileFullPath {
         }
         self.rawValue = rawValue
     }
+
 }

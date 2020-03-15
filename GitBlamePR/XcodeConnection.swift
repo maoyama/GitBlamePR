@@ -10,7 +10,7 @@ import Foundation
 
 struct XcodeConnection {
     // Request the ability to send Apple events & Get file full path on Xcode
-    static func resume(fileFullPath: @escaping(String?) -> Void) {
+    static func resume(fileFullPath: @escaping(FileFullPath?) -> Void) {
         let connection = NSXPCConnection(serviceName: "dev.aoyama.XcodeHelper")
         connection.remoteObjectInterface = NSXPCInterface(with: XcodeHelperProtocol.self)
         connection.resume()
@@ -18,7 +18,7 @@ struct XcodeConnection {
         let semaphore = DispatchSemaphore(value: 0)
         xcode.currentFileFullPath {(value) in
             DispatchQueue.main.async {
-                fileFullPath(value)
+                fileFullPath(FileFullPath(rawValue: value ?? ""))
             }
             semaphore.signal()
         }

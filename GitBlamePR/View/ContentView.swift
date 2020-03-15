@@ -12,19 +12,19 @@ import AppKit
 
 struct ContentView: View {
     @ObservedObject private var service: ApplicationService
-    private var fullPath: String
+    private var fullPathTextFieldValue: String
 
-    init(service: ApplicationService=ApplicationService(), fullPath: String="") {
+    init(service: ApplicationService=ApplicationService(), fullPathTextFieldValue: String="") {
         self.service = service
-        self.fullPath = fullPath
+        self.fullPathTextFieldValue = fullPathTextFieldValue
     }
 
     var body: some View {
         GitBlamePRView(
             model: service.viewModel,
-            fullPath: fullPath,
+            fullPathTextFieldValue: fullPathTextFieldValue,
             textOnCommit: {text in
-                self.service.fullPathDidCommit(fullPath: text)
+                self.service.fullPathDidCommit(fullPathTextFieldValue: text)
             },
             clearOnTap: {
                 self.service.clearHistory()
@@ -41,7 +41,7 @@ struct GitBlamePRViewModel {
 
 struct GitBlamePRView: View {
     var model: GitBlamePRViewModel
-    @State var fullPath: String
+    @State var fullPathTextFieldValue: String
     var textOnCommit: (String) -> Void
     var clearOnTap: () -> Void
 
@@ -49,10 +49,10 @@ struct GitBlamePRView: View {
         VStack(alignment: .leading, spacing: 0) {
             TextField(
                 "Enter full path",
-                text: $fullPath,
+                text: $fullPathTextFieldValue,
                 onEditingChanged: {_ in },
                 onCommit: {
-                    self.textOnCommit(self.fullPath)
+                    self.textOnCommit(self.fullPathTextFieldValue)
                 }
             ).lineLimit(1)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -67,7 +67,7 @@ struct GitBlamePRView: View {
                         RecentView(
                             model: model.recent,
                             textOnTap: { text in
-                                self.fullPath = text
+                                self.fullPathTextFieldValue = text
                             },
                             clearOnTap: {
                                 self.clearOnTap()
@@ -155,7 +155,7 @@ struct GitBlamePRView_Previews: PreviewProvider {
                     ],
                     recent: RecentViewModel(fullPaths: [])
                 ),
-                fullPath: "",
+                fullPathTextFieldValue: "",
                 textOnCommit: {_ in },
                 clearOnTap: {}
 
@@ -169,7 +169,7 @@ struct GitBlamePRView_Previews: PreviewProvider {
 
                     ])
                 ),
-                fullPath: "",
+                fullPathTextFieldValue: "",
                 textOnCommit: {_ in },
                 clearOnTap: {}
             )

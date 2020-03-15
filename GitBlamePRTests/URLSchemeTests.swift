@@ -11,7 +11,7 @@ import XCTest
 
 class URLSchemeTests: XCTestCase {
     func testFileFullPath() {
-        let fullPath = "Users/GitBlamePR/hoge.swift"
+        let fullPath = "/Users/GitBlamePR/hoge.swift"
         let encodedFullPath = fullPath.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let url = URL(string: "hoge://\(encodedFullPath)")!
 
@@ -20,7 +20,7 @@ class URLSchemeTests: XCTestCase {
         }
         switch urlScheme {
         case .fileFullPath(let value):
-            XCTAssertEqual(value, fullPath)
+            XCTAssertEqual(value.rawValue, fullPath)
         default:
             XCTFail()
         }

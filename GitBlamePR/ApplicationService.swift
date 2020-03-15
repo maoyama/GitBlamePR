@@ -30,13 +30,7 @@ class ApplicationService: ObservableObject {
         viewModel.recent = RecentViewModel(fullPaths: [])
     }
 
-    func fullPathDidCommit(fullPath: String) {
-        guard let fullPath = FileFullPath(rawValue: fullPath) else {
-            viewModel = GitBlamePRViewModel()
-            viewModel.recent = RecentViewModel(for: historyRepository.findAll())
-            return
-        }
-
+    func fullPathDidCommit(fullPath: FileFullPath) {
         var remoteOut = ""
         var blamePROut = ""
         do {
@@ -66,6 +60,16 @@ class ApplicationService: ObservableObject {
             gitBlamePRStandardOutput: blamePROut
         )!
         viewModel.recent = RecentViewModel(fullPaths: [])
+
+    }
+
+    func fullPathDidCommit(fullPathTextFieldValue: String) {
+        guard let fullPath = FileFullPath(rawValue: fullPathTextFieldValue) else {
+            viewModel = GitBlamePRViewModel()
+            viewModel.recent = RecentViewModel(for: historyRepository.findAll())
+            return
+        }
+        fullPathDidCommit(fullPath: fullPath)
     }
 
     private func executeGitRemote(fullPath: FileFullPath) throws -> String {

@@ -32,7 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let service = ApplicationService()
                 service.fullPathDidCommit(fullPath: fullPath)
                 window?.contentView = NSHostingView(
-                    rootView: ContentView(service: service, fullPath: fullPath)
+                    rootView: ContentView(service: service, fullPathTextFieldValue: fullPath.rawValue)
                 )
             case .xcodeFileFullPath:
                 XcodeConnection.resume { [weak self](fullPath) in
@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         let service = ApplicationService()
                         service.fullPathDidCommit(fullPath: fullPath)
                         self?.window?.contentView = NSHostingView(
-                            rootView: ContentView(service: service, fullPath: fullPath)
+                            rootView: ContentView(service: service, fullPathTextFieldValue: fullPath.rawValue)
                         )
                     }
                 }

@@ -9,10 +9,10 @@
 import Foundation
 
 enum URLScheme {
-    case fileFullPath(String) // ://{fileFullPath}
+    case fileFullPath(FileFullPath) // ://{fileFullPath}
     case xcodeFileFullPath    // ://xcode/filefullpath
 
-    private static func makeAccessToXcode(url:URL) -> URLScheme? {
+    private static func xcodeFileFullPath(url:URL) -> URLScheme? {
         guard
             let host = url.host,
             host == "xcode",
@@ -26,7 +26,8 @@ enum URLScheme {
 
     private static func makeFileFullPath(url:URL) -> URLScheme? {
         guard
-            let fullPath = url.host?.removingPercentEncoding,
+            let fullPathRaw = url.host?.removingPercentEncoding,
+            let fullPath = FileFullPath(rawValue: fullPathRaw),
             url.pathComponents.count == 0
         else {
             return nil
@@ -35,7 +36,7 @@ enum URLScheme {
     }
 
     init?(url:URL) {
-        if let accessToXcode = Self.makeAccessToXcode(url: url) {
+        if let accessToXcode = Self.xcodeFileFullPath(url: url) {
             self = accessToXcode
             return
         }
