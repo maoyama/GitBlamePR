@@ -37,6 +37,7 @@
 		61E2C96B240B404E0011CB6D /* URLScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2C96A240B404E0011CB6D /* URLScheme.swift */; };
 		61F1FB9A241D32D900BFA44D /* XcodeConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB99241D32D900BFA44D /* XcodeConnection.swift */; };
 		61F1FB9C241DEAFE00BFA44D /* FileFullPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */; };
+		61F1FB9E241DEC4E00BFA44D /* FileFullPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB9D241DEC4E00BFA44D /* FileFullPathTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +142,7 @@
 		61E2C96A240B404E0011CB6D /* URLScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLScheme.swift; sourceTree = "<group>"; };
 		61F1FB99241D32D900BFA44D /* XcodeConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeConnection.swift; sourceTree = "<group>"; };
 		61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFullPath.swift; sourceTree = "<group>"; };
+		61F1FB9D241DEC4E00BFA44D /* FileFullPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFullPathTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +293,7 @@
 			children = (
 				61C4FC57239B894C00F75B8D /* ContentViewModelTests.swift */,
 				61E2C968240B31810011CB6D /* URLSchemeTests.swift */,
+				61F1FB9D241DEC4E00BFA44D /* FileFullPathTests.swift */,
 				61C4FC59239B894C00F75B8D /* Info.plist */,
 			);
 			path = GitBlamePRTests;
@@ -510,6 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61F1FB9E241DEC4E00BFA44D /* FileFullPathTests.swift in Sources */,
 				61E2C969240B31810011CB6D /* URLSchemeTests.swift in Sources */,
 				61C4FC58239B894C00F75B8D /* ContentViewModelTests.swift in Sources */,
 			);
