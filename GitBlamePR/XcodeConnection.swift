@@ -8,9 +8,23 @@
 
 import Foundation
 
+enum XcodeConnectionError: Error {
+    case fileNotFound
+    case timedOut
+
+    var localizedDescription: String {
+        switch self {
+        case .fileNotFound:
+            return "Source doucument file not found on Xcode."
+        case .timedOut:
+            return "Xcode connection timed out."
+        }
+    }
+}
+
 struct XcodeConnection {
     // Request the ability to send Apple events & Get file full path on Xcode
-    static func resume(fileFullPath: @escaping(FileFullPath?) -> Void) {
+    static func resume(fileFullPath: @escaping(Result<FileFullPath, XcodeConnectionError>) -> Void) {
         let connection = NSXPCConnection(serviceName: "dev.aoyama.XcodeHelper")
         connection.remoteObjectInterface = NSXPCInterface(with: XcodeHelperProtocol.self)
         connection.resume()
@@ -18,7 +32,11 @@ struct XcodeConnection {
         let semaphore = DispatchSemaphore(value: 0)
         xcode.currentFileFullPath {(value) in
             DispatchQueue.main.async {
-                fileFullPath(FileFullPath(rawValue: value ?? ""))
+                if let value = value, let fullPath = FileFullPath(rawValue: value) {
+                    fileFullPath(.success(fullPath))
+                } else {
+                    fileFullPath(.failure(.fileNotFound))
+                }
             }
             semaphore.signal()
         }
@@ -27,7 +45,7 @@ struct XcodeConnection {
         case .success:
             break;
         case .timedOut:
-            fileFullPath(nil)
+            fileFullPath(.failure(.timedOut))
         }
         return
     }

@@ -21,6 +21,11 @@ class ApplicationService: ObservableObject {
         )
     }
 
+    convenience init(fullPath: FileFullPath) {
+        self.init()
+        fullPathDidCommit(fullPath: fullPath)
+    }
+
     func clearHistory() {
         do {
             try historyRepository.save(history: History(inputFullPaths: []))

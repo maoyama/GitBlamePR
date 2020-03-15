@@ -29,18 +29,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let urlScheme = URLScheme(url: urls[0]) {
             switch urlScheme {
             case .fileFullPath(let fullPath):
-                let service = ApplicationService()
-                service.fullPathDidCommit(fullPath: fullPath)
                 window?.contentView = NSHostingView(
-                    rootView: ContentView(service: service, fullPathTextFieldValue: fullPath.rawValue)
+                    rootView: ContentView(
+                        service: ApplicationService(fullPath: fullPath),
+                        fullPathTextFieldValue: fullPath.rawValue
+                    )
                 )
             case .xcodeFileFullPath:
-                XcodeConnection.resume { [weak self](fullPath) in
-                    if let fullPath = fullPath {
-                        let service = ApplicationService()
-                        service.fullPathDidCommit(fullPath: fullPath)
+                XcodeConnection.resume { [weak self](result) in
+                    switch result {
+                    case .success(let fullPath):
                         self?.window?.contentView = NSHostingView(
-                            rootView: ContentView(service: service, fullPathTextFieldValue: fullPath.rawValue)
+                            rootView: ContentView(
+                                service: ApplicationService(fullPath: fullPath),
+                                fullPathTextFieldValue: fullPath.rawValue)
+                        )
+                    case .failure(let error):
+                        self?.window?.contentView = NSHostingView(
+                            rootView: ContentView(service: ApplicationService(error: error.localizedDescription))
                         )
                     }
                 }
