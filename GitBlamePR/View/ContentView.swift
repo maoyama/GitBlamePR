@@ -14,15 +14,9 @@ struct ContentView: View {
     @ObservedObject private var service: ApplicationService
     private var fullPath: String
 
-    init() {
-        self.service = ApplicationService()
-        self.fullPath = ""
-    }
-
-    init(fullPath: String) {
-        self.service = ApplicationService()
+    init(service: ApplicationService=ApplicationService(), fullPath: String="") {
+        self.service = service
         self.fullPath = fullPath
-        self.service.fullPath = self.fullPath
     }
 
     var body: some View {
@@ -30,7 +24,7 @@ struct ContentView: View {
             model: service.viewModel,
             fullPath: fullPath,
             textOnCommit: {text in
-                self.service.fullPath = text
+                self.service.fullPathDidCommit(fullPath: text)
             },
             clearOnTap: {
                 self.service.clearHistory()
@@ -179,7 +173,6 @@ struct GitBlamePRView_Previews: PreviewProvider {
                 textOnCommit: {_ in },
                 clearOnTap: {}
             )
-
         }
     }
 }

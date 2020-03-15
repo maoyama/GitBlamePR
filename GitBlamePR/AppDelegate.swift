@@ -28,15 +28,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func application(_ application: NSApplication, open urls: [URL]) {
         if let urlScheme = URLScheme(url: urls[0]) {
             switch urlScheme {
-            case .fileFullPath(let value):
-                window?.contentView = NSHostingView(rootView: ContentView(fullPath: value))
+            case .fileFullPath(let fullPath):
+                let service = ApplicationService()
+                service.fullPathDidCommit(fullPath: fullPath)
+                window?.contentView = NSHostingView(
+                    rootView: ContentView(service: service, fullPath: fullPath)
+                )
             case .xcodeFileFullPath:
                 XcodeConnection.resume { [weak self](fullPath) in
                     if let fullPath = fullPath {
-                        self?.window?.contentView = NSHostingView(rootView: ContentView(fullPath: fullPath))
+                        let service = ApplicationService()
+                        service.fullPathDidCommit(fullPath: fullPath)
+                        self?.window?.contentView = NSHostingView(
+                            rootView: ContentView(service: service, fullPath: fullPath)
+                        )
                     }
                 }
             }
+        } else {
+            window?.contentView = NSHostingView(
+                rootView: ContentView(service: ApplicationService(error: "URL not found."))
+            )
         }
     }
 
