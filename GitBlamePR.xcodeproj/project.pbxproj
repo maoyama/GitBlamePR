@@ -36,6 +36,7 @@
 		61E2C969240B31810011CB6D /* URLSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2C968240B31810011CB6D /* URLSchemeTests.swift */; };
 		61E2C96B240B404E0011CB6D /* URLScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2C96A240B404E0011CB6D /* URLScheme.swift */; };
 		61F1FB9A241D32D900BFA44D /* XcodeConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB99241D32D900BFA44D /* XcodeConnection.swift */; };
+		61F1FB9C241DEAFE00BFA44D /* FileFullPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		61E2C968240B31810011CB6D /* URLSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeTests.swift; sourceTree = "<group>"; };
 		61E2C96A240B404E0011CB6D /* URLScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLScheme.swift; sourceTree = "<group>"; };
 		61F1FB99241D32D900BFA44D /* XcodeConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeConnection.swift; sourceTree = "<group>"; };
+		61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFullPath.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 				61F1FB99241D32D900BFA44D /* XcodeConnection.swift */,
 				61E2C96A240B404E0011CB6D /* URLScheme.swift */,
 				61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */,
+				61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */,
 				615C393D23A46E530036FB97 /* ApplicationService.swift */,
 				6114CDDB23AFBAF700EF6B88 /* RecentViewModel+Init.swift */,
 				61375FDB23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift */,
@@ -487,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61F1FB9C241DEAFE00BFA44D /* FileFullPath.swift in Sources */,
 				61C4FC44239B894700F75B8D /* ContentView.swift in Sources */,
 				61375FDA23AFA3AF00BFD5F9 /* Process+Run.swift in Sources */,
 				61375FE023AFA84B00BFD5F9 /* History.swift in Sources */,

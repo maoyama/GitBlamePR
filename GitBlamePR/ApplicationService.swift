@@ -8,23 +8,6 @@
 
 import Foundation
 
-struct FileFullPath {
-    var rawValue: String
-    var trimmedFullPath: String {
-        rawValue.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-    var fullPathDirectoryURL: URL {
-        URL(fileURLWithPath: trimmedFullPath).deletingLastPathComponent()
-    }
-
-    init?(rawValue: String) {
-        if rawValue.isEmpty {
-            return nil
-        }
-        self.rawValue = rawValue
-    }
-}
-
 class ApplicationService: ObservableObject {
     @Published private(set) var viewModel: GitBlamePRViewModel
     private var historyRepository: HistoryRepository
@@ -89,15 +72,15 @@ class ApplicationService: ObservableObject {
         return try Process.run(
             executableURL: URL(fileURLWithPath: "/usr/bin/git"),
             arguments: ["remote", "-v"],
-            currentDirectoryURL: fullPath.fullPathDirectoryURL
+            currentDirectoryURL: fullPath.directoryURL
         )
     }
 
     private func executeGitBlamePR(fullPath: FileFullPath) throws -> String {
         return try Process.run(
             executableURL: URL(fileURLWithPath: "/usr/bin/perl"),
-            arguments: [Bundle.main.resourcePath! + "/git-blame-pr.pl", fullPath.trimmedFullPath],
-            currentDirectoryURL: fullPath.fullPathDirectoryURL
+            arguments: [Bundle.main.resourcePath! + "/git-blame-pr.pl", fullPath.trimmed],
+            currentDirectoryURL: fullPath.directoryURL
         )
     }
 }
