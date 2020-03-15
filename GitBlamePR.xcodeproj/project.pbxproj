@@ -255,11 +255,11 @@
 			isa = PBXGroup;
 			children = (
 				61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */,
+				61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */,
 				61375FDD23AFA62B00BFD5F9 /* HistoryRepository.swift */,
 				61375FDF23AFA84B00BFD5F9 /* History.swift */,
 				61F1FB99241D32D900BFA44D /* XcodeConnection.swift */,
 				61E2C96A240B404E0011CB6D /* URLScheme.swift */,
-				61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */,
 				61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */,
 				615C393D23A46E530036FB97 /* ApplicationService.swift */,
 				6114CDDB23AFBAF700EF6B88 /* RecentViewModel+Init.swift */,
