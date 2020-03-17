@@ -1,4 +1,4 @@
-name: Build
+name: Tests
 on:
   push:
   pull_request:
@@ -9,8 +9,5 @@ jobs:
     - uses: actions/checkout@v1
     - name: Select Xcode
       run: sudo xcode-select -s '/Applications/Xcode_11.3.app/Contents/Developer'
-    - name: Build
-      run: "xcodebuild \
-      -project GitBlamePR.xcodeproj \
-      -scheme GitBlamePR \
-      -sdk macosx"
+    - name: Tests
+      run: xcodebuild clean test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk macosx -scheme GitBlamePR -project GitBlamePR.xcodeproj
