@@ -11,15 +11,9 @@ import SwiftUI
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
     var window: NSWindow!
 
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
-
-        // Create the window and set the content view. 
+    func applicationWillFinishLaunching(_ notification: Notification) {
         window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
@@ -27,14 +21,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.title = "GitBlamePR"
         window.center()
         window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: contentView)
+        window.contentView = NSHostingView(rootView: ContentView())
         window.makeKeyAndOrderFront(nil)
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+    func application(_ application: NSApplication, open urls: [URL]) {
+        if let urlScheme = URLScheme(url: urls[0]) {
+            switch urlScheme {
+            case .fileFullPath(let fullPath):
+                window?.contentView = NSHostingView(
+                    rootView: ContentView(
+                        service: ApplicationService(fullPath: fullPath),
+                        fullPathTextFieldValue: fullPath.rawValue
+                    )
+                )
+            case .xcodeFileFullPath:
+                XcodeConnection.resume { [weak self](result) in
+                    switch result {
+                    case .success(let fullPath):
+                        self?.window?.contentView = NSHostingView(
+                            rootView: ContentView(
+                                service: ApplicationService(fullPath: fullPath),
+                                fullPathTextFieldValue: fullPath.rawValue)
+                        )
+                    case .failure(let error):
+                        self?.window?.contentView = NSHostingView(
+                            rootView: ContentView(service: ApplicationService(error: error.localizedDescription))
+                        )
+                    }
+                }
+            }
+        } else {
+            window?.contentView = NSHostingView(
+                rootView: ContentView(service: ApplicationService(error: "URL not found."))
+            )
+        }
     }
 
-
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
+    }
 }
-

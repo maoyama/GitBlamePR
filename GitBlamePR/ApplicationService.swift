@@ -9,31 +9,21 @@
 import Foundation
 
 class ApplicationService: ObservableObject {
-    var fullPath: String = "" {
-        didSet {
-            guard !fullPath.isEmpty else {
-                viewModel = GitBlamePRViewModel()
-                viewModel.recent = RecentViewModel(for: historyRepository.findAll())
-                return
-            }
-            execute()
-        }
-    }
     @Published private(set) var viewModel: GitBlamePRViewModel
     private var historyRepository: HistoryRepository
-    private var trimmedFullPath: String {
-        fullPath.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-    private var fullPathDirectoryURL: URL {
-        URL(fileURLWithPath: trimmedFullPath).deletingLastPathComponent()
-    }
 
-    init() {
+    init(error: String="") {
         self.historyRepository = HistoryRepository()
         self.viewModel = GitBlamePRViewModel(
             lines: [],
-            recent: RecentViewModel(for: self.historyRepository.findAll())
+            recent: RecentViewModel(for: self.historyRepository.findAll()),
+            error: error
         )
+    }
+
+    convenience init(fullPath: FileFullPath) {
+        self.init()
+        fullPathDidCommit(fullPath: fullPath)
     }
 
     func clearHistory() {
@@ -45,12 +35,12 @@ class ApplicationService: ObservableObject {
         viewModel.recent = RecentViewModel(fullPaths: [])
     }
 
-    private func execute() {
+    func fullPathDidCommit(fullPath: FileFullPath) {
         var remoteOut = ""
         var blamePROut = ""
         do {
-            remoteOut = try executeGitRemote()
-            blamePROut = try executeGitBlamePR()
+            remoteOut = try executeGitRemote(fullPath: fullPath)
+            blamePROut = try executeGitBlamePR(fullPath: fullPath)
         } catch ProcessError.standardError(let description) {
             viewModel = GitBlamePRViewModel()
             viewModel.error = description
@@ -64,7 +54,7 @@ class ApplicationService: ObservableObject {
         }
 
         var history = historyRepository.findAll()
-        history.addInputFullPath(fullPath)
+        history.addInputFullPath(fullPath.rawValue)
         do {
             try historyRepository.save(history: history)
         } catch let e {
@@ -75,21 +65,31 @@ class ApplicationService: ObservableObject {
             gitBlamePRStandardOutput: blamePROut
         )!
         viewModel.recent = RecentViewModel(fullPaths: [])
+
     }
 
-    private func executeGitRemote() throws -> String {
+    func fullPathDidCommit(fullPathTextFieldValue: String) {
+        guard let fullPath = FileFullPath(rawValue: fullPathTextFieldValue) else {
+            viewModel = GitBlamePRViewModel()
+            viewModel.recent = RecentViewModel(for: historyRepository.findAll())
+            return
+        }
+        fullPathDidCommit(fullPath: fullPath)
+    }
+
+    private func executeGitRemote(fullPath: FileFullPath) throws -> String {
         return try Process.run(
             executableURL: URL(fileURLWithPath: "/usr/bin/git"),
             arguments: ["remote", "-v"],
-            currentDirectoryURL: fullPathDirectoryURL
+            currentDirectoryURL: fullPath.directoryURL
         )
     }
 
-    private func executeGitBlamePR() throws -> String {
+    private func executeGitBlamePR(fullPath: FileFullPath) throws -> String {
         return try Process.run(
             executableURL: URL(fileURLWithPath: "/usr/bin/perl"),
-            arguments: [Bundle.main.resourcePath! + "/git-blame-pr.pl", trimmedFullPath],
-            currentDirectoryURL: fullPathDirectoryURL
+            arguments: [Bundle.main.resourcePath! + "/git-blame-pr.pl", fullPath.trimmed],
+            currentDirectoryURL: fullPath.directoryURL
         )
     }
 }

@@ -8,25 +8,52 @@
 
 /* Begin PBXBuildFile section */
 		6114CDDC23AFBAF700EF6B88 /* RecentViewModel+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114CDDB23AFBAF700EF6B88 /* RecentViewModel+Init.swift */; };
+		6121EA552401352500982682 /* XcodeHelper.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 614894B62401344D00AB4788 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		612768B823AD04BE003397B7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 612768B723AD04BE003397B7 /* README.md */; };
+		612F669C2400AFF8001975A6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C4FC68239B8A7B00F75B8D /* Cocoa.framework */; };
+		612F669F2400AFF8001975A6 /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F669E2400AFF8001975A6 /* SourceEditorExtension.swift */; };
+		612F66A12400AFF8001975A6 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F66A02400AFF8001975A6 /* SourceEditorCommand.swift */; };
+		612F66A62400AFF8001975A6 /* GitBlamePR.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 612F669B2400AFF8001975A6 /* GitBlamePR.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		61375FD823AE71A000BFD5F9 /* RecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD723AE71A000BFD5F9 /* RecentView.swift */; };
 		61375FDA23AFA3AF00BFD5F9 /* Process+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */; };
 		61375FDC23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FDB23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift */; };
 		61375FDE23AFA62B00BFD5F9 /* HistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FDD23AFA62B00BFD5F9 /* HistoryRepository.swift */; };
 		61375FE023AFA84B00BFD5F9 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FDF23AFA84B00BFD5F9 /* History.swift */; };
 		61375FE223AFB7F700BFD5F9 /* UserDefaults+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */; };
+		614894BB2401344D00AB4788 /* XcodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 614894BA2401344D00AB4788 /* XcodeHelper.m */; };
+		614894BD2401344D00AB4788 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 614894BC2401344D00AB4788 /* main.m */; };
+		614894C12401344D00AB4788 /* XcodeHelper.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 614894B62401344D00AB4788 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		615C393E23A46E530036FB97 /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C393D23A46E530036FB97 /* ApplicationService.swift */; };
 		615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */ = {isa = PBXBuildFile; fileRef = 615C395723A4BBEF0036FB97 /* git-blame-pr.pl */; };
-		618A775E23F92F7A00D11BDC /* build.yml in Resources */ = {isa = PBXBuildFile; fileRef = 618A775D23F92F7900D11BDC /* build.yml */; };
 		61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC41239B894700F75B8D /* AppDelegate.swift */; };
 		61C4FC44239B894700F75B8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC43239B894700F75B8D /* ContentView.swift */; };
 		61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC45239B894B00F75B8D /* Assets.xcassets */; };
 		61C4FC49239B894B00F75B8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC48239B894B00F75B8D /* Preview Assets.xcassets */; };
 		61C4FC4C239B894B00F75B8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC4A239B894B00F75B8D /* Main.storyboard */; };
 		61C4FC58239B894C00F75B8D /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC57239B894C00F75B8D /* ContentViewModelTests.swift */; };
+		61E2C967240A694B0011CB6D /* Process+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */; };
+		61E2C969240B31810011CB6D /* URLSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2C968240B31810011CB6D /* URLSchemeTests.swift */; };
+		61E2C96B240B404E0011CB6D /* URLScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2C96A240B404E0011CB6D /* URLScheme.swift */; };
+		61F1FB9A241D32D900BFA44D /* XcodeConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB99241D32D900BFA44D /* XcodeConnection.swift */; };
+		61F1FB9C241DEAFE00BFA44D /* FileFullPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */; };
+		61F1FB9E241DEC4E00BFA44D /* FileFullPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB9D241DEC4E00BFA44D /* FileFullPathTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		612F66A42400AFF8001975A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61C4FC36239B894700F75B8D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 612F669A2400AFF8001975A6;
+			remoteInfo = XcodeExtension;
+		};
+		614894BF2401344D00AB4788 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61C4FC36239B894700F75B8D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 614894B52401344D00AB4788;
+			remoteInfo = XcodeHelper;
+		};
 		61C4FC54239B894C00F75B8D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 61C4FC36239B894700F75B8D /* Project object */;
@@ -36,18 +63,66 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6121EA542401351100982682 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+				6121EA552401352500982682 /* XcodeHelper.xpc in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		612F66A72400AFF8001975A6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				612F66A62400AFF8001975A6 /* GitBlamePR.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		614894C22401344D00AB4788 /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+				614894C12401344D00AB4788 /* XcodeHelper.xpc in Embed XPC Services */,
+			);
+			name = "Embed XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6114CDDB23AFBAF700EF6B88 /* RecentViewModel+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentViewModel+Init.swift"; sourceTree = "<group>"; };
+		6121EA562401356C00982682 /* XcodeExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XcodeExtension-Bridging-Header.h"; sourceTree = "<group>"; };
+		6121EA5B240136C600982682 /* Xcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xcode.h; sourceTree = "<group>"; };
+		6121EA5C2403329E00982682 /* XcodeHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XcodeHelper.entitlements; sourceTree = "<group>"; };
 		612768B723AD04BE003397B7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		612F669B2400AFF8001975A6 /* GitBlamePR.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GitBlamePR.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		612F669E2400AFF8001975A6 /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
+		612F66A02400AFF8001975A6 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
+		612F66A22400AFF8001975A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		612F66A32400AFF8001975A6 /* XcodeExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XcodeExtension.entitlements; sourceTree = "<group>"; };
 		61375FD723AE71A000BFD5F9 /* RecentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentView.swift; sourceTree = "<group>"; };
 		61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process+Run.swift"; sourceTree = "<group>"; };
 		61375FDB23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitBlamePRViewModel+Init.swift"; sourceTree = "<group>"; };
 		61375FDD23AFA62B00BFD5F9 /* HistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepository.swift; sourceTree = "<group>"; };
 		61375FDF23AFA84B00BFD5F9 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift"; sourceTree = "<group>"; };
+		614894B62401344D00AB4788 /* XcodeHelper.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = XcodeHelper.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		614894B82401344D00AB4788 /* XcodeHelperProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XcodeHelperProtocol.h; sourceTree = "<group>"; };
+		614894B92401344D00AB4788 /* XcodeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XcodeHelper.h; sourceTree = "<group>"; };
+		614894BA2401344D00AB4788 /* XcodeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XcodeHelper.m; sourceTree = "<group>"; };
+		614894BC2401344D00AB4788 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		614894BE2401344D00AB4788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		615C393D23A46E530036FB97 /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		615C395723A4BBEF0036FB97 /* git-blame-pr.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "git-blame-pr.pl"; sourceTree = "<group>"; };
-		618A775D23F92F7900D11BDC /* build.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = build.yml; sourceTree = "<group>"; };
 		61C4FC3E239B894700F75B8D /* GitBlamePR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBlamePR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4FC41239B894700F75B8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61C4FC43239B894700F75B8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,9 +135,30 @@
 		61C4FC57239B894C00F75B8D /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
 		61C4FC59239B894C00F75B8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61C4FC68239B8A7B00F75B8D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		61E2C9602409DE830011CB6D /* GitBlamePR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GitBlamePR-Bridging-Header.h"; sourceTree = "<group>"; };
+		61E2C968240B31810011CB6D /* URLSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeTests.swift; sourceTree = "<group>"; };
+		61E2C96A240B404E0011CB6D /* URLScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLScheme.swift; sourceTree = "<group>"; };
+		61F1FB99241D32D900BFA44D /* XcodeConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeConnection.swift; sourceTree = "<group>"; };
+		61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFullPath.swift; sourceTree = "<group>"; };
+		61F1FB9D241DEC4E00BFA44D /* FileFullPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFullPathTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		612F66982400AFF8001975A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				612F669C2400AFF8001975A6 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		614894B32401344D00AB4788 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		61C4FC3B239B894700F75B8D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -80,6 +176,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		612F669D2400AFF8001975A6 /* XcodeExtension */ = {
+			isa = PBXGroup;
+			children = (
+				612F669E2400AFF8001975A6 /* SourceEditorExtension.swift */,
+				612F66A02400AFF8001975A6 /* SourceEditorCommand.swift */,
+				612F66A22400AFF8001975A6 /* Info.plist */,
+				612F66A32400AFF8001975A6 /* XcodeExtension.entitlements */,
+				6121EA562401356C00982682 /* XcodeExtension-Bridging-Header.h */,
+			);
+			path = XcodeExtension;
+			sourceTree = "<group>";
+		};
 		61375FE323AFB86D00BFD5F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,20 +197,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		618A775B23F92F7900D11BDC /* .github */ = {
+		614894B72401344D00AB4788 /* XcodeHelper */ = {
 			isa = PBXGroup;
 			children = (
-				618A775C23F92F7900D11BDC /* workflows */,
+				6121EA5C2403329E00982682 /* XcodeHelper.entitlements */,
+				6121EA5B240136C600982682 /* Xcode.h */,
+				614894B82401344D00AB4788 /* XcodeHelperProtocol.h */,
+				614894B92401344D00AB4788 /* XcodeHelper.h */,
+				614894BA2401344D00AB4788 /* XcodeHelper.m */,
+				614894BC2401344D00AB4788 /* main.m */,
+				614894BE2401344D00AB4788 /* Info.plist */,
 			);
-			path = .github;
-			sourceTree = "<group>";
-		};
-		618A775C23F92F7900D11BDC /* workflows */ = {
-			isa = PBXGroup;
-			children = (
-				618A775D23F92F7900D11BDC /* build.yml */,
-			);
-			path = workflows;
+			path = XcodeHelper;
 			sourceTree = "<group>";
 		};
 		61C4FC35239B894700F75B8D = {
@@ -110,9 +216,10 @@
 			children = (
 				61C4FC40239B894700F75B8D /* GitBlamePR */,
 				61C4FC56239B894C00F75B8D /* GitBlamePRTests */,
+				612F669D2400AFF8001975A6 /* XcodeExtension */,
+				614894B72401344D00AB4788 /* XcodeHelper */,
 				61C4FC67239B8A7B00F75B8D /* Frameworks */,
 				61C4FC3F239B894700F75B8D /* Products */,
-				618A775B23F92F7900D11BDC /* .github */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,6 +228,8 @@
 			children = (
 				61C4FC3E239B894700F75B8D /* GitBlamePR.app */,
 				61C4FC53239B894C00F75B8D /* GitBlamePRTests.xctest */,
+				612F669B2400AFF8001975A6 /* GitBlamePR.appex */,
+				614894B62401344D00AB4788 /* XcodeHelper.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,9 +238,12 @@
 			isa = PBXGroup;
 			children = (
 				61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */,
+				61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */,
 				61375FDD23AFA62B00BFD5F9 /* HistoryRepository.swift */,
 				61375FDF23AFA84B00BFD5F9 /* History.swift */,
-				61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */,
+				61F1FB99241D32D900BFA44D /* XcodeConnection.swift */,
+				61E2C96A240B404E0011CB6D /* URLScheme.swift */,
+				61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */,
 				615C393D23A46E530036FB97 /* ApplicationService.swift */,
 				6114CDDB23AFBAF700EF6B88 /* RecentViewModel+Init.swift */,
 				61375FDB23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift */,
@@ -144,6 +256,7 @@
 				612768B723AD04BE003397B7 /* README.md */,
 				61C4FC4E239B894B00F75B8D /* GitBlamePR.entitlements */,
 				61C4FC47239B894B00F75B8D /* Preview Content */,
+				61E2C9602409DE830011CB6D /* GitBlamePR-Bridging-Header.h */,
 			);
 			path = GitBlamePR;
 			sourceTree = "<group>";
@@ -160,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				61C4FC57239B894C00F75B8D /* ContentViewModelTests.swift */,
+				61E2C968240B31810011CB6D /* URLSchemeTests.swift */,
+				61F1FB9D241DEC4E00BFA44D /* FileFullPathTests.swift */,
 				61C4FC59239B894C00F75B8D /* Info.plist */,
 			);
 			path = GitBlamePRTests;
@@ -176,6 +291,41 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		612F669A2400AFF8001975A6 /* XcodeExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 612F66AA2400AFF8001975A6 /* Build configuration list for PBXNativeTarget "XcodeExtension" */;
+			buildPhases = (
+				612F66972400AFF8001975A6 /* Sources */,
+				612F66982400AFF8001975A6 /* Frameworks */,
+				612F66992400AFF8001975A6 /* Resources */,
+				6121EA542401351100982682 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XcodeExtension;
+			productName = XcodeExtension;
+			productReference = 612F669B2400AFF8001975A6 /* GitBlamePR.appex */;
+			productType = "com.apple.product-type.xcode-extension";
+		};
+		614894B52401344D00AB4788 /* XcodeHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 614894C52401344D00AB4788 /* Build configuration list for PBXNativeTarget "XcodeHelper" */;
+			buildPhases = (
+				614894B22401344D00AB4788 /* Sources */,
+				614894B32401344D00AB4788 /* Frameworks */,
+				614894B42401344D00AB4788 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XcodeHelper;
+			productName = XcodeHelper;
+			productReference = 614894B62401344D00AB4788 /* XcodeHelper.xpc */;
+			productType = "com.apple.product-type.xpc-service";
+		};
 		61C4FC3D239B894700F75B8D /* GitBlamePR */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61C4FC5C239B894C00F75B8D /* Build configuration list for PBXNativeTarget "GitBlamePR" */;
@@ -183,10 +333,14 @@
 				61C4FC3A239B894700F75B8D /* Sources */,
 				61C4FC3B239B894700F75B8D /* Frameworks */,
 				61C4FC3C239B894700F75B8D /* Resources */,
+				612F66A72400AFF8001975A6 /* Embed App Extensions */,
+				614894C22401344D00AB4788 /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				612F66A52400AFF8001975A6 /* PBXTargetDependency */,
+				614894C02401344D00AB4788 /* PBXTargetDependency */,
 			);
 			name = GitBlamePR;
 			productName = GitBlamePR;
@@ -217,10 +371,17 @@
 		61C4FC36239B894700F75B8D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = dev.aoyama;
 				TargetAttributes = {
+					612F669A2400AFF8001975A6 = {
+						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1130;
+					};
+					614894B52401344D00AB4788 = {
+						CreatedOnToolsVersion = 11.3;
+					};
 					61C4FC3D239B894700F75B8D = {
 						CreatedOnToolsVersion = 11.2.1;
 						LastSwiftMigration = 1130;
@@ -246,11 +407,27 @@
 			targets = (
 				61C4FC3D239B894700F75B8D /* GitBlamePR */,
 				61C4FC52239B894C00F75B8D /* GitBlamePRTests */,
+				612F669A2400AFF8001975A6 /* XcodeExtension */,
+				614894B52401344D00AB4788 /* XcodeHelper */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		612F66992400AFF8001975A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		614894B42401344D00AB4788 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		61C4FC3C239B894700F75B8D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -259,7 +436,6 @@
 				61C4FC49239B894B00F75B8D /* Preview Assets.xcassets in Resources */,
 				612768B823AD04BE003397B7 /* README.md in Resources */,
 				615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */,
-				618A775E23F92F7A00D11BDC /* build.yml in Resources */,
 				61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,10 +450,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		612F66972400AFF8001975A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				612F669F2400AFF8001975A6 /* SourceEditorExtension.swift in Sources */,
+				612F66A12400AFF8001975A6 /* SourceEditorCommand.swift in Sources */,
+				61E2C967240A694B0011CB6D /* Process+Run.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		614894B22401344D00AB4788 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				614894BD2401344D00AB4788 /* main.m in Sources */,
+				614894BB2401344D00AB4788 /* XcodeHelper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		61C4FC3A239B894700F75B8D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61F1FB9C241DEAFE00BFA44D /* FileFullPath.swift in Sources */,
 				61C4FC44239B894700F75B8D /* ContentView.swift in Sources */,
 				61375FDA23AFA3AF00BFD5F9 /* Process+Run.swift in Sources */,
 				61375FE023AFA84B00BFD5F9 /* History.swift in Sources */,
@@ -287,7 +483,9 @@
 				61375FE223AFB7F700BFD5F9 /* UserDefaults+Key.swift in Sources */,
 				61375FD823AE71A000BFD5F9 /* RecentView.swift in Sources */,
 				61375FDC23AFA4D900BFD5F9 /* GitBlamePRViewModel+Init.swift in Sources */,
+				61E2C96B240B404E0011CB6D /* URLScheme.swift in Sources */,
 				6114CDDC23AFBAF700EF6B88 /* RecentViewModel+Init.swift in Sources */,
+				61F1FB9A241D32D900BFA44D /* XcodeConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +493,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61F1FB9E241DEC4E00BFA44D /* FileFullPathTests.swift in Sources */,
+				61E2C969240B31810011CB6D /* URLSchemeTests.swift in Sources */,
 				61C4FC58239B894C00F75B8D /* ContentViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +502,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		612F66A52400AFF8001975A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 612F669A2400AFF8001975A6 /* XcodeExtension */;
+			targetProxy = 612F66A42400AFF8001975A6 /* PBXContainerItemProxy */;
+		};
+		614894C02401344D00AB4788 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 614894B52401344D00AB4788 /* XcodeHelper */;
+			targetProxy = 614894BF2401344D00AB4788 /* PBXContainerItemProxy */;
+		};
 		61C4FC55239B894C00F75B8D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 61C4FC3D239B894700F75B8D /* GitBlamePR */;
@@ -321,6 +531,89 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		612F66A82400AFF8001975A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = XcodeExtension/XcodeExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = JRA6VW2DG4;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = XcodeExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR.XcodeExtension;
+				PRODUCT_MODULE_NAME = XcodeExtension;
+				PRODUCT_NAME = GitBlamePR;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "XcodeExtension/XcodeExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		612F66A92400AFF8001975A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = XcodeExtension/XcodeExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = JRA6VW2DG4;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = XcodeExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR.XcodeExtension;
+				PRODUCT_MODULE_NAME = XcodeExtension;
+				PRODUCT_NAME = GitBlamePR;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "XcodeExtension/XcodeExtension-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		614894C32401344D00AB4788 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = XcodeHelper/XcodeHelper.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = JRA6VW2DG4;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = XcodeHelper/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.XcodeHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		614894C42401344D00AB4788 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = XcodeHelper/XcodeHelper.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = JRA6VW2DG4;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = XcodeHelper/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.XcodeHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		61C4FC5A239B894C00F75B8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -437,15 +730,16 @@
 		61C4FC5D239B894C00F75B8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GitBlamePR/GitBlamePR.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"GitBlamePR/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JRA6VW2DG4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = GitBlamePR/Info.plist;
@@ -458,6 +752,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "GitBlamePR/GitBlamePR-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -466,15 +761,16 @@
 		61C4FC5E239B894C00F75B8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GitBlamePR/GitBlamePR.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"GitBlamePR/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JRA6VW2DG4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = GitBlamePR/Info.plist;
@@ -487,6 +783,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.aoyama.GitBlamePR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "GitBlamePR/GitBlamePR-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -538,6 +835,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		612F66AA2400AFF8001975A6 /* Build configuration list for PBXNativeTarget "XcodeExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				612F66A82400AFF8001975A6 /* Debug */,
+				612F66A92400AFF8001975A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		614894C52401344D00AB4788 /* Build configuration list for PBXNativeTarget "XcodeHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				614894C32401344D00AB4788 /* Debug */,
+				614894C42401344D00AB4788 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		61C4FC39239B894700F75B8D /* Build configuration list for PBXProject "GitBlamePR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
