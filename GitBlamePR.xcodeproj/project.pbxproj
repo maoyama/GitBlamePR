@@ -25,7 +25,6 @@
 		614894C12401344D00AB4788 /* XcodeHelper.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 614894B62401344D00AB4788 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		615C393E23A46E530036FB97 /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C393D23A46E530036FB97 /* ApplicationService.swift */; };
 		615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */ = {isa = PBXBuildFile; fileRef = 615C395723A4BBEF0036FB97 /* git-blame-pr.pl */; };
-		618A775E23F92F7A00D11BDC /* build.yml in Resources */ = {isa = PBXBuildFile; fileRef = 618A775D23F92F7900D11BDC /* build.yml */; };
 		61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC41239B894700F75B8D /* AppDelegate.swift */; };
 		61C4FC44239B894700F75B8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC43239B894700F75B8D /* ContentView.swift */; };
 		61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC45239B894B00F75B8D /* Assets.xcassets */; };
@@ -124,7 +123,6 @@
 		614894BE2401344D00AB4788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		615C393D23A46E530036FB97 /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		615C395723A4BBEF0036FB97 /* git-blame-pr.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "git-blame-pr.pl"; sourceTree = "<group>"; };
-		618A775D23F92F7900D11BDC /* build.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = build.yml; sourceTree = "<group>"; };
 		61C4FC3E239B894700F75B8D /* GitBlamePR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBlamePR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4FC41239B894700F75B8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61C4FC43239B894700F75B8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -213,22 +211,6 @@
 			path = XcodeHelper;
 			sourceTree = "<group>";
 		};
-		618A775B23F92F7900D11BDC /* .github */ = {
-			isa = PBXGroup;
-			children = (
-				618A775C23F92F7900D11BDC /* workflows */,
-			);
-			path = .github;
-			sourceTree = "<group>";
-		};
-		618A775C23F92F7900D11BDC /* workflows */ = {
-			isa = PBXGroup;
-			children = (
-				618A775D23F92F7900D11BDC /* build.yml */,
-			);
-			path = workflows;
-			sourceTree = "<group>";
-		};
 		61C4FC35239B894700F75B8D = {
 			isa = PBXGroup;
 			children = (
@@ -238,7 +220,6 @@
 				614894B72401344D00AB4788 /* XcodeHelper */,
 				61C4FC67239B8A7B00F75B8D /* Frameworks */,
 				61C4FC3F239B894700F75B8D /* Products */,
-				618A775B23F92F7900D11BDC /* .github */,
 			);
 			sourceTree = "<group>";
 		};
@@ -455,7 +436,6 @@
 				61C4FC49239B894B00F75B8D /* Preview Assets.xcassets in Resources */,
 				612768B823AD04BE003397B7 /* README.md in Resources */,
 				615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */,
-				618A775E23F92F7A00D11BDC /* build.yml in Resources */,
 				61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
