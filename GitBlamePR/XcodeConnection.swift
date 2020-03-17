@@ -15,8 +15,13 @@ enum XcodeConnectionError: Error {
     var localizedDescription: String {
         switch self {
         case .fileNotFound:
-            return "Source doucument file not found on Xcode."
-        case .timedOut:
+            return """
+            File not found on Xcode.
+
+            GitBlamePR.app needs access to control Xcode to get current open file.
+            Please confirm "System Preference" > "Security & Privacy" > "Privacy" > "Automation" > "GitBlamePR.app" > "Xcode" checkbox.
+            """
+            case .timedOut:
             return "Xcode connection timed out."
         }
     }
