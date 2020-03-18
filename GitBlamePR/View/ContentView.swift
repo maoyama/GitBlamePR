@@ -68,6 +68,7 @@ struct GitBlamePRView: View {
                             model: model.recent,
                             textOnTap: { text in
                                 self.fullPathTextFieldValue = text
+                                self.textOnCommit(self.fullPathTextFieldValue)
                             },
                             clearOnTap: {
                                 self.clearOnTap()
