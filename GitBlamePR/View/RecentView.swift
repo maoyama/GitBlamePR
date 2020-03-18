@@ -13,9 +13,15 @@ struct RecentViewModel {
 }
 
 struct RecentView: View {
-    var model: RecentViewModel
-    var textOnTap: (String) -> Void
-    var clearOnTap: () -> Void
+    private var model: RecentViewModel
+    private var textOnTap: (String) -> Void
+    private var clearOnTap: () -> Void
+
+    init(model: RecentViewModel, textOnTap: @escaping (String) -> Void, clearOnTap: @escaping () -> Void) {
+        self.model = model
+        self.textOnTap = textOnTap
+        self.clearOnTap = clearOnTap
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
