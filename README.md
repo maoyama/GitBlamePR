@@ -8,3 +8,11 @@ Download the latest [release](https://github.com/maoyama/GitBlamePR/releases), u
 
 ### Requirements
 macOS Catalina
+
+## Xcode Source Editor Extension
+GitBlamePR.app bundles Xcode Source Editor Extension.  
+
+Files opened in Xcode can be easily opened in GitBlamePR.  
+I recommend that you set a key binding for this function.
+
+![Xcode Source Editor Extension](https://user-images.githubusercontent.com/1035994/76871989-2787d400-68af-11ea-8b7d-561daa726019.gif)
