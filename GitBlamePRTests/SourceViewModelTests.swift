@@ -1,5 +1,5 @@
 //
-//  ContentViewModelTests.swift
+//  SourceViewModelTests.swift
 //  GitBlamePRTests
 //
 //  Created by Makoto Aoyama on 2019/12/07.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import GitBlamePR
 
-class ContentViewModelTests: XCTestCase {
+class SourceViewModelTests: XCTestCase {
     let gitRemoteOutput = """
 origin    git@github.com:kishikawakatsumi/SpreadsheetView.git (fetch)
 origin    git@github.com:kishikawakatsumi/SpreadsheetView.git (push)
@@ -87,7 +87,7 @@ PR #71   ,
 """
 
     func testContentViewModelInit() {
-        let vm = GitBlamePRViewModel(gitRemoteStandardOutput: gitRemoteOutput, gitBlamePRStandardOutput: gitBlamePROutput)!
+        let vm = SourceViewModel(gitRemoteStandardOutput: gitRemoteOutput, gitBlamePRStandardOutput: gitBlamePROutput)!
         XCTAssertEqual(vm.lines.count, 69)
         XCTAssertEqual(vm.lines[24].message, "PR #71")
         XCTAssertEqual(vm.lines[24].url, URL(string: "https://github.com/kishikawakatsumi/SpreadsheetView/pull/71")!)

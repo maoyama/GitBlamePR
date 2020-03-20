@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension GitBlamePRViewModel {
+extension SourceViewModel {
     init() {
         self.lines = []
         self.recent = RecentViewModel(fullPaths: [])

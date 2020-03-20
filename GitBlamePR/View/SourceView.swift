@@ -1,46 +1,22 @@
 //
-//  ContentView.swift
+//  SourceView.swift
 //  GitBlamePR
 //
-//  Created by Makoto Aoyama on 2019/12/07.
-//  Copyright © 2019 dev.aoyama. All rights reserved.
+//  Created by Makoto Aoyama on 2020/03/20.
+//  Copyright © 2020 dev.aoyama. All rights reserved.
 //
 
 import SwiftUI
 import AppKit
 
-
-struct ContentView: View {
-    @ObservedObject private var service: ApplicationService
-    private var fullPathTextFieldValue: String
-
-    init(service: ApplicationService=ApplicationService(), fullPathTextFieldValue: String="") {
-        self.service = service
-        self.fullPathTextFieldValue = fullPathTextFieldValue
-    }
-
-    var body: some View {
-        GitBlamePRView(
-            model: service.viewModel,
-            fullPathTextFieldValue: fullPathTextFieldValue,
-            textOnCommit: {text in
-                self.service.fullPathDidCommit(fullPathTextFieldValue: text)
-            },
-            clearOnTap: {
-                self.service.clearHistory()
-            }
-        )
-    }
-}
-
-struct GitBlamePRViewModel {
+struct SourceViewModel {
     var lines: [(message: String, url: URL, code: String, id: UUID)]
     var recent: RecentViewModel
     var error = ""
 }
 
-struct GitBlamePRView: View {
-    var model: GitBlamePRViewModel
+struct SourceView: View {
+    var model: SourceViewModel
     @State var fullPathTextFieldValue: String
     var textOnCommit: (String) -> Void
     var clearOnTap: () -> Void
@@ -102,8 +78,8 @@ struct GitBlamePRView: View {
 struct GitBlamePRView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            GitBlamePRView(
-                model: GitBlamePRViewModel(
+            SourceView(
+                model: SourceViewModel(
                     lines: [
                         (
                             message: "PR #2020",
@@ -162,8 +138,8 @@ struct GitBlamePRView_Previews: PreviewProvider {
 
             )
 
-            GitBlamePRView(
-                model: GitBlamePRViewModel(
+            SourceView(
+                model: SourceViewModel(
                     lines: [],
                     recent: RecentViewModel(fullPaths: [
                         (value: "/Users/aoyama/Dropbox/GitBlamePR/README.md", id: UUID())
