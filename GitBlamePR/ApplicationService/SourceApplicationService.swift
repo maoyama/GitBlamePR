@@ -8,13 +8,13 @@
 
 import Foundation
 
-class ApplicationService: ObservableObject {
-    @Published private(set) var viewModel: GitBlamePRViewModel
+class SourceApplicationService: ObservableObject {
+    @Published private(set) var viewModel: SourceViewModel
     private var historyRepository: HistoryRepository
 
     init(error: String="") {
         self.historyRepository = HistoryRepository()
-        self.viewModel = GitBlamePRViewModel(
+        self.viewModel = SourceViewModel(
             lines: [],
             recent: RecentViewModel(for: self.historyRepository.findAll()),
             error: error
@@ -42,12 +42,12 @@ class ApplicationService: ObservableObject {
             remoteOut = try executeGitRemote(fullPath: fullPath)
             blamePROut = try executeGitBlamePR(fullPath: fullPath)
         } catch ProcessError.standardError(let description) {
-            viewModel = GitBlamePRViewModel()
+            viewModel = SourceViewModel()
             viewModel.error = description
             viewModel.recent = RecentViewModel(for: historyRepository.findAll())
             return
         } catch let e {
-            viewModel = GitBlamePRViewModel()
+            viewModel = SourceViewModel()
             viewModel.error = e.localizedDescription
             viewModel.recent = RecentViewModel(for: historyRepository.findAll())
             return
@@ -60,7 +60,7 @@ class ApplicationService: ObservableObject {
         } catch let e {
             viewModel.error = e.localizedDescription
         }
-        viewModel = GitBlamePRViewModel(
+        viewModel = SourceViewModel(
             gitRemoteStandardOutput: remoteOut,
             gitBlamePRStandardOutput: blamePROut
         )!
@@ -70,7 +70,7 @@ class ApplicationService: ObservableObject {
 
     func fullPathDidCommit(fullPathTextFieldValue: String) {
         guard let fullPath = FileFullPath(rawValue: fullPathTextFieldValue) else {
-            viewModel = GitBlamePRViewModel()
+            viewModel = SourceViewModel()
             viewModel.recent = RecentViewModel(for: historyRepository.findAll())
             return
         }

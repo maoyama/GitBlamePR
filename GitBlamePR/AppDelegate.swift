@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.title = "GitBlamePR"
         window.center()
         window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: ContentView())
+        window.contentView = NSHostingView(rootView: SourceViewWrapper())
         window.makeKeyAndOrderFront(nil)
     }
 
@@ -30,8 +30,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             switch urlScheme {
             case .fileFullPath(let fullPath):
                 window?.contentView = NSHostingView(
-                    rootView: ContentView(
-                        service: ApplicationService(fullPath: fullPath),
+                    rootView: SourceViewWrapper(
+                        service: SourceApplicationService(fullPath: fullPath),
                         fullPathTextFieldValue: fullPath.rawValue
                     )
                 )
@@ -40,20 +40,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     switch result {
                     case .success(let fullPath):
                         self?.window?.contentView = NSHostingView(
-                            rootView: ContentView(
-                                service: ApplicationService(fullPath: fullPath),
+                            rootView: SourceViewWrapper(
+                                service: SourceApplicationService(fullPath: fullPath),
                                 fullPathTextFieldValue: fullPath.rawValue)
                         )
                     case .failure(let error):
                         self?.window?.contentView = NSHostingView(
-                            rootView: ContentView(service: ApplicationService(error: error.localizedDescription))
+                            rootView: SourceViewWrapper(service: SourceApplicationService(error: error.localizedDescription))
                         )
                     }
                 }
             }
         } else {
             window?.contentView = NSHostingView(
-                rootView: ContentView(service: ApplicationService(error: "URL not found."))
+                rootView: SourceViewWrapper(service: SourceApplicationService(error: "URL not found."))
             )
         }
     }
