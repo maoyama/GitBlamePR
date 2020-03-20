@@ -12,7 +12,7 @@ GitBlamePR.app bundles Xcode Source Editor Extension.
 Files opened in Xcode can be easily opened in GitBlamePR.  
 I recommend that you set a key binding for this function.
 
-![Xcode Source Editor Extension](https://user-images.githubusercontent.com/1035994/76871989-2787d400-68af-11ea-8b7d-561daa726019.gif)
+![Xcode Source Editor Extension](https://user-images.githubusercontent.com/1035994/77128451-860da780-6a93-11ea-8257-c1929f802302.gif)
 
 ## Requirements
 macOS Catalina
