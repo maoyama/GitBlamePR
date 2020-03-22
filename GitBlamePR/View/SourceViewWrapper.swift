@@ -20,15 +20,18 @@ struct SourceViewWrapper: View {
     }
 
     var body: some View {
-        SourceView(
-            model: service.viewModel,
-            fullPathTextFieldValue: fullPathTextFieldValue,
-            textOnCommit: {text in
-                self.service.fullPathDidCommit(fullPathTextFieldValue: text)
-            },
-            clearOnTap: {
-                self.service.clearHistory()
-            }
+        SplitView(
+            master: SourceView(
+                model: service.viewModel,
+                fullPathTextFieldValue: fullPathTextFieldValue,
+                textOnCommit: {text in
+                    self.service.fullPathDidCommit(fullPathTextFieldValue: text)
+                },
+                clearOnTap: {
+                    self.service.clearHistory()
+                }
+            ),
+            detail: DetailView()
         )
     }
 }
