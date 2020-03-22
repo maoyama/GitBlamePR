@@ -25,7 +25,7 @@ extension SourceViewModel {
         let repoURL = "https://github.com/" + repo
 
         let strLines = gitBlamePRStandardOutput.components(separatedBy: .newlines)
-        self.lines = strLines.map { (line) -> (message: String, url: URL, code: String, id: UUID) in
+        self.lines = strLines.map { (line) -> (message: String, url: URL?, code: String, id: UUID) in
             let separatedBy = ","
             let splitted = line.components(separatedBy: separatedBy)
             let linePrefix = splitted[0]
@@ -43,10 +43,13 @@ extension SourceViewModel {
         self.recent = RecentViewModel(fullPaths: [])
     }
 
-    private static func url(message: String, repoURL: String) -> URL {
+    private static func url(message: String, repoURL: String) -> URL? {
         if message.contains("PR") {
             let prNumber = message.components(separatedBy: "#").last!
             return URL(string: repoURL + "/pull/" + prNumber)!
+        }
+        if message.contains("Not Committed Yet") {
+            return nil
         }
         return URL(string: repoURL + "/commit/" + message)!
     }

@@ -10,7 +10,7 @@ import SwiftUI
 import AppKit
 
 struct SourceViewModel {
-    var lines: [(message: String, url: URL, code: String, id: UUID)]
+    var lines: [(message: String, url: URL?, code: String, id: UUID)]
     var recent: RecentViewModel
     var error = ""
 }
@@ -53,13 +53,24 @@ struct SourceView: View {
                     }
                     ForEach(model.lines, id: \.id) { line in
                         HStack(alignment: .top, spacing: 12) {
-                            Text(line.message)
-                                .font(Font.system(.caption, design: .monospaced))
-                                .foregroundColor(.accentColor)
-                                .frame(width: 80, height: nil, alignment: .trailing)
-                                .onTapGesture {
-                                    NSWorkspace.shared.open(line.url)
+                            if line.url == nil {
+                                Text(line.message)
+                                    .font(Font.system(.caption, design: .monospaced))
+                                    .foregroundColor(.gray)
+                                    .frame(width: 110, height: nil, alignment: .trailing)
+                                    .onTapGesture {
+                                            NSWorkspace.shared.open(line.url!)
+                                    }
+                            } else {
+                                Text(line.message)
+                                    .font(Font.system(.caption, design: .monospaced))
+                                    .foregroundColor(.accentColor)
+                                    .frame(width: 110, height: nil, alignment: .trailing)
+                                    .onTapGesture {
+                                            NSWorkspace.shared.open(line.url!)
+                                    }
                             }
+
                             Text(line.code)
                                 .font(Font.system(.caption, design: .monospaced))
                                 .frame(width: nil, height: nil, alignment: .leading)
@@ -100,8 +111,8 @@ struct GitBlamePRView_Previews: PreviewProvider {
                             id: UUID()
                         ),
                         (
-                            message: "fe21fe29",
-                            url: URL(string: "https://github.com")!,
+                            message: "Not Committed",
+                            url: nil,
                             code: "        GitBlamePRView(",
                             id: UUID()
                         ),
