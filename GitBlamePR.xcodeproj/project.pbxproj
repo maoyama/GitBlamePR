@@ -38,6 +38,7 @@
 		61F1FB9A241D32D900BFA44D /* XcodeConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB99241D32D900BFA44D /* XcodeConnection.swift */; };
 		61F1FB9C241DEAFE00BFA44D /* FileFullPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */; };
 		61F1FB9E241DEC4E00BFA44D /* FileFullPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB9D241DEC4E00BFA44D /* FileFullPathTests.swift */; };
+		61F6009E2427761E004155A4 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6009D2427761E004155A4 /* Line.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,7 @@
 		61F1FB99241D32D900BFA44D /* XcodeConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeConnection.swift; sourceTree = "<group>"; };
 		61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFullPath.swift; sourceTree = "<group>"; };
 		61F1FB9D241DEC4E00BFA44D /* FileFullPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFullPathTests.swift; sourceTree = "<group>"; };
+		61F6009D2427761E004155A4 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 				61375FDF23AFA84B00BFD5F9 /* History.swift */,
 				61E2C96A240B404E0011CB6D /* URLScheme.swift */,
 				61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */,
+				61F6009D2427761E004155A4 /* Line.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				61375FDE23AFA62B00BFD5F9 /* HistoryRepository.swift in Sources */,
 				61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */,
 				61375FE223AFB7F700BFD5F9 /* UserDefaults+Key.swift in Sources */,
+				61F6009E2427761E004155A4 /* Line.swift in Sources */,
 				61375FD823AE71A000BFD5F9 /* RecentView.swift in Sources */,
 				61375FDC23AFA4D900BFD5F9 /* SourceViewModel+Init.swift in Sources */,
 				61E2C96B240B404E0011CB6D /* URLScheme.swift in Sources */,
