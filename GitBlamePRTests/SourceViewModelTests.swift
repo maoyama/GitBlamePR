@@ -81,6 +81,7 @@ PR #10   ,    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSA
 PR #10   ,        return true
 PR #10   ,    }
 ^e2b41ca,}
+
 """
 
     func testContentViewModelInit() {

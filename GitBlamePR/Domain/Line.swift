@@ -16,7 +16,7 @@ struct Source {
             return nil
         }
 
-        let strLines = gitBlamePRStandardOutput.components(separatedBy: .newlines)
+        let strLines = gitBlamePRStandardOutput.components(separatedBy: .newlines).dropLast()
         let lines = try? strLines.enumerated().map { (arg) -> Line in
             let (index, line) = arg
             let separatedBy = ","
