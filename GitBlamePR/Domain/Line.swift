@@ -77,6 +77,28 @@ enum Revision {
 
         return nil
     }
+
+    var discription: String {
+        switch self {
+        case .pullRequest(let pr):
+            return "PR #\(pr.number)"
+        case .commit(let commit):
+            return "\(commit.hash)"
+        case .notCommited:
+            return "Not Committed"
+        }
+    }
+
+    var url: URL? {
+        switch self {
+        case .pullRequest(let pr):
+            return pr.url
+        case .commit(let commit):
+            return commit.url
+        case .notCommited:
+            return nil
+        }
+    }
 }
 
 struct PullRequest {

@@ -93,7 +93,7 @@ PR #10   ,    }
         XCTAssertEqual(vm.lines[64].message, "e2b41ca")
         XCTAssertEqual(vm.lines[64].code, "}")
 
-        XCTAssertEqual(vm.lines[8].message, "Not Committed Yet")
+        XCTAssertEqual(vm.lines[8].message, "Not Committed")
         XCTAssertEqual(vm.lines[8].code, "")
         XCTAssertEqual(vm.lines[8].url, nil)
     }
