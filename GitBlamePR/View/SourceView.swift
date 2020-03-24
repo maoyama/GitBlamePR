@@ -57,7 +57,7 @@ struct SourceView: View {
                                 Text(line.message)
                                     .font(Font.system(.caption, design: .monospaced))
                                     .foregroundColor(.gray)
-                                    .frame(width: 110, height: nil, alignment: .trailing)
+                                    .frame(width: 100, height: nil, alignment: .trailing)
                                     .onTapGesture {
                                             NSWorkspace.shared.open(line.url!)
                                     }
@@ -65,7 +65,7 @@ struct SourceView: View {
                                 Text(line.message)
                                     .font(Font.system(.caption, design: .monospaced))
                                     .foregroundColor(.accentColor)
-                                    .frame(width: 110, height: nil, alignment: .trailing)
+                                    .frame(width: 100, height: nil, alignment: .trailing)
                                     .onTapGesture {
                                             NSWorkspace.shared.open(line.url!)
                                     }
