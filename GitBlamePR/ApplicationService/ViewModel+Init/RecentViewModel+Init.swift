@@ -9,7 +9,7 @@
 import Foundation
 
 extension RecentViewModel {
-    init(for history: History) {
+    init(history: History) {
         self.fullPaths = history.inputFullPaths.map({ (string) -> (String, UUID) in
             (string, UUID())
         })

@@ -15,14 +15,7 @@ extension SourceViewModel {
         self.error = ""
     }
 
-    init?(gitRemoteStandardOutput: String, gitBlamePRStandardOutput: String) {
-        guard let source = Source(gitRemoteStandardOutput: gitRemoteStandardOutput, gitBlamePRStandardOutput: gitBlamePRStandardOutput) else {
-            return nil
-        }
-        self.init(source: source)
-    }
-
-    init?(source: Source) {
+    init(source: Source) {
         self.lines = source.lines.map { (line) -> (message: String, url: URL?, code: String, id: UUID) in
             return (
                 message: line.revision.discription,
