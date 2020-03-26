@@ -25,6 +25,9 @@ exit $?;
 
 sub lookup {
     my $commit = shift;
+    if ($commit =~ /0000000/) {
+        return "Not Committed Yet";
+    }
     my $message = `git show --oneline $commit`;
     if ($message =~ /Merge\s+(?:pull\s+request|pr)\s+\#?(\d+)\s/i) {
         return sprintf '%-9s', "PR #$1";

@@ -16,7 +16,7 @@ class SourceApplicationService: ObservableObject {
         self.historyRepository = HistoryRepository()
         self.viewModel = SourceViewModel(
             lines: [],
-            recent: RecentViewModel(for: self.historyRepository.findAll()),
+            recent: RecentViewModel(history: self.historyRepository.findAll()),
             error: error
         )
     }
@@ -44,12 +44,12 @@ class SourceApplicationService: ObservableObject {
         } catch ProcessError.standardError(let description) {
             viewModel = SourceViewModel()
             viewModel.error = description
-            viewModel.recent = RecentViewModel(for: historyRepository.findAll())
+            viewModel.recent = RecentViewModel(history: historyRepository.findAll())
             return
         } catch let e {
             viewModel = SourceViewModel()
             viewModel.error = e.localizedDescription
-            viewModel.recent = RecentViewModel(for: historyRepository.findAll())
+            viewModel.recent = RecentViewModel(history: historyRepository.findAll())
             return
         }
 
@@ -59,19 +59,19 @@ class SourceApplicationService: ObservableObject {
             try historyRepository.save(history: history)
         } catch let e {
             viewModel.error = e.localizedDescription
+            return
         }
-        viewModel = SourceViewModel(
-            gitRemoteStandardOutput: remoteOut,
-            gitBlamePRStandardOutput: blamePROut
-        )!
-        viewModel.recent = RecentViewModel(fullPaths: [])
-
+        guard let source = Source(gitRemoteStandardOutput: remoteOut, gitBlamePRStandardOutput: blamePROut) else {
+            viewModel.error = "Unknown error."
+            return
+        }
+        viewModel = SourceViewModel(source: source)
     }
 
     func fullPathDidCommit(fullPathTextFieldValue: String) {
         guard let fullPath = FileFullPath(rawValue: fullPathTextFieldValue) else {
             viewModel = SourceViewModel()
-            viewModel.recent = RecentViewModel(for: historyRepository.findAll())
+            viewModel.recent = RecentViewModel(history: historyRepository.findAll())
             return
         }
         fullPathDidCommit(fullPath: fullPath)
