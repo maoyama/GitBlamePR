@@ -18,7 +18,6 @@ struct SplitView<Master, Detail>: View where Master : View, Detail : View {
     private var drag: some Gesture {
         DragGesture(minimumDistance: 1, coordinateSpace: .global)
             .onChanged { value in
-                print(value)
                 self.detailWidth = self.detailWidthOfDraggOnEnd - value.translation.width
                 NSCursor.resizeLeftRight.set()
             }.onEnded { (value) in
@@ -29,7 +28,7 @@ struct SplitView<Master, Detail>: View where Master : View, Detail : View {
     var body: some View {
         HStack {
             master
-            SplitSeparator().frame(width: 21).gesture(drag).onHover { (enters) in
+            SplitSeparator().frame(width: 10).gesture(drag).onHover { (enters) in
                 if enters {
                     NSCursor.resizeLeftRight.set()
                 } else {
@@ -37,7 +36,6 @@ struct SplitView<Master, Detail>: View where Master : View, Detail : View {
                 }
             }
             detail.frame(width: detailWidth)
-            
         }
     }
 }
