@@ -11,9 +11,11 @@ import Foundation
 class SourceApplicationService: ObservableObject {
     @Published private(set) var viewModel: SourceViewModel
     private var historyRepository: HistoryRepository
+    private var sourceRepository: SourceRepository
 
     init(error: String="") {
         self.historyRepository = HistoryRepository()
+        self.sourceRepository = SourceRepository()
         self.viewModel = SourceViewModel(
             lines: [],
             recent: RecentViewModel(history: self.historyRepository.findAll()),
@@ -36,28 +38,21 @@ class SourceApplicationService: ObservableObject {
     }
 
     func fullPathDidCommit(fullPath: FileFullPath) {
-        var remoteOut = ""
-        var blamePROut = ""
+        let source: Source
         do {
-            remoteOut = try Git.remote(path: fullPath)
-            blamePROut = try Git.blamePR(path: fullPath)
+            source = try sourceRepository.find(by: fullPath)
         } catch let e {
             viewModel = SourceViewModel()
             viewModel.error = e.localizedDescription
             viewModel.recent = RecentViewModel(history: historyRepository.findAll())
             return
         }
-
         var history = historyRepository.findAll()
         history.addInputFullPath(fullPath.rawValue)
         do {
             try historyRepository.save(history: history)
         } catch let e {
             viewModel.error = e.localizedDescription
-            return
-        }
-        guard let source = Source(gitRemoteStandardOutput: remoteOut, gitBlamePRStandardOutput: blamePROut) else {
-            viewModel.error = "Unknown error."
             return
         }
         viewModel = SourceViewModel(source: source)

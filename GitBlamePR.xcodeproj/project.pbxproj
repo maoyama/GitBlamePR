@@ -14,6 +14,9 @@
 		611D6F2B2437E538006BAD44 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 611D6F2A2437E538006BAD44 /* KingfisherSwiftUI */; };
 		611D6F2C2437E538006BAD44 /* KingfisherSwiftUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 611D6F2A2437E538006BAD44 /* KingfisherSwiftUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		611D6F2F2437F764006BAD44 /* Git.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D6F2E2437F764006BAD44 /* Git.swift */; };
+		611D6F3224382DB7006BAD44 /* SourceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D6F3124382DB7006BAD44 /* SourceRepository.swift */; };
+		611D6F3424382F88006BAD44 /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D6F3324382F88006BAD44 /* RepositoryError.swift */; };
+		611D6F35243830BE006BAD44 /* Process+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */; };
 		6121EA552401352500982682 /* XcodeHelper.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 614894B62401344D00AB4788 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		612768B823AD04BE003397B7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 612768B723AD04BE003397B7 /* README.md */; };
 		612F669C2400AFF8001975A6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C4FC68239B8A7B00F75B8D /* Cocoa.framework */; };
@@ -124,6 +127,8 @@
 		6114CDDB23AFBAF700EF6B88 /* RecentViewModel+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentViewModel+Init.swift"; sourceTree = "<group>"; };
 		611D6F272436A2B9006BAD44 /* PullRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestView.swift; sourceTree = "<group>"; };
 		611D6F2E2437F764006BAD44 /* Git.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Git.swift; sourceTree = "<group>"; };
+		611D6F3124382DB7006BAD44 /* SourceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceRepository.swift; sourceTree = "<group>"; };
+		611D6F3324382F88006BAD44 /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
 		6121EA562401356C00982682 /* XcodeExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XcodeExtension-Bridging-Header.h"; sourceTree = "<group>"; };
 		6121EA5B240136C600982682 /* Xcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xcode.h; sourceTree = "<group>"; };
 		6121EA5C2403329E00982682 /* XcodeHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XcodeHelper.entitlements; sourceTree = "<group>"; };
@@ -289,6 +294,8 @@
 			isa = PBXGroup;
 			children = (
 				61375FDD23AFA62B00BFD5F9 /* HistoryRepository.swift */,
+				611D6F3124382DB7006BAD44 /* SourceRepository.swift */,
+				611D6F3324382F88006BAD44 /* RepositoryError.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -540,6 +547,7 @@
 			files = (
 				612F669F2400AFF8001975A6 /* SourceEditorExtension.swift in Sources */,
 				612F66A12400AFF8001975A6 /* SourceEditorCommand.swift in Sources */,
+				611D6F35243830BE006BAD44 /* Process+Run.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,10 +578,12 @@
 				61F6009E2427761E004155A4 /* Source.swift in Sources */,
 				61375FD823AE71A000BFD5F9 /* RecentView.swift in Sources */,
 				61375FDC23AFA4D900BFD5F9 /* SourceViewModel+Init.swift in Sources */,
+				611D6F3424382F88006BAD44 /* RepositoryError.swift in Sources */,
 				61C3946A2425ADC2004B1667 /* SplitSeparator.swift in Sources */,
 				61E2C96B240B404E0011CB6D /* URLScheme.swift in Sources */,
 				6114CDDC23AFBAF700EF6B88 /* RecentViewModel+Init.swift in Sources */,
 				6113917E243056AB00C74954 /* CommitView.swift in Sources */,
+				611D6F3224382DB7006BAD44 /* SourceRepository.swift in Sources */,
 				611D6F282436A2B9006BAD44 /* PullRequestView.swift in Sources */,
 				61C394682425A362004B1667 /* DetailView.swift in Sources */,
 				61F1FB9A241D32D900BFA44D /* XcodeConnection.swift in Sources */,
