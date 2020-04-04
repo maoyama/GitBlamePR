@@ -210,14 +210,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		611D6F3024382CFA006BAD44 /* infrastructure */ = {
+		611D6F3024382CFA006BAD44 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
 				611D6F2E2437F764006BAD44 /* Git.swift */,
 				61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */,
 				61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */,
 			);
-			path = infrastructure;
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
 		612F669D2400AFF8001975A6 /* XcodeExtension */ = {
@@ -326,7 +326,7 @@
 		61C4FC40239B894700F75B8D /* GitBlamePR */ = {
 			isa = PBXGroup;
 			children = (
-				611D6F3024382CFA006BAD44 /* infrastructure */,
+				611D6F3024382CFA006BAD44 /* Infrastructure */,
 				6198CB11242498F800AE0826 /* Repository */,
 				6198CB10242498B700AE0826 /* Domain */,
 				6198CB0E2424987600AE0826 /* ApplicationService */,
