@@ -39,13 +39,8 @@ class SourceApplicationService: ObservableObject {
         var remoteOut = ""
         var blamePROut = ""
         do {
-            remoteOut = try executeGitRemote(fullPath: fullPath)
-            blamePROut = try executeGitBlamePR(fullPath: fullPath)
-        } catch ProcessError.standardError(let description) {
-            viewModel = SourceViewModel()
-            viewModel.error = description
-            viewModel.recent = RecentViewModel(history: historyRepository.findAll())
-            return
+            remoteOut = try Git.remote(path: fullPath)
+            blamePROut = try Git.blamePR(path: fullPath)
         } catch let e {
             viewModel = SourceViewModel()
             viewModel.error = e.localizedDescription
@@ -75,21 +70,5 @@ class SourceApplicationService: ObservableObject {
             return
         }
         fullPathDidCommit(fullPath: fullPath)
-    }
-
-    private func executeGitRemote(fullPath: FileFullPath) throws -> String {
-        return try Process.run(
-            executableURL: URL(fileURLWithPath: "/usr/bin/git"),
-            arguments: ["remote", "-v"],
-            currentDirectoryURL: fullPath.directoryURL
-        )
-    }
-
-    private func executeGitBlamePR(fullPath: FileFullPath) throws -> String {
-        return try Process.run(
-            executableURL: URL(fileURLWithPath: "/usr/bin/perl"),
-            arguments: [Bundle.main.resourcePath! + "/git-blame-pr.pl", fullPath.trimmed],
-            currentDirectoryURL: fullPath.directoryURL
-        )
     }
 }
