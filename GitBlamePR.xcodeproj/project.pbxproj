@@ -40,7 +40,6 @@
 		61C4FC49239B894B00F75B8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC48239B894B00F75B8D /* Preview Assets.xcassets */; };
 		61C4FC4C239B894B00F75B8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC4A239B894B00F75B8D /* Main.storyboard */; };
 		61C4FC58239B894C00F75B8D /* SourceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC57239B894C00F75B8D /* SourceViewModelTests.swift */; };
-		61E2C967240A694B0011CB6D /* Process+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */; };
 		61E2C969240B31810011CB6D /* URLSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2C968240B31810011CB6D /* URLSchemeTests.swift */; };
 		61E2C96B240B404E0011CB6D /* URLScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2C96A240B404E0011CB6D /* URLScheme.swift */; };
 		61F1FB9A241D32D900BFA44D /* XcodeConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FB99241D32D900BFA44D /* XcodeConnection.swift */; };
@@ -206,6 +205,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		611D6F3024382CFA006BAD44 /* infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				611D6F2E2437F764006BAD44 /* Git.swift */,
+				61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */,
+				61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */,
+			);
+			path = infrastructure;
+			sourceTree = "<group>";
+		};
 		612F669D2400AFF8001975A6 /* XcodeExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,7 +281,6 @@
 				61E2C96A240B404E0011CB6D /* URLScheme.swift */,
 				61F1FB9B241DEAFE00BFA44D /* FileFullPath.swift */,
 				61F6009D2427761E004155A4 /* Source.swift */,
-				611D6F2E2437F764006BAD44 /* Git.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -311,14 +319,13 @@
 		61C4FC40239B894700F75B8D /* GitBlamePR */ = {
 			isa = PBXGroup;
 			children = (
+				611D6F3024382CFA006BAD44 /* infrastructure */,
 				6198CB11242498F800AE0826 /* Repository */,
 				6198CB10242498B700AE0826 /* Domain */,
 				6198CB0E2424987600AE0826 /* ApplicationService */,
 				61375FE323AFB86D00BFD5F9 /* View */,
 				61C4FC41239B894700F75B8D /* AppDelegate.swift */,
 				61F1FB99241D32D900BFA44D /* XcodeConnection.swift */,
-				61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */,
-				61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */,
 				615C395723A4BBEF0036FB97 /* git-blame-pr.pl */,
 				61C4FC45239B894B00F75B8D /* Assets.xcassets */,
 				61C4FC4A239B894B00F75B8D /* Main.storyboard */,
@@ -533,7 +540,6 @@
 			files = (
 				612F669F2400AFF8001975A6 /* SourceEditorExtension.swift in Sources */,
 				612F66A12400AFF8001975A6 /* SourceEditorCommand.swift in Sources */,
-				61E2C967240A694B0011CB6D /* Process+Run.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,6 +36,14 @@ struct Git {
         )
     }
 
+    static func show(path: FileFullPath, commit: Commit) throws -> String {
+        return  try Self.runGitProcess(
+            executableURL: URL(fileURLWithPath: "/usr/bin/git"),
+            arguments: ["show", "--format=fuller", commit.hash],
+            currentDirectoryURL: path.directoryURL
+        )
+    }
+
     static private func runGitProcess(executableURL: URL, arguments: [String], currentDirectoryURL: URL?) throws -> String {
         do {
             let out = try Process.run(executableURL: executableURL, arguments: arguments, currentDirectoryURL: currentDirectoryURL)
