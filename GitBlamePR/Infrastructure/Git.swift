@@ -36,10 +36,10 @@ struct Git {
         )
     }
 
-    static func show(path: FileFullPath, commit: Commit) throws -> String {
+    static func show(path: FileFullPath, hash: String) throws -> String {
         return  try Self.runGitProcess(
             executableURL: URL(fileURLWithPath: "/usr/bin/git"),
-            arguments: ["show", "--format=fuller", commit.hash],
+            arguments: ["show", "--format=\"%H%n%an%n%ai%n%aE\"", "--date=rfc", hash],
             currentDirectoryURL: path.directoryURL
         )
     }
@@ -53,5 +53,20 @@ struct Git {
         } catch let e {
             throw GitError(description: e.localizedDescription)
         }
+    }
+}
+
+protocol GitCommandAttributes: CommandAttributes {}
+extension GitCommandAttributes {
+    var executableURL: URL {
+        URL(fileURLWithPath: "/usr/bin/git")
+    }
+}
+
+struct GitShow: GitCommandAttributes {
+    var arguments: [String]
+
+    init(commitHash: String) {
+        self.arguments = ["show", "--format=\"%H%n%an%n%ai%n%aE\"", commitHash]
     }
 }
