@@ -12,15 +12,7 @@ import XCTest
 class CommitDetailTests: XCTestCase {
 
     func testInit() throws {
-        let root = ProcessInfo.processInfo.environment["SRCROOT"]!
-        let gs = GitShow(commitHash: "69bbda5980b6042434b2f391817c0a6050aa6a62")
-        print(try! Command(attributes: gs, directoryURL: URL(fileURLWithPath: root, isDirectory: true)).execute())
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        let root = URL(fileURLWithPath: ProcessInfo.processInfo.environment["SRCROOT"]!,  isDirectory: true)
+        print(try! GitShowCommand(commitHash: "69bbda5980b6042434b2f391817c0a6050aa6a62", directoryURL: root).output())
     }
 }

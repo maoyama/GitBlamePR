@@ -9,6 +9,8 @@
 import Foundation
 
 struct CommandError: Error, LocalizedError {
+    static var unknown = CommandError(description: "Unknown error.")
+
     private var description: String
     var errorDescription: String? {
         return description
@@ -17,45 +19,26 @@ struct CommandError: Error, LocalizedError {
     init(description: String) {
         self.description = description
     }
-}
 
-struct Command<T: CommandAttributes>{
-    private var attributes: T
-    private var currentDirectoryURL: URL
-    private var process: CommandProcess
-
-    init(attributes: T, directoryURL: URL, process: CommandProcess=DefaultCommandProcess()) {
-        self.attributes = attributes
-        self.currentDirectoryURL = directoryURL
-        self.process = process
-    }
-
-    func execute() throws -> String {
-        do {
-            return try process.run(
-                executableURL: attributes.executableURL,
-                arguments: attributes.arguments,
-                currentDirectoryURL: currentDirectoryURL
-            )
-        } catch ProcessError.standardError(let description) {
-            throw CommandError(description: description)
-        } catch let e {
-            throw CommandError(description: e.localizedDescription)
-        }
+    init(error: Error) {
+        self.init(description: error.localizedDescription)
     }
 }
 
-protocol CommandAttributes {
+protocol Command {
     var executableURL: URL { get }
     var arguments: [String] { get }
+    var directoryURL: URL { get }
+
+    func output() throws -> String
 }
 
-protocol CommandProcess {
-    func run(executableURL: URL, arguments: [String], currentDirectoryURL: URL) throws -> String
-}
+extension Command {
+    func output() throws -> String {
+        return try output(executableURL: executableURL, arguments: arguments, currentDirectoryURL: directoryURL)
+    }
 
-struct DefaultCommandProcess: CommandProcess {
-    func run(executableURL: URL, arguments: [String], currentDirectoryURL: URL) throws -> String {
+    private func output(executableURL: URL, arguments: [String], currentDirectoryURL: URL) throws -> String {
         let process = Process()
         process.executableURL = executableURL
         process.arguments = arguments
@@ -65,15 +48,19 @@ struct DefaultCommandProcess: CommandProcess {
         let stdError = Pipe()
         process.standardOutput = stdOutput
         process.standardError = stdError
-        try process.run()
+        do {
+            try process.run()
+        } catch let e {
+            throw CommandError(error: e)
+        }
         guard let errOut = String(data: stdError.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) else {
-            throw ProcessError.unknown
+            throw CommandError.unknown
         }
         guard errOut.isEmpty else {
-            throw ProcessError.standardError(errOut)
+            throw CommandError(description: errOut)
         }
         guard let stdOut = String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) else {
-            throw ProcessError.unknown
+            throw CommandError.unknown
         }
         return stdOut
     }
