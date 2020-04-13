@@ -48,7 +48,7 @@ struct Line {
 
 enum Revision {
     case pullRequest(PullRequest)
-    case commit(Commit)
+    case commit(SourceCommit)
     case notCommited
 
     init?(gitBlamePRStandardOutputLine: String, repositoryURL: RepositoryURL) {
@@ -70,7 +70,7 @@ enum Revision {
             self = .notCommited
             return
         }
-        if let commit = Commit(hash: revisionStr, repositoryURL:repositoryURL) {
+        if let commit = SourceCommit(hash: revisionStr, repositoryURL:repositoryURL) {
             self = .commit(commit)
             return
         }
@@ -114,7 +114,7 @@ struct PullRequest {
     }
 }
 
-struct Commit {
+struct SourceCommit {
     private(set) var hash: String
     private(set) var url: URL
 

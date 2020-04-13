@@ -1,5 +1,5 @@
 //
-//  CommitDetail.swift
+//  Commit.swift
 //  GitBlamePR
 //
 //  Created by Makoto Aoyama on 2020/04/04.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CommitDetail {
+struct Commit {
     var hash: String
     var author: String
     var authorEmail: String
