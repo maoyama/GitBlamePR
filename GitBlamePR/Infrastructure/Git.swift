@@ -8,6 +8,8 @@
 
 import Foundation
 
+// TODO: Git => GitCommand
+
 struct GitError: Error, LocalizedError {
     private var description: String
     var errorDescription: String? {
@@ -53,22 +55,5 @@ struct Git {
         } catch let e {
             throw GitError(description: e.localizedDescription)
         }
-    }
-}
-
-protocol GitCommand: Command {}
-extension GitCommand {
-    var executableURL: URL {
-        URL(fileURLWithPath: "/usr/bin/git")
-    }
-}
-
-struct GitShowCommand: GitCommand {
-    private (set) var arguments: [String] = ["show", "--format=\"%H%n%an%n%ai%n%aE\""]
-    private (set) var directoryURL: URL
-
-    init(commitHash: String, directoryURL: URL) {
-        self.arguments.append(commitHash)
-        self.directoryURL = directoryURL
     }
 }
