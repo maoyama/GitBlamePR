@@ -9,18 +9,24 @@
 import Foundation
 
 extension Commit {
-    init?(from command: GitShowCommand) {
-        guard let output = try? command.output() else { return nil }
+    init(from command: GitShowCommand) throws {
+        let output = try command.output()
         let lines = output.components(separatedBy: .newlines)
-        guard lines.count > 8 else { return nil }
+        guard lines.count > 8 else {
+            throw CommandError.unknown
+        }
         hash = lines[0]
         author = lines[1]
         authorEmail = lines[2]
-        guard let authorDate = ISO8601DateFormatter().date(from: lines[3]) else { return nil }
+        guard let authorDate = ISO8601DateFormatter().date(from: lines[3]) else {
+            throw CommandError.unknown
+        }
         self.authorDate = authorDate
         committer = lines[4]
         committerEmail = lines[5]
-        guard let committerDate = ISO8601DateFormatter().date(from: lines[6]) else { return nil }
+        guard let committerDate = ISO8601DateFormatter().date(from: lines[6]) else {
+            throw CommandError.unknown
+        }
         self.committerDate = committerDate
         titleLine = lines[7]
         fullCommitMessage = lines[8]

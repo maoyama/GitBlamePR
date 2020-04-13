@@ -9,12 +9,14 @@
 import Foundation
 
 struct RepositoryError: Error, LocalizedError {
+    static var unknown = RepositoryError(description: "Unknown error.")
+
     private var description: String
     var errorDescription: String? {
         return description
     }
 
-    init(description: String="Unknown error.") {
+    init(description: String) {
         self.description = description
     }
 }

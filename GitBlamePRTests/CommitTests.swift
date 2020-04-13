@@ -17,7 +17,7 @@ class CommitTests: XCTestCase {
             commitHash: hash,
             directoryURL: Enviroment.sourceRootDirectory
         )
-        let commit = Commit(from: command)!
+        let commit = try! Commit(from: command)
         XCTAssertEqual(commit.hash, hash)
         XCTAssertEqual(commit.author, "Makoto Aoyama")
         XCTAssertEqual(commit.authorEmail, "m@aoyama.dev")
@@ -35,7 +35,7 @@ class CommitTests: XCTestCase {
             commitHash: hash,
             directoryURL: Enviroment.sourceRootDirectory
         )
-        let commit = Commit(from: command)!
+        let commit = try! Commit(from: command)
         XCTAssertEqual(commit.fullCommitMessage, "")
     }
 }

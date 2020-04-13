@@ -13,7 +13,7 @@ struct SourceRepository {
         let remoteOut = try Git.remote(path: path)
         let blamePROut = try Git.blamePR(path: path)
         guard let source = Source(gitRemoteStandardOutput: remoteOut, gitBlamePRStandardOutput: blamePROut) else {
-            throw RepositoryError()
+            throw RepositoryError.unknown
         }
         return source
     }
