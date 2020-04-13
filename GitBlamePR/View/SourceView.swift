@@ -10,7 +10,7 @@ import SwiftUI
 import AppKit
 
 struct SourceViewModel {
-    var lines: [(message: String, url: URL?, code: String, id: UUID)]
+    var lines: [(message: String, url: URL?, code: String, number: Int)]
     var recent: RecentViewModel
     var error = ""
 }
@@ -20,6 +20,7 @@ struct SourceView: View {
     @State var fullPathTextFieldValue: String
     var textOnCommit: (String) -> Void
     var clearOnTap: () -> Void
+    var revisionOnHover: (_ lineNumber: Int) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -51,7 +52,7 @@ struct SourceView: View {
                             }
                         ).padding()
                     }
-                    ForEach(model.lines, id: \.id) { line in
+                    ForEach(model.lines, id: \.number) { line in
                         HStack(alignment: .top, spacing: 12) {
                             if line.url == nil {
                                 Text(line.message)
@@ -68,6 +69,11 @@ struct SourceView: View {
                                     .frame(width: 100, height: nil, alignment: .trailing)
                                     .onTapGesture {
                                             NSWorkspace.shared.open(line.url!)
+                                    }
+                                    .onHover { (enters) in
+                                        if enters {
+                                            self.revisionOnHover(line.number)
+                                        }
                                     }
                             }
 
@@ -96,57 +102,57 @@ struct GitBlamePRView_Previews: PreviewProvider {
                             message: "PR #2020",
                             url: URL(string: "https://github.com")!,
                             code: "struct ContentView: View {",
-                            id: UUID()
+                            number: 1
                         ),
                         (
                             message: "PR #2020",
                             url: URL(string: "https://github.com")!,
                             code: "",
-                            id: UUID()
+                            number: 2
                         ),
                         (
                             message: "fe21fe29",
                             url: URL(string: "https://github.com")!,
                             code: "    var body: some View {",
-                            id: UUID()
+                            number: 3
                         ),
                         (
                             message: "Not Committed",
                             url: nil,
                             code: "        GitBlamePRView(",
-                            id: UUID()
+                            number: 4
                         ),
                         (
                             message: "fe21fe29",
                             url: URL(string: "https://github.com")!,
                             code: "            model: service.viewModel,",
-                            id: UUID()
+                            number: 5
                         ),
                         (
                             message: "fe21fe29",
                             url: URL(string: "https://github.com")!,
                             code: "            textOnCommit: {text in",
-                            id: UUID()
+                            number: 6
                         ),
                         (
                             message: "fe21fe29",
                             url: URL(string: "https://github.com")!,
                             code: "                self.service.fullPath = text",
-                            id: UUID()
+                            number: 7
                         ),
                         (
                             message: "fe21fe29",
                             url: URL(string: "https://github.com")!,
                             code: "            }",
-                            id: UUID()
+                            number: 8
                         ),
                     ],
                     recent: RecentViewModel(fullPaths: [])
                 ),
                 fullPathTextFieldValue: "",
                 textOnCommit: {_ in },
-                clearOnTap: {}
-
+                clearOnTap: {},
+                revisionOnHover: {_ in }
             )
 
             SourceView(
@@ -159,7 +165,8 @@ struct GitBlamePRView_Previews: PreviewProvider {
                 ),
                 fullPathTextFieldValue: "",
                 textOnCommit: {_ in },
-                clearOnTap: {}
+                clearOnTap: {},
+                revisionOnHover: {_ in }
             )
         }
     }

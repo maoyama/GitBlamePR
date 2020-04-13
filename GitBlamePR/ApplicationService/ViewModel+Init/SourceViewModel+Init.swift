@@ -16,12 +16,12 @@ extension SourceViewModel {
     }
 
     init(source: Source) {
-        self.lines = source.lines.map { (line) -> (message: String, url: URL?, code: String, id: UUID) in
+        self.lines = source.lines.map { (line) -> (message: String, url: URL?, code: String, number: Int) in
             return (
                 message: line.revision.discription,
                 url: line.revision.url,
                 code: line.code,
-                id: UUID()
+                number: line.number.value
             )
         }
         self.recent = RecentViewModel(fullPaths: [])

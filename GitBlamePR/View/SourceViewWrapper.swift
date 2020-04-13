@@ -24,11 +24,14 @@ struct SourceViewWrapper: View {
             master: SourceView(
                 model: service.viewModel,
                 fullPathTextFieldValue: fullPathTextFieldValue,
-                textOnCommit: {text in
+                textOnCommit: { text in
                     self.service.fullPathDidCommit(fullPathTextFieldValue: text)
                 },
                 clearOnTap: {
                     self.service.clearHistory()
+                },
+                revisionOnHover: { lineNumber in
+                    print("hover: \(lineNumber)")
                 }
             ),
             detail: DetailView()
