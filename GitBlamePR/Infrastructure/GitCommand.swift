@@ -16,7 +16,7 @@ extension GitCommand {
 }
 
 struct GitShowCommand: GitCommand {
-    private (set) var arguments: [String] = ["show", "--format=\"%H%n%an%n%ai%n%aE\""]
+    private (set) var arguments: [String] = ["show", "--format=\"%H%n%an%n%aE%aI%n%cn%n%cE%cI%n%s%n%b%n\""]
     private (set) var directoryURL: URL
 
     init(commitHash: String, directoryURL: URL) {
