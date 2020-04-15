@@ -38,5 +38,22 @@ class CommitTests: XCTestCase {
         let commit = try! Commit(from: command)
         XCTAssertEqual(commit.fullCommitMessage, "")
     }
+
+    func testInitMultiLineFullCommitMessage() throws {
+        let hash = "0de786030b6a1150815fdfbe37aa708025081769"
+        let command = GitShowCommand(
+            commitHash: hash,
+            directoryURL: Enviroment.sourceRootDirectory
+        )
+        let commit = try! Commit(from: command)
+        XCTAssertEqual(
+            commit.fullCommitMessage, """
+This reverts commit 44cd166895ac93832525f3f7eca6b7e1fef8fe3d, reversing
+changes made to 85f33ba2369535a559a0506e3a9d6a8ddf68a8e7.
+
+"""
+        )
+    }
+
 }
 

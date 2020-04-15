@@ -10,8 +10,7 @@ import Foundation
 
 extension Commit {
     init(from command: GitShowCommand) throws {
-        let output = try command.output()
-        let lines = output.components(separatedBy: .newlines)
+        let lines = try command.output().components(separatedBy: command.separator)
         guard lines.count > 8 else {
             throw CommandError.unknown
         }
