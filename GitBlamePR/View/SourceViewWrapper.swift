@@ -12,7 +12,7 @@ import AppKit
 
 struct SourceViewWrapper: View {
     @ObservedObject private var service: SourceApplicationService
-    private var fullPathTextFieldValue: String
+    @State private var fullPathTextFieldValue: String = ""
 
     init(service: SourceApplicationService=SourceApplicationService(), fullPathTextFieldValue: String="") {
         self.service = service
@@ -26,15 +26,16 @@ struct SourceViewWrapper: View {
                 fullPathTextFieldValue: fullPathTextFieldValue,
                 textOnCommit: { text in
                     self.service.fullPathDidCommit(fullPathTextFieldValue: text)
+                    self.fullPathTextFieldValue = text
                 },
                 clearOnTap: {
                     self.service.clearHistory()
                 },
                 revisionOnHover: { lineNumber in
-                    print("hover: \(lineNumber)")
+                    self.service.revisionDidHover(lineNumber: lineNumber)
                 }
             ),
-            detail: DetailView()
+            detail: RevisionViewWrapper(service: RevisionApplicationService(commitHash: service.viewModel.hoveredRevision, fullPathTextFieldValue: fullPathTextFieldValue))
         )
     }
 }

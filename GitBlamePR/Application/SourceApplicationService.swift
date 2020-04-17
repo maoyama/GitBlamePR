@@ -37,7 +37,21 @@ class SourceApplicationService: ObservableObject {
         viewModel.recent = RecentViewModel(fullPaths: [])
     }
 
-    func fullPathDidCommit(fullPath: FileFullPath) {
+    func fullPathDidCommit(fullPathTextFieldValue: String) {
+        guard let fullPath = FileFullPath(rawValue: fullPathTextFieldValue) else {
+            viewModel = SourceViewModel()
+            viewModel.recent = RecentViewModel(history: historyRepository.findAll())
+            return
+        }
+        fullPathDidCommit(fullPath: fullPath)
+    }
+
+    func revisionDidHover(lineNumber: Int) {
+        let revision = viewModel.lines[lineNumber - 1].revision
+        viewModel.hoveredRevision = revision
+    }
+
+    private func fullPathDidCommit(fullPath: FileFullPath) {
         let source: Source
         do {
             source = try sourceRepository.find(by: fullPath)
@@ -56,14 +70,5 @@ class SourceApplicationService: ObservableObject {
             return
         }
         viewModel = SourceViewModel(source: source)
-    }
-
-    func fullPathDidCommit(fullPathTextFieldValue: String) {
-        guard let fullPath = FileFullPath(rawValue: fullPathTextFieldValue) else {
-            viewModel = SourceViewModel()
-            viewModel.recent = RecentViewModel(history: historyRepository.findAll())
-            return
-        }
-        fullPathDidCommit(fullPath: fullPath)
     }
 }

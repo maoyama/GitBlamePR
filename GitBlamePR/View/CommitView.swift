@@ -8,18 +8,6 @@
 
 import SwiftUI
 
-struct CommitViewModel {
-    var hash: String
-    var author: String
-    var authorEmail: String
-    var authorDate: String
-    var committer: String
-    var committerEmail: String
-    var committerDate: String
-    var titleLine: String
-    var fullCommitMessage: String
-}
-
 struct CommitView: View {
     var model: CommitViewModel
 

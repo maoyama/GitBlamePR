@@ -12,6 +12,7 @@ struct SourceViewModel {
     var lines: [(revision: String, url: URL?, code: String, number: Int)]
     var recent: RecentViewModel
     var error = ""
+    var hoveredRevision = ""
 }
 
 extension SourceViewModel {
