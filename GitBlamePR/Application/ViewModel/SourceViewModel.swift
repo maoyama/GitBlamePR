@@ -9,7 +9,7 @@
 import Foundation
 
 struct SourceViewModel {
-    var lines: [(message: String, url: URL?, code: String, number: Int)]
+    var lines: [(revision: String, url: URL?, code: String, number: Int)]
     var recent: RecentViewModel
     var error = ""
 }
@@ -22,9 +22,9 @@ extension SourceViewModel {
     }
 
     init(source: Source) {
-        self.lines = source.lines.map { (line) -> (message: String, url: URL?, code: String, number: Int) in
+        self.lines = source.lines.map { (line) -> (revision: String, url: URL?, code: String, number: Int) in
             return (
-                message: line.revision.discription,
+                revision: line.revision.discription,
                 url: line.revision.url,
                 code: line.code,
                 number: line.number.value

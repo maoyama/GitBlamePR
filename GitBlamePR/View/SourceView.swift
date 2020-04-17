@@ -49,7 +49,7 @@ struct SourceView: View {
                     ForEach(model.lines, id: \.number) { line in
                         HStack(alignment: .top, spacing: 12) {
                             if line.url == nil {
-                                Text(line.message)
+                                Text(line.revision)
                                     .font(Font.system(.caption, design: .monospaced))
                                     .foregroundColor(.gray)
                                     .frame(width: 100, height: nil, alignment: .trailing)
@@ -57,7 +57,7 @@ struct SourceView: View {
                                             NSWorkspace.shared.open(line.url!)
                                     }
                             } else {
-                                Text(line.message)
+                                Text(line.revision)
                                     .font(Font.system(.caption, design: .monospaced))
                                     .foregroundColor(.accentColor)
                                     .frame(width: 100, height: nil, alignment: .trailing)
@@ -93,49 +93,49 @@ struct GitBlamePRView_Previews: PreviewProvider {
                 model: SourceViewModel(
                     lines: [
                         (
-                            message: "PR #2020",
+                            revision: "PR #2020",
                             url: URL(string: "https://github.com")!,
                             code: "struct ContentView: View {",
                             number: 1
                         ),
                         (
-                            message: "PR #2020",
+                            revision: "PR #2020",
                             url: URL(string: "https://github.com")!,
                             code: "",
                             number: 2
                         ),
                         (
-                            message: "fe21fe29",
+                            revision: "fe21fe29",
                             url: URL(string: "https://github.com")!,
                             code: "    var body: some View {",
                             number: 3
                         ),
                         (
-                            message: "Not Committed",
+                            revision: "Not Committed",
                             url: nil,
                             code: "        GitBlamePRView(",
                             number: 4
                         ),
                         (
-                            message: "fe21fe29",
+                            revision: "fe21fe29",
                             url: URL(string: "https://github.com")!,
                             code: "            model: service.viewModel,",
                             number: 5
                         ),
                         (
-                            message: "fe21fe29",
+                            revision: "fe21fe29",
                             url: URL(string: "https://github.com")!,
                             code: "            textOnCommit: {text in",
                             number: 6
                         ),
                         (
-                            message: "fe21fe29",
+                            revision: "fe21fe29",
                             url: URL(string: "https://github.com")!,
                             code: "                self.service.fullPath = text",
                             number: 7
                         ),
                         (
-                            message: "fe21fe29",
+                            revision: "fe21fe29",
                             url: URL(string: "https://github.com")!,
                             code: "            }",
                             number: 8
