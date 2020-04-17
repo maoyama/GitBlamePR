@@ -1,5 +1,5 @@
 //
-//  GitBlamePRViewModel+Init.swift
+//  GitBlamePRViewModel.swift
 //  GitBlamePR
 //
 //  Created by Makoto Aoyama on 2019/12/22.
@@ -7,6 +7,12 @@
 //
 
 import Foundation
+
+struct SourceViewModel {
+    var lines: [(message: String, url: URL?, code: String, number: Int)]
+    var recent: RecentViewModel
+    var error = ""
+}
 
 extension SourceViewModel {
     init() {

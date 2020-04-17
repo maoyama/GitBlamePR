@@ -1,5 +1,5 @@
 //
-//  RecentViewModel+Init.swift
+//  RecentViewModel.swift
 //  GitBlamePR
 //
 //  Created by Makoto Aoyama on 2019/12/22.
@@ -7,6 +7,10 @@
 //
 
 import Foundation
+
+struct RecentViewModel {
+    var fullPaths: [(value: String, id: UUID)]
+}
 
 extension RecentViewModel {
     init(history: History) {

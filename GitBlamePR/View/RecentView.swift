@@ -8,10 +8,6 @@
 
 import SwiftUI
 
-struct RecentViewModel {
-    var fullPaths: [(value: String, id: UUID)]
-}
-
 struct RecentView: View {
     private var model: RecentViewModel
     private var textOnTap: (String) -> Void

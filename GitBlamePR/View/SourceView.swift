@@ -9,12 +9,6 @@
 import SwiftUI
 import AppKit
 
-struct SourceViewModel {
-    var lines: [(message: String, url: URL?, code: String, number: Int)]
-    var recent: RecentViewModel
-    var error = ""
-}
-
 struct SourceView: View {
     var model: SourceViewModel
     @State var fullPathTextFieldValue: String
