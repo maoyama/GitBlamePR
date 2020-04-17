@@ -1,23 +1,23 @@
 //
-//  CommitTests.swift
+//  GitShowCommandTests.swift
 //  GitBlamePRTests
 //
-//  Created by Makoto Aoyama on 2020/04/04.
+//  Created by Makoto Aoyama on 2020/04/16.
 //  Copyright © 2020 dev.aoyama. All rights reserved.
 //
 
 import XCTest
 @testable import GitBlamePR
 
-class CommitTests: XCTestCase {
+class GitShowCommandTests: XCTestCase {
 
-    func testInit() throws {
+    func testOutput() {
         let hash = "3e8a2eb172cefce4d28301ccc0df687926e3a0e4"
         let command = GitShowCommand(
             commitHash: hash,
             directoryURL: Enviroment.sourceRootDirectory
         )
-        let commit = try! Commit(from: command)
+        let commit = try! command.output()
         XCTAssertEqual(commit.hash, hash)
         XCTAssertEqual(commit.author, "Makoto Aoyama")
         XCTAssertEqual(commit.authorEmail, "m@aoyama.dev")
@@ -29,23 +29,23 @@ class CommitTests: XCTestCase {
         XCTAssertEqual(commit.fullCommitMessage, "Fix git blame pr command failure when not commited")
     }
 
-    func testInitEmptyFullCommitMessage() throws {
+    func testOutputEmptyFullCommitMessage() throws {
         let hash = "bf97c67"
         let command = GitShowCommand(
             commitHash: hash,
             directoryURL: Enviroment.sourceRootDirectory
         )
-        let commit = try! Commit(from: command)
+        let commit = try! command.output()
         XCTAssertEqual(commit.fullCommitMessage, "")
     }
 
-    func testInitMultiLineFullCommitMessage() throws {
+    func testOutputMultiLineFullCommitMessage() throws {
         let hash = "0de786030b6a1150815fdfbe37aa708025081769"
         let command = GitShowCommand(
             commitHash: hash,
             directoryURL: Enviroment.sourceRootDirectory
         )
-        let commit = try! Commit(from: command)
+        let commit = try! command.output()
         XCTAssertEqual(
             commit.fullCommitMessage, """
 This reverts commit 44cd166895ac93832525f3f7eca6b7e1fef8fe3d, reversing
@@ -54,6 +54,4 @@ changes made to 85f33ba2369535a559a0506e3a9d6a8ddf68a8e7.
 """
         )
     }
-
 }
-

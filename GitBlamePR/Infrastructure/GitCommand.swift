@@ -8,33 +8,8 @@
 
 import Foundation
 
-protocol GitCommand: Command {}
-extension GitCommand {
-    var executableURL: URL {
-        URL(fileURLWithPath: "/usr/bin/git")
-    }
-}
-
-struct GitShowCommand: GitCommand {
-    let separator = "{separator-44cd166895ac93832525f3f7eca6b7e1fef8fe3d}"
-    var formatPlaceHolders: [GitShowCommandFormatPlaceholder] = [.commitHash, .authorName, .authorEmail, .authorDate, .committerName, .committerEmail, .committerDate, .subject, .body]
-    private (set) var commitHash: String
-    private (set) var directoryURL: URL
-    var arguments: [String] {
-        let format = formatPlaceHolders.map { (placeholder) -> String in
-            return placeholder.rawValue + separator
-        }.joined()
-        return ["show", "--format=\(format)", commitHash]
-    }
-
-    init(commitHash: String, directoryURL: URL) {
-        self.commitHash = commitHash
-        self.directoryURL = directoryURL
-    }
-}
-
 // Placeholder are https://git-scm.com/docs/git-show#Documentation/git-show.txt-emnem
-enum GitShowCommandFormatPlaceholder: String {
+private enum GitShowCommandFormatPlaceholder: String {
     case commitHash = "%H"
     case authorName = "%aN"
     case authorEmail = "%aE"
@@ -44,4 +19,48 @@ enum GitShowCommandFormatPlaceholder: String {
     case committerDate = "%cI" //strict ISO 8601 format
     case subject = "%s"
     case body = "%b"
+}
+
+struct GitShowCommand: Command {
+    var commitHash: String
+    var directoryURL: URL
+    var executableURL: URL {
+        URL(fileURLWithPath: "/usr/bin/git")
+    }
+    var arguments: [String] {
+        let format = placeholders.map { (placeholder) -> String in
+            return placeholder.rawValue + separator
+        }.joined()
+        return ["show", "--format=\(format)", commitHash]
+    }
+    private var separator: String {
+        "{separator-44cd166895ac93832525f3f7eca6b7e1fef8fe3d}"
+    }
+    private var placeholders: [GitShowCommandFormatPlaceholder] {
+        [.commitHash, .authorName, .authorEmail, .authorDate, .committerName, .committerEmail, .committerDate, .subject, .body]
+    }
+
+    func output() throws -> Commit {
+        let output = try Process.run(
+            executableURL: executableURL,
+            arguments: arguments,
+            currentDirectoryURL: directoryURL
+        )
+        let l = output.components(separatedBy: separator)
+        return Commit(
+            hash: l[placeholders.firstIndex(of: .commitHash)!],
+            author: l[placeholders.firstIndex(of: .authorName)!],
+            authorEmail: l[placeholders.firstIndex(of: .authorEmail)!],
+            authorDate: ISO8601DateFormatter().date(
+                from: l[placeholders.firstIndex(of: .authorDate)!]
+            )!,
+            committer: l[placeholders.firstIndex(of: .committerName)!],
+            committerEmail: l[placeholders.firstIndex(of: .committerEmail)!],
+            committerDate: ISO8601DateFormatter().date(
+                from: l[placeholders.firstIndex(of: .committerDate)!]
+            )!,
+            titleLine: l[placeholders.firstIndex(of: .subject)!],
+            fullCommitMessage: l[placeholders.firstIndex(of: .body)!]
+        )
+    }
 }
