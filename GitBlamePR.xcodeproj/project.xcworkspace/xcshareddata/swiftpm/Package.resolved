@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "APIKit",
+        "repositoryURL": "git@github.com:ishkawa/APIKit.git",
+        "state": {
+          "branch": null,
+          "revision": "f24f05616f8972fec937c2f069491468a8fabf85",
+          "version": "5.1.0"
+        }
+      },
+      {
         "package": "Kingfisher",
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
