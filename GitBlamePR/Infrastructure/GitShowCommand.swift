@@ -1,5 +1,5 @@
 //
-//  GitCommand.swift
+//  GitShowCommand.swift
 //  GitBlamePR
 //
 //  Created by Makoto Aoyama on 2020/04/13.
