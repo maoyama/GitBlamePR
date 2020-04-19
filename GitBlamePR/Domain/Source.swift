@@ -47,7 +47,7 @@ struct Line {
 }
 
 enum Revision {
-    case pullRequest(PullRequest)
+    case pullRequest(SourcePullRequest)
     case commit(SourceCommit)
     case notCommited
 
@@ -61,7 +61,7 @@ enum Revision {
         if revisionStr.contains("PR"),
             let prNumberStr = revisionStr.components(separatedBy: "#").last,
             let prNumber = Int(prNumberStr),
-            let pr = PullRequest(number: prNumber, repositoryURL:repositoryURL)
+            let pr = SourcePullRequest(number: prNumber, repositoryURL:repositoryURL)
         {
             self = .pullRequest(pr)
             return
@@ -101,7 +101,7 @@ enum Revision {
     }
 }
 
-struct PullRequest {
+struct SourcePullRequest {
     private(set) var number: Int
     private(set) var url: URL
 
