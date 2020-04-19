@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import APIKit
 
 struct PullRequestRepository {
-    func find(by: GitRepository, number: Int) {
-
+    func find(byNumber number: Int, repositoryName: String,  ownerName: String, handler: @escaping (Result<PullRequest, RepositoryError>) -> Void) {
+        let req = PullRequestRequest(owner: ownerName, repos: repositoryName, number: number)
+        Session.send(req, handler: handler)
     }
 }

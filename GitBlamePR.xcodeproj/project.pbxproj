@@ -55,6 +55,7 @@
 		61C23080244C1F670047CD99 /* GitRemoteCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C2307F244C1F670047CD99 /* GitRemoteCommand.swift */; };
 		61C23082244C1F9C0047CD99 /* GitCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C23081244C1F9C0047CD99 /* GitCommand.swift */; };
 		61C23084244C25760047CD99 /* GitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C23083244C25760047CD99 /* GitRepository.swift */; };
+		61C23086244C529D0047CD99 /* Session+Send.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C23085244C529D0047CD99 /* Session+Send.swift */; };
 		61C3946A2425ADC2004B1667 /* SplitSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C394692425ADC2004B1667 /* SplitSeparator.swift */; };
 		61C4FC42239B894700F75B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC41239B894700F75B8D /* AppDelegate.swift */; };
 		61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC45239B894B00F75B8D /* Assets.xcassets */; };
@@ -191,6 +192,7 @@
 		61C2307F244C1F670047CD99 /* GitRemoteCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitRemoteCommand.swift; sourceTree = "<group>"; };
 		61C23081244C1F9C0047CD99 /* GitCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommand.swift; sourceTree = "<group>"; };
 		61C23083244C25760047CD99 /* GitRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitRepository.swift; sourceTree = "<group>"; };
+		61C23085244C529D0047CD99 /* Session+Send.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Send.swift"; sourceTree = "<group>"; };
 		61C394692425ADC2004B1667 /* SplitSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitSeparator.swift; sourceTree = "<group>"; };
 		61C4FC3E239B894700F75B8D /* GitBlamePR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBlamePR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4FC41239B894700F75B8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				61B5611224443CFD00962999 /* CommitRepository.swift */,
 				61A986E1244AC85D00E13BAD /* PullRequestRepository.swift */,
 				611D6F3324382F88006BAD44 /* RepositoryError.swift */,
+				61C23085244C529D0047CD99 /* Session+Send.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				61375FE023AFA84B00BFD5F9 /* History.swift in Sources */,
 				611D6F2F2437F764006BAD44 /* Git.swift in Sources */,
 				6102A91E242F5259000DC3F1 /* SplitView.swift in Sources */,
+				61C23086244C529D0047CD99 /* Session+Send.swift in Sources */,
 				61EA84C2244190D800EE20D7 /* Command.swift in Sources */,
 				615C393E23A46E530036FB97 /* SourceApplicationService.swift in Sources */,
 				61C23080244C1F670047CD99 /* GitRemoteCommand.swift in Sources */,

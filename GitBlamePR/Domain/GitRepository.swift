@@ -13,9 +13,9 @@ struct GitRepository {
         URL(string: "https://github.com")!
     }
     var html: URL {
-        hosting.appendingPathComponent(org).appendingPathComponent(name)
+        hosting.appendingPathComponent(ownerName).appendingPathComponent(name)
     }
-    let org: String
+    let ownerName: String
     let name: String
 
     init?(gitRemoteStandardOutput: String) {
@@ -32,7 +32,7 @@ struct GitRepository {
         guard pathComponents.count == 2 else {
             return nil
         }
-        self.org = pathComponents[0]
+        self.ownerName = pathComponents[0]
         self.name = pathComponents[1]
     }
 }
