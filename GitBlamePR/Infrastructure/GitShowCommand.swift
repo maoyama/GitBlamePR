@@ -21,12 +21,9 @@ private enum GitShowCommandFormatPlaceholder: String {
     case body = "%b"
 }
 
-struct GitShowCommand: Command {
+struct GitShowCommand: GitCommand {
     var commitHash: String
     var directoryURL: URL
-    var executableURL: URL {
-        URL(fileURLWithPath: "/usr/bin/git")
-    }
     var arguments: [String] {
         let format = placeholders.map { (placeholder) -> String in
             return placeholder.rawValue + separator
@@ -41,11 +38,7 @@ struct GitShowCommand: Command {
     }
 
     func output() throws -> Commit {
-        let output = try Process.run(
-            executableURL: executableURL,
-            arguments: arguments,
-            currentDirectoryURL: directoryURL
-        )
+        let output = try standardOutput()
         let l = output.components(separatedBy: separator)
         return Commit(
             hash: l[placeholders.firstIndex(of: .commitHash)!],

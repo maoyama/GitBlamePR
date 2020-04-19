@@ -12,7 +12,7 @@ struct Source {
     var lines: [Line]
 
     init?(gitRemoteStandardOutput: String, gitBlamePRStandardOutput: String) {
-        guard let repoURL = RepositoryURL(gitRemoteStandardOutput: gitRemoteStandardOutput) else {
+        guard let repoURL = GitRepository(gitRemoteStandardOutput: gitRemoteStandardOutput) else {
             return nil
         }
 
@@ -23,7 +23,7 @@ struct Source {
             let splitted = line.components(separatedBy: separatedBy)
             let linePrefix = splitted[0]
             let code = line.suffix(max(line.count - (linePrefix.count + separatedBy.count), 0))
-            guard let revision =  Revision(gitBlamePRStandardOutputLine: line, repositoryURL: repoURL) else {
+            guard let revision =  Revision(gitBlamePRStandardOutputLine: line, repository: repoURL) else {
                 throw NSError()
             }
             return Line(
@@ -51,7 +51,7 @@ enum Revision {
     case commit(SourceCommit)
     case notCommited
 
-    init?(gitBlamePRStandardOutputLine: String, repositoryURL: RepositoryURL) {
+    init?(gitBlamePRStandardOutputLine: String, repository: GitRepository) {
         let separatedBy = ","
         let splitted = gitBlamePRStandardOutputLine.components(separatedBy: separatedBy)
         let linePrefix = splitted[0]
@@ -61,7 +61,7 @@ enum Revision {
         if revisionStr.contains("PR"),
             let prNumberStr = revisionStr.components(separatedBy: "#").last,
             let prNumber = Int(prNumberStr),
-            let pr = SourcePullRequest(number: prNumber, repositoryURL:repositoryURL)
+            let pr = SourcePullRequest(number: prNumber, repository:repository)
         {
             self = .pullRequest(pr)
             return
@@ -70,7 +70,7 @@ enum Revision {
             self = .notCommited
             return
         }
-        if let commit = SourceCommit(hash: revisionStr, repositoryURL:repositoryURL) {
+        if let commit = SourceCommit(hash: revisionStr, repository:repository) {
             self = .commit(commit)
             return
         }
@@ -105,12 +105,12 @@ struct SourcePullRequest {
     private(set) var number: Int
     private(set) var url: URL
 
-    init?(number: Int, repositoryURL: RepositoryURL) {
+    init?(number: Int, repository: GitRepository) {
         if number <= 0 {
             return nil
         }
         self.number = number
-        self.url = repositoryURL.value.appendingPathComponent("/pull/\(number)")
+        self.url = repository.html.appendingPathComponent("/pull/\(number)")
     }
 }
 
@@ -118,12 +118,12 @@ struct SourceCommit {
     private(set) var hash: String
     private(set) var url: URL
 
-    init?(hash: String, repositoryURL: RepositoryURL) {
+    init?(hash: String, repository: GitRepository) {
         if hash.count < 4 {
             return nil
         }
         self.hash = hash
-        self.url = repositoryURL.value.appendingPathComponent("/commit/\(hash)")
+        self.url = repository.html.appendingPathComponent("/commit/\(hash)")
     }
 }
 
@@ -135,25 +135,5 @@ struct LineNumber {
             return nil
         }
         self.value = value
-    }
-}
-
-struct RepositoryURL {
-    private(set) var value: URL
-
-    init?(gitRemoteStandardOutput: String) {
-        guard let repo = gitRemoteStandardOutput
-            .components(separatedBy: .newlines)[0]
-            .components(separatedBy: "github.com:")
-            .last?
-            .components(separatedBy: ".git")
-            .first
-            else {
-                return nil
-            }
-        guard let repoURL = URL(string: "https://github.com/" + repo) else {
-            return nil
-        }
-        self.value = repoURL
     }
 }

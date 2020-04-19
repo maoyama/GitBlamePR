@@ -31,5 +31,16 @@ protocol Command {
     var arguments: [String] { get }
     var directoryURL: URL { get }
 
+    func standardOutput() throws -> String
     func output() throws -> T
+}
+
+extension Command {
+    func standardOutput() throws -> String {
+        return try Process.run(
+            executableURL: executableURL,
+            arguments: arguments,
+            currentDirectoryURL: directoryURL
+        )
+    }
 }

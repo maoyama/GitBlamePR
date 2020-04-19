@@ -9,7 +9,7 @@
 import Foundation
 
 struct PullRequestRepository {
-    func find(by: RepositoryURL, number: Int) {
-        
+    func find(by: GitRepository, number: Int) {
+
     }
 }
