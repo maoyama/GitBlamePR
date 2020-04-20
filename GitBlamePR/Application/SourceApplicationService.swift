@@ -12,6 +12,19 @@ class SourceApplicationService: ObservableObject {
     @Published private(set) var viewModel: SourceViewModel
     private var historyRepository: HistoryRepository
     private var sourceRepository: SourceRepository
+    private var source: Source? {
+        didSet {
+            guard let source = source else {
+                viewModel = SourceViewModel(
+                    lines: [],
+                    recent: RecentViewModel(history: self.historyRepository.findAll()),
+                    error: ""
+                )
+                return
+            }
+            viewModel = SourceViewModel(source: source)
+        }
+    }
 
     init(error: String="") {
         self.historyRepository = HistoryRepository()
@@ -47,12 +60,35 @@ class SourceApplicationService: ObservableObject {
     }
 
     func revisionDidHover(lineNumber: Int) {
-        let revision = viewModel.lines[lineNumber - 1].revision
-        viewModel.hoveredRevision = revision
+        guard let revision = source?.lines[lineNumber - 1].revision else {
+            return
+        }
+        switch revision {
+        case .commit(let commit):
+            viewModel.hoveredRevision = (
+                commitHash: commit.hash,
+                pullRequestNumber: nil,
+                pullRequestOwner: nil,
+                pullRequestRepositoryName: nil
+            )
+        case .pullRequest(let pr):
+            viewModel.hoveredRevision = (
+                commitHash: nil,
+                pullRequestNumber: pr.number,
+                pullRequestOwner: pr.repository.ownerName,
+                pullRequestRepositoryName: pr.repository.name
+            )
+        case .notCommited:
+            viewModel.hoveredRevision = (
+                commitHash: nil,
+                pullRequestNumber: nil,
+                pullRequestOwner: nil,
+                pullRequestRepositoryName: nil
+            )
+        }
     }
 
     private func fullPathDidCommit(fullPath: FileFullPath) {
-        let source: Source
         do {
             source = try sourceRepository.find(by: fullPath)
         } catch let e {
@@ -69,6 +105,5 @@ class SourceApplicationService: ObservableObject {
             viewModel.error = e.localizedDescription
             return
         }
-        viewModel = SourceViewModel(source: source)
     }
 }

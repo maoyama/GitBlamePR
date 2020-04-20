@@ -16,6 +16,9 @@ struct RevisionViewWrapper: View {
             if service.viewModel.commit != nil {
                 CommitView(model: service.viewModel.commit!)
             }
+            if service.viewModel.pullRequest != nil {
+                PullRequestView(model: service.viewModel.pullRequest!)
+            }
         }
     }
 }

@@ -9,21 +9,6 @@
 import SwiftUI
 import KingfisherSwiftUI
 
-struct PullRequestViewModel {
-    var htmlURL: URL
-    var number: String
-    var title: String
-    var body: String
-    var user: String
-    var userAvatarURL: URL
-    var mergedAt: String
-    var conversationCount: String
-    var commitsCount: String
-    var changedFiles: String
-    var additionsCount: String
-    var deletionsCount: String
-}
-
 struct PullRequestView: View {
     var model: PullRequestViewModel
 

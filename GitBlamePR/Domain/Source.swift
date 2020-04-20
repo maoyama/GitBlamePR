@@ -103,14 +103,17 @@ enum Revision {
 
 struct SourcePullRequest {
     private(set) var number: Int
-    private(set) var url: URL
+    private(set) var repository: GitRepository
+    var url: URL {
+        repository.html.appendingPathComponent("/pull/\(number)")
+    }
 
     init?(number: Int, repository: GitRepository) {
         if number <= 0 {
             return nil
         }
         self.number = number
-        self.url = repository.html.appendingPathComponent("/pull/\(number)")
+        self.repository = repository
     }
 }
 

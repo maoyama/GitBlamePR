@@ -10,5 +10,6 @@ import Foundation
 
 struct RevisionViewModel {
     var commit: CommitViewModel?
+    var pullRequest: PullRequestViewModel?
     var error = ""
 }
