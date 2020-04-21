@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6102A91E242F5259000DC3F1 /* SplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6102A91D242F5259000DC3F1 /* SplitView.swift */; };
+		610BD6EC244F49570019C371 /* main.yml in Resources */ = {isa = PBXBuildFile; fileRef = 610BD6EB244F49570019C371 /* main.yml */; };
 		6113917E243056AB00C74954 /* CommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6113917D243056AB00C74954 /* CommitView.swift */; };
 		6114CDDC23AFBAF700EF6B88 /* RecentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114CDDB23AFBAF700EF6B88 /* RecentViewModel.swift */; };
 		611D6F282436A2B9006BAD44 /* PullRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D6F272436A2B9006BAD44 /* PullRequestView.swift */; };
@@ -144,6 +145,7 @@
 
 /* Begin PBXFileReference section */
 		6102A91D242F5259000DC3F1 /* SplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitView.swift; sourceTree = "<group>"; };
+		610BD6EB244F49570019C371 /* main.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = main.yml; sourceTree = "<group>"; };
 		6113917D243056AB00C74954 /* CommitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitView.swift; sourceTree = "<group>"; };
 		6114CDDB23AFBAF700EF6B88 /* RecentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentViewModel.swift; sourceTree = "<group>"; };
 		611D6F272436A2B9006BAD44 /* PullRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestView.swift; sourceTree = "<group>"; };
@@ -252,6 +254,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		610BD6E9244F49570019C371 /* .github */ = {
+			isa = PBXGroup;
+			children = (
+				610BD6EA244F49570019C371 /* workflows */,
+			);
+			path = .github;
+			sourceTree = SOURCE_ROOT;
+		};
+		610BD6EA244F49570019C371 /* workflows */ = {
+			isa = PBXGroup;
+			children = (
+				610BD6EB244F49570019C371 /* main.yml */,
+			);
+			path = workflows;
+			sourceTree = "<group>";
+		};
 		611D6F3024382CFA006BAD44 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +435,7 @@
 				61C4FC4E239B894B00F75B8D /* GitBlamePR.entitlements */,
 				61C4FC47239B894B00F75B8D /* Preview Content */,
 				61E2C9602409DE830011CB6D /* GitBlamePR-Bridging-Header.h */,
+				610BD6E9244F49570019C371 /* .github */,
 			);
 			path = GitBlamePR;
 			sourceTree = "<group>";
@@ -608,6 +627,7 @@
 				612768B823AD04BE003397B7 /* README.md in Resources */,
 				615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */,
 				61C4FC46239B894B00F75B8D /* Assets.xcassets in Resources */,
+				610BD6EC244F49570019C371 /* main.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
