@@ -3,7 +3,7 @@
     "pins": [
       {
         "package": "APIKit",
-        "repositoryURL": "git@github.com:ishkawa/APIKit.git",
+        "repositoryURL": "https://github.com/ishkawa/APIKit.git",
         "state": {
           "branch": null,
           "revision": "f24f05616f8972fec937c2f069491468a8fabf85",

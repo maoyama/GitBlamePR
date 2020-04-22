@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6102A91E242F5259000DC3F1 /* SplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6102A91D242F5259000DC3F1 /* SplitView.swift */; };
 		610BD6EC244F49570019C371 /* main.yml in Resources */ = {isa = PBXBuildFile; fileRef = 610BD6EB244F49570019C371 /* main.yml */; };
+		610BD6EF245086A20019C371 /* APIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 610BD6EE245086A20019C371 /* APIKit */; };
 		6113917E243056AB00C74954 /* CommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6113917D243056AB00C74954 /* CommitView.swift */; };
 		6114CDDC23AFBAF700EF6B88 /* RecentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114CDDB23AFBAF700EF6B88 /* RecentViewModel.swift */; };
 		611D6F282436A2B9006BAD44 /* PullRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D6F272436A2B9006BAD44 /* PullRequestView.swift */; };
@@ -43,7 +44,6 @@
 		615DDE18244766BA002D2512 /* GitShowCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615DDE17244766BA002D2512 /* GitShowCommandTests.swift */; };
 		6198CB1324249B4900AE0826 /* SourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198CB1224249B4900AE0826 /* SourceView.swift */; };
 		6198CB1524249EB800AE0826 /* SourceViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198CB1424249EB800AE0826 /* SourceViewWrapper.swift */; };
-		61A986D4244AA7CF00E13BAD /* APIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 61A986D3244AA7CF00E13BAD /* APIKit */; };
 		61A986D9244AA97200E13BAD /* DecodableDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A986D6244AA97200E13BAD /* DecodableDataParser.swift */; };
 		61A986DA244AA97200E13BAD /* GitHubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A986D7244AA97200E13BAD /* GitHubRequest.swift */; };
 		61A986DB244AA97200E13BAD /* PageNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A986D8244AA97200E13BAD /* PageNumber.swift */; };
@@ -239,7 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61A986D4244AA7CF00E13BAD /* APIKit in Frameworks */,
+				610BD6EF245086A20019C371 /* APIKit in Frameworks */,
 				611D6F2B2437E538006BAD44 /* KingfisherSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,7 +527,7 @@
 			name = GitBlamePR;
 			packageProductDependencies = (
 				611D6F2A2437E538006BAD44 /* KingfisherSwiftUI */,
-				61A986D3244AA7CF00E13BAD /* APIKit */,
+				610BD6EE245086A20019C371 /* APIKit */,
 			);
 			productName = GitBlamePR;
 			productReference = 61C4FC3E239B894700F75B8D /* GitBlamePR.app */;
@@ -589,7 +589,7 @@
 			mainGroup = 61C4FC35239B894700F75B8D;
 			packageReferences = (
 				611D6F292437E538006BAD44 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				61A986D2244AA7CF00E13BAD /* XCRemoteSwiftPackageReference "APIKit" */,
+				610BD6ED245086A20019C371 /* XCRemoteSwiftPackageReference "APIKit" */,
 			);
 			productRefGroup = 61C4FC3F239B894700F75B8D /* Products */;
 			projectDirPath = "";
@@ -1112,6 +1112,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		610BD6ED245086A20019C371 /* XCRemoteSwiftPackageReference "APIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ishkawa/APIKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 		611D6F292437E538006BAD44 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1120,26 +1128,18 @@
 				minimumVersion = 5.13.3;
 			};
 		};
-		61A986D2244AA7CF00E13BAD /* XCRemoteSwiftPackageReference "APIKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:ishkawa/APIKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		610BD6EE245086A20019C371 /* APIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 610BD6ED245086A20019C371 /* XCRemoteSwiftPackageReference "APIKit" */;
+			productName = APIKit;
+		};
 		611D6F2A2437E538006BAD44 /* KingfisherSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 611D6F292437E538006BAD44 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = KingfisherSwiftUI;
-		};
-		61A986D3244AA7CF00E13BAD /* APIKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 61A986D2244AA7CF00E13BAD /* XCRemoteSwiftPackageReference "APIKit" */;
-			productName = APIKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
