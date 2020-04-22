@@ -39,7 +39,7 @@ extension PullRequestViewModel {
         conversationCount = "\(pr.conversationCount)"
         commitsCount = "\(pr.commits)"
         changedFiles = "\(pr.changedFiles)"
-        additionsCount = "\(pr.additions)"
-        deletionsCount = "\(pr.deletions)"
+        additionsCount = "+\(pr.additions)"
+        deletionsCount = "-\(pr.deletions)"
     }
 }
