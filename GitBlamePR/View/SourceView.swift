@@ -11,45 +11,19 @@ import AppKit
 
 struct SourceView: View {
     var model: SourceViewModel
-    @State var fullPathTextFieldValue: String
-    var textOnCommit: (String) -> Void
-    var clearOnTap: () -> Void
-    var revisionOnHover: (_ lineNumber: Int) -> Void
+    var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            TextField(
-                "Enter full path",
-                text: $fullPathTextFieldValue,
-                onEditingChanged: {_ in },
-                onCommit: {
-                    self.textOnCommit(self.fullPathTextFieldValue)
-                }
-            ).lineLimit(1)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            Divider()
             ScrollView(.vertical, showsIndicators: true) {
                 VStack(alignment: .leading) {
                     if !model.error.isEmpty {
                         Text(model.error)
                     }
-                    if !model.recent.fullPaths.isEmpty {
-                        RecentView(
-                            model: model.recent,
-                            textOnTap: { text in
-                                self.fullPathTextFieldValue = text
-                                self.textOnCommit(self.fullPathTextFieldValue)
-                            },
-                            clearOnTap: {
-                                self.clearOnTap()
-                            }
-                        ).padding()
-                    }
                     ForEach(model.lines, id: \.number) { line in
                         HStack(alignment: .top, spacing: 12) {
                             if line.url == nil {
-                                Text(line.revision)
+                                Text(line.revision.description)
                                     .font(Font.system(.caption, design: .monospaced))
                                     .foregroundColor(.gray)
                                     .frame(width: 100, height: nil, alignment: .trailing)
@@ -57,7 +31,7 @@ struct SourceView: View {
                                             NSWorkspace.shared.open(line.url!)
                                     }
                             } else {
-                                Text(line.revision)
+                                Text(line.revision.description)
                                     .font(Font.system(.caption, design: .monospaced))
                                     .foregroundColor(.accentColor)
                                     .frame(width: 100, height: nil, alignment: .trailing)
@@ -66,7 +40,7 @@ struct SourceView: View {
                                     }
                                     .onHover { (enters) in
                                         if enters {
-                                            self.revisionOnHover(line.number)
+                                            self.revisionOnHover((commitHash: line.revision.commitHash, pullRequest: line.revision.pullRequest))
                                         }
                                     }
                             }
@@ -93,49 +67,49 @@ struct GitBlamePRView_Previews: PreviewProvider {
                 model: SourceViewModel(
                     lines: [
                         (
-                            revision: "PR #2020",
+                            revision: SourceRevisionViewModel(description: "PR #2020", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "struct ContentView: View {",
                             number: 1
                         ),
                         (
-                            revision: "PR #2020",
+                            revision: SourceRevisionViewModel(description: "PR #2020", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "",
                             number: 2
                         ),
                         (
-                            revision: "fe21fe29",
+                            revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "    var body: some View {",
                             number: 3
                         ),
                         (
-                            revision: "Not Committed",
+                            revision: SourceRevisionViewModel(description: "Not Committed", pullRequest: nil, commitHash: nil),
                             url: nil,
                             code: "        GitBlamePRView(",
                             number: 4
                         ),
                         (
-                            revision: "fe21fe29",
+                            revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "            model: service.viewModel,",
                             number: 5
                         ),
                         (
-                            revision: "fe21fe29",
+                            revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "            textOnCommit: {text in",
                             number: 6
                         ),
                         (
-                            revision: "fe21fe29",
+                            revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "                self.service.fullPath = text",
                             number: 7
                         ),
                         (
-                            revision: "fe21fe29",
+                            revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "            }",
                             number: 8
@@ -143,24 +117,9 @@ struct GitBlamePRView_Previews: PreviewProvider {
                     ],
                     recent: RecentViewModel(fullPaths: [])
                 ),
-                fullPathTextFieldValue: "",
-                textOnCommit: {_ in },
-                clearOnTap: {},
-                revisionOnHover: {_ in }
-            )
+                revisionOnHover: { _ in
 
-            SourceView(
-                model: SourceViewModel(
-                    lines: [],
-                    recent: RecentViewModel(fullPaths: [
-                        (value: "/Users/aoyama/Dropbox/GitBlamePR/README.md", id: UUID())
-
-                    ])
-                ),
-                fullPathTextFieldValue: "",
-                textOnCommit: {_ in },
-                clearOnTap: {},
-                revisionOnHover: {_ in }
+                }
             )
         }
     }

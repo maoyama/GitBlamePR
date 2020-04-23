@@ -78,7 +78,7 @@ enum Revision {
         return nil
     }
 
-    var discription: String {
+    var description: String {
         switch self {
         case .pullRequest(let pr):
             return "PR #\(pr.number)"

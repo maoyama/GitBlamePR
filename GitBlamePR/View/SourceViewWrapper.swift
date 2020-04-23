@@ -12,38 +12,18 @@ import AppKit
 
 struct SourceViewWrapper: View {
     @ObservedObject private var service: SourceApplicationService
-    @State private var fullPathTextFieldValue: String = ""
+    private var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
 
-    init(service: SourceApplicationService=SourceApplicationService(), fullPathTextFieldValue: String="") {
+    init(service:SourceApplicationService, revisionOnHover: @escaping ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void){
         self.service = service
-        self.fullPathTextFieldValue = fullPathTextFieldValue
+        self.revisionOnHover = revisionOnHover
     }
 
     var body: some View {
-        SplitView(
-            master: SourceView(
-                model: service.viewModel,
-                fullPathTextFieldValue: fullPathTextFieldValue,
-                textOnCommit: { text in
-                    self.service.fullPathDidCommit(fullPathTextFieldValue: text)
-                    self.fullPathTextFieldValue = text
-                },
-                clearOnTap: {
-                    self.service.clearHistory()
-                },
-                revisionOnHover: { lineNumber in
-                    self.service.revisionDidHover(lineNumber: lineNumber)
-                }
-            ),
-            detail: RevisionViewWrapper(
-                service: RevisionApplicationService(
-                    commitHash: service.viewModel.hoveredRevision.commitHash ?? nil,
-                    pullRequestNumber: service.viewModel.hoveredRevision.pullRequestNumber ?? nil,
-                    pullRequestOwner: service.viewModel.hoveredRevision.pullRequestOwner ?? nil,
-                    pullRequestRepositoryName: service.viewModel.hoveredRevision.pullRequestRepositoryName ?? nil,
-                    fullPathTextFieldValue: fullPathTextFieldValue
-                )
-            )
+        SourceView(
+            model: service.viewModel,
+            revisionOnHover: revisionOnHover
         )
     }
+
 }
