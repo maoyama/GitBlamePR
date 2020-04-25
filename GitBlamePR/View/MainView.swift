@@ -25,7 +25,7 @@ struct MainView: View {
             ToolBar(path: $path)
             SplitView(
                 master: ScrollView(.vertical, showsIndicators: true) {
-                    VStack {
+                    VStack(alignment: .leading) {
                         if !error.isEmpty {
                             Text(error)
                         }
@@ -59,6 +59,15 @@ struct MainView: View {
                     }
                 }
             )
+        }
+    }
+}
+
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            MainView(path: "", error: "")
+            MainView(path: "", error: "URL not found.")
         }
     }
 }
