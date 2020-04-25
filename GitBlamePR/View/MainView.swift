@@ -22,9 +22,7 @@ struct MainView: View {
 
     var body: some View {
         VStack {
-            ToolBar(textField: path) { (text) in
-                self.path = text
-            }
+            ToolBar(path: $path)
             SplitView(
                 master: VStack {
                     if !error.isEmpty {

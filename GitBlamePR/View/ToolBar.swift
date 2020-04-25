@@ -9,18 +9,11 @@
 import SwiftUI
 
 struct ToolBar: View {
-    @State var textField: String
-    var textFieldOnCommit: (String) -> Void
+    @Binding var path:  String
 
     var body: some View {
         VStack {
-            TextField(
-                "Enter full path",
-                text: $textField,
-                onEditingChanged: {_ in },
-                onCommit: {
-                    self.textFieldOnCommit(self.textField)
-                })
+            TextField("Enter full path", text: $path)
                 .lineLimit(1)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
@@ -29,10 +22,10 @@ struct ToolBar: View {
 }
 
 struct ToolBar_Previews: PreviewProvider {
+
     static var previews: some View {
-        ToolBar(
-            textField: "hello!",
-            textFieldOnCommit: {_ in }
-        )
+        ToolBar(path: Binding<String>(get: { () -> String in
+            "hello"
+        }, set: { _ in }))
     }
 }
