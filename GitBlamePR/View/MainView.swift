@@ -11,14 +11,9 @@ import AppKit
 
 
 struct MainView: View {
-    private var error: String = ""
-    @State private var path: String = ""
-    @State private var revision: (commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?) = (commitHash: nil, pullRequest: nil)
-
-    init(path: String="", error: String="") {
-        self.path = path
-        self.error = error
-    }
+    @State var path: String = ""
+    @State var revision: (commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?) = (commitHash: nil, pullRequest: nil)
+    var error: String = ""
 
     var body: some View {
         VStack {
@@ -66,6 +61,7 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
+            MainView(path: "/Users/aoyama/Dropbox/GitBlamePR/GitBlamePR/View/MainView.swift", error: "")
             MainView(path: "", error: "")
             MainView(path: "", error: "URL not found.")
         }
