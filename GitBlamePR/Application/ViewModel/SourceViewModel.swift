@@ -10,7 +10,6 @@ import Foundation
 
 struct SourceViewModel {
     var lines: [(revision: SourceRevisionViewModel, url: URL?, code: String, number: Int)]
-    var recent: RecentViewModel
     var error = ""
     var hoveredRevision: (commitHash: String?, pullRequestNumber: Int?, pullRequestOwner: String?, pullRequestRepositoryName: String?) 
 }
@@ -18,7 +17,6 @@ struct SourceViewModel {
 extension SourceViewModel {
     init() {
         self.lines = []
-        self.recent = RecentViewModel(fullPaths: [])
         self.error = ""
     }
 
@@ -31,7 +29,6 @@ extension SourceViewModel {
                 number: line.number.value
             )
         }
-        self.recent = RecentViewModel(fullPaths: [])
     }
 }
 

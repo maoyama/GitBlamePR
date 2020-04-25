@@ -44,7 +44,6 @@ struct SourceView: View {
                                         }
                                     }
                             }
-
                             Text(line.code)
                                 .font(Font.system(.caption, design: .monospaced))
                                 .frame(width: nil, height: nil, alignment: .leading)
@@ -114,8 +113,7 @@ struct GitBlamePRView_Previews: PreviewProvider {
                             code: "            }",
                             number: 8
                         ),
-                    ],
-                    recent: RecentViewModel(fullPaths: [])
+                    ]
                 ),
                 revisionOnHover: { _ in
 

@@ -29,7 +29,7 @@ struct MainView: View {
                         Text(error)
                     }
                     SourceViewWrapper(
-                        service: SourceApplicationService(fullPath: path),
+                        service: SourceApplicationService(path: path),
                         revisionOnHover: { revision in
                             self.revision = revision
                     })

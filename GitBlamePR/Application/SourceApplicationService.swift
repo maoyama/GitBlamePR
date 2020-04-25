@@ -17,7 +17,6 @@ class SourceApplicationService: ObservableObject {
             guard let source = source else {
                 viewModel = SourceViewModel(
                     lines: [],
-                    recent: RecentViewModel(history: self.historyRepository.findAll()),
                     error: ""
                 )
                 return
@@ -31,40 +30,16 @@ class SourceApplicationService: ObservableObject {
         self.sourceRepository = SourceRepository()
         self.viewModel = SourceViewModel(
             lines: [],
-            recent: RecentViewModel(history: self.historyRepository.findAll()),
             error: error
         )
     }
 
-    convenience init(fullPath: FileFullPath) {
+    convenience init(path: String) {
         self.init()
-        fullPathDidCommit(fullPath: fullPath)
-    }
-
-    convenience init(fullPath: String) {
-        self.init()
-        guard let fullPath = FileFullPath(rawValue: fullPath) else {
+        guard let path = FileFullPath(rawValue: path) else {
             return
         }
-        fullPathDidCommit(fullPath: fullPath)
-    }
-
-    func clearHistory() {
-        do {
-            try historyRepository.save(history: History(inputFullPaths: []))
-        } catch let e {
-            viewModel.error = e.localizedDescription
-        }
-        viewModel.recent = RecentViewModel(fullPaths: [])
-    }
-
-    func fullPathDidCommit(fullPathTextFieldValue: String) {
-        guard let fullPath = FileFullPath(rawValue: fullPathTextFieldValue) else {
-            viewModel = SourceViewModel()
-            viewModel.recent = RecentViewModel(history: historyRepository.findAll())
-            return
-        }
-        fullPathDidCommit(fullPath: fullPath)
+        pathDidCommit(path: path)
     }
 
     func revisionDidHover(lineNumber: Int) {
@@ -96,17 +71,16 @@ class SourceApplicationService: ObservableObject {
         }
     }
 
-    private func fullPathDidCommit(fullPath: FileFullPath) {
+    private func pathDidCommit(path: FileFullPath) {
         do {
-            source = try sourceRepository.find(by: fullPath)
+            source = try sourceRepository.find(by: path)
         } catch let e {
             viewModel = SourceViewModel()
             viewModel.error = e.localizedDescription
-            viewModel.recent = RecentViewModel(history: historyRepository.findAll())
             return
         }
         var history = historyRepository.findAll()
-        history.addInputFullPath(fullPath.rawValue)
+        history.addInputFullPath(path.rawValue)
         do {
             try historyRepository.save(history: history)
         } catch let e {
