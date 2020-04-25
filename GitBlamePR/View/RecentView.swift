@@ -27,7 +27,6 @@ struct RecentView: View {
                 Spacer()
                 Button("Clear") {
                     self.clearOnTap()
-
                 }
             }
             ForEach(model.fullPaths, id: \.id) { fullPath in

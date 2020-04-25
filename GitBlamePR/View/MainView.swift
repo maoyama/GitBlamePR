@@ -35,6 +35,11 @@ struct MainView: View {
                         revisionOnHover: { revision in
                             self.revision = revision
                     })
+                    if path.isEmpty {
+                        RecentViewWrapper() { path in
+                            self.path = path
+                        }
+                    }
                 },
                 detail: RevisionViewWrapper(
                     service: RevisionApplicationService(

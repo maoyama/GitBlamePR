@@ -20,8 +20,7 @@ struct ToolBar: View {
                 onEditingChanged: {_ in },
                 onCommit: {
                     self.textFieldOnCommit(self.textField)
-                }
-            )
+                })
                 .lineLimit(1)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
