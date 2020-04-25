@@ -24,30 +24,40 @@ struct MainView: View {
         VStack {
             ToolBar(path: $path)
             SplitView(
-                master: VStack {
-                    if !error.isEmpty {
-                        Text(error)
-                    }
-                    SourceViewWrapper(
-                        service: SourceApplicationService(path: path),
-                        revisionOnHover: { revision in
-                            self.revision = revision
-                    })
-                    if path.isEmpty {
-                        RecentViewWrapper() { path in
-                            self.path = path
+                master: ScrollView(.vertical, showsIndicators: true) {
+                    VStack {
+                        if !error.isEmpty {
+                            Text(error)
+                        }
+                        SourceViewWrapper(
+                            service: SourceApplicationService(path: path),
+                            revisionOnHover: { revision in
+                                self.revision = revision
+                        })
+                        if path.isEmpty {
+                            RecentViewWrapper() { path in
+                                self.path = path
+                            }
                         }
                     }
-                },
-                detail: RevisionViewWrapper(
-                    service: RevisionApplicationService(
-                        commitHash: revision.commitHash ?? nil,
-                        pullRequestNumber: revision.pullRequest?.number ?? nil,
-                        pullRequestOwner: revision.pullRequest?.owner ?? nil,
-                        pullRequestRepositoryName: revision.pullRequest?.repository ?? nil,
-                        fullPathTextFieldValue: path
-                    )
-                )
+                }.background(Color(NSColor.textBackgroundColor)),
+                detail: ScrollView(.vertical) {
+                    VStack {
+                        RevisionViewWrapper(
+                            service: RevisionApplicationService(
+                                commitHash: revision.commitHash,
+                                pullRequestNumber: revision.pullRequest?.number,
+                                pullRequestOwner: revision.pullRequest?.owner,
+                                pullRequestRepositoryName: revision.pullRequest?.repository,
+                                fullPathTextFieldValue: path
+                            )
+                        )
+                        HStack {
+                            Spacer()
+                            EmptyView()
+                        }
+                    }
+                }
             )
         }
     }

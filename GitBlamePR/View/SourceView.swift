@@ -14,48 +14,44 @@ struct SourceView: View {
     var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            ScrollView(.vertical, showsIndicators: true) {
-                VStack(alignment: .leading) {
-                    if !model.error.isEmpty {
-                        Text(model.error)
-                    }
-                    ForEach(model.lines, id: \.number) { line in
-                        HStack(alignment: .top, spacing: 12) {
-                            if line.url == nil {
-                                Text(line.revision.description)
-                                    .font(Font.system(.caption, design: .monospaced))
-                                    .foregroundColor(.gray)
-                                    .frame(width: 100, height: nil, alignment: .trailing)
-                                    .onTapGesture {
-                                            NSWorkspace.shared.open(line.url!)
-                                    }
-                            } else {
-                                Text(line.revision.description)
-                                    .font(Font.system(.caption, design: .monospaced))
-                                    .foregroundColor(.accentColor)
-                                    .frame(width: 100, height: nil, alignment: .trailing)
-                                    .onTapGesture {
-                                            NSWorkspace.shared.open(line.url!)
-                                    }
-                                    .onHover { (enters) in
-                                        if enters {
-                                            self.revisionOnHover((commitHash: line.revision.commitHash, pullRequest: line.revision.pullRequest))
-                                        }
-                                    }
+        VStack(alignment: .leading) {
+            if !model.error.isEmpty {
+                Text(model.error)
+            }
+            ForEach(model.lines, id: \.number) { line in
+                HStack(alignment: .top, spacing: 12) {
+                    if line.url == nil {
+                        Text(line.revision.description)
+                            .font(Font.system(.caption, design: .monospaced))
+                            .foregroundColor(.gray)
+                            .frame(width: 100, height: nil, alignment: .trailing)
+                            .onTapGesture {
+                                    NSWorkspace.shared.open(line.url!)
                             }
-                            Text(line.code)
-                                .font(Font.system(.caption, design: .monospaced))
-                                .frame(width: nil, height: nil, alignment: .leading)
-                        }
+                    } else {
+                        Text(line.revision.description)
+                            .font(Font.system(.caption, design: .monospaced))
+                            .foregroundColor(.accentColor)
+                            .frame(width: 100, height: nil, alignment: .trailing)
+                            .onTapGesture {
+                                    NSWorkspace.shared.open(line.url!)
+                            }
+                            .onHover { (enters) in
+                                if enters {
+                                    self.revisionOnHover((commitHash: line.revision.commitHash, pullRequest: line.revision.pullRequest))
+                                }
+                            }
                     }
-                    HStack {
-                        Spacer()
-                        EmptyView()
-                    }
-                }.padding()
-            }.background(Color(NSColor.textBackgroundColor))
-        }
+                    Text(line.code)
+                        .font(Font.system(.caption, design: .monospaced))
+                        .frame(width: nil, height: nil, alignment: .leading)
+                }
+            }
+            HStack {
+                Spacer()
+                EmptyView()
+            }
+        }.padding()
     }
 }
 
