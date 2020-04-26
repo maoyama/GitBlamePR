@@ -12,11 +12,12 @@ struct ToolBar: View {
     @Binding var path:  String
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             TextField("Enter full path", text: $path)
                 .lineLimit(1)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding(EdgeInsets(top: 6, leading: 8, bottom: 8, trailing: 8))
+            Divider()
         }
     }
 }

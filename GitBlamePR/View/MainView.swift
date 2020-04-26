@@ -16,7 +16,7 @@ struct MainView: View {
     var error: String = ""
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ToolBar(path: $path)
             SplitView(
                 master: ScrollView(.vertical, showsIndicators: true) {

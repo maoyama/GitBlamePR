@@ -23,9 +23,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.setFrameAutosaveName("Main Window")
         window.contentView = NSHostingView(rootView: MainView())
         window.makeKeyAndOrderFront(nil)
-//        window?.titleVisibility = .hidden
-//        window?.titlebarAppearsTransparent = true
-//        window?.styleMask = [.closable, .resizable, .fullSizeContentView, .miniaturizable, .titled]
+        window?.titleVisibility = .hidden
+        window?.titlebarAppearsTransparent = true
+        window?.styleMask = [.closable, .resizable, .fullSizeContentView, .miniaturizable, .titled]
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
