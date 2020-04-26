@@ -63,7 +63,7 @@ struct MainView_Previews: PreviewProvider {
         Group {
             MainView(path: "/Users/aoyama/Dropbox/GitBlamePR/GitBlamePR/View/MainView.swift", error: "")
             MainView(path: "", error: "")
-            MainView(path: "", error: "URL not found.")
+            MainView(path: "", error: "URL not found.").environment(\.colorScheme, .dark)
         }
     }
 }
