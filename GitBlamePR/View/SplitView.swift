@@ -26,9 +26,9 @@ struct SplitView<Master, Detail>: View where Master : View, Detail : View {
     }
 
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             master
-            SplitSeparator().frame(width: 10).gesture(drag).onHover { (enters) in
+            SplitSeparator().frame(width: 1).gesture(drag).onHover { (enters) in
                 if enters {
                     NSCursor.resizeLeftRight.set()
                 } else {

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SplitSeparator: View {
     var body: some View {
-        Color.black
+            Divider()
     }
 }
 
