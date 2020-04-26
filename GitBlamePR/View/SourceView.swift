@@ -14,44 +14,21 @@ struct SourceView: View {
     var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
 
     var body: some View {
-        VStack(alignment: .leading) {
+        List {
             if !model.error.isEmpty {
                 Text(model.error)
+                    .listRowInsets(EdgeInsets())
             }
             ForEach(model.lines, id: \.number) { line in
-                HStack(alignment: .top, spacing: 12) {
-                    if line.url == nil {
-                        Text(line.revision.description)
-                            .font(Font.system(.caption, design: .monospaced))
-                            .foregroundColor(.gray)
-                            .frame(width: 100, height: nil, alignment: .trailing)
-                            .onTapGesture {
-                                    NSWorkspace.shared.open(line.url!)
-                            }
-                    } else {
-                        Text(line.revision.description)
-                            .font(Font.system(.caption, design: .monospaced))
-                            .foregroundColor(.accentColor)
-                            .frame(width: 100, height: nil, alignment: .trailing)
-                            .onTapGesture {
-                                    NSWorkspace.shared.open(line.url!)
-                            }
-                            .onHover { (enters) in
-                                if enters {
-                                    self.revisionOnHover((commitHash: line.revision.commitHash, pullRequest: line.revision.pullRequest))
-                                }
-                            }
-                    }
-                    Text(line.code)
-                        .font(Font.system(.caption, design: .monospaced))
-                        .frame(width: nil, height: nil, alignment: .leading)
-                }
+                LineView(line: line, revisionOnHover: self.revisionOnHover)
+                    .padding([.top, .bottom], -8) // Work arround for listRowInsets in Xcode11.4
             }
             HStack {
                 Spacer()
                 EmptyView()
-            }
-        }.padding()
+                }
+                .listRowInsets(EdgeInsets())
+        }
     }
 }
 
@@ -115,6 +92,41 @@ struct GitBlamePRView_Previews: PreviewProvider {
 
                 }
             )
+        }
+    }
+}
+
+struct LineView: View {
+    var line: (revision: SourceRevisionViewModel, url: URL?, code: String, number: Int)
+    var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            if line.url == nil {
+                Text(line.revision.description)
+                    .font(Font.system(.caption, design: .monospaced))
+                    .foregroundColor(.gray)
+                    .frame(width: 100, height: nil, alignment: .trailing)
+                    .onTapGesture {
+                        NSWorkspace.shared.open(self.line.url!)
+                }
+            } else {
+                Text(line.revision.description)
+                    .font(Font.system(.caption, design: .monospaced))
+                    .foregroundColor(.accentColor)
+                    .frame(width: 100, height: nil, alignment: .trailing)
+                    .onTapGesture {
+                        NSWorkspace.shared.open(self.line.url!)
+                }
+                .onHover { (enters) in
+                    if enters {
+                        self.revisionOnHover((commitHash: self.line.revision.commitHash, pullRequest: self.line.revision.pullRequest))
+                    }
+                }
+            }
+            Text(line.code)
+                .font(Font.system(.caption, design: .monospaced))
+                .frame(width: nil, height: nil, alignment: .leading)
         }
     }
 }

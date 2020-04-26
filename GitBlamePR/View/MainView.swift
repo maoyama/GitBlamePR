@@ -19,23 +19,23 @@ struct MainView: View {
         VStack(spacing: 0) {
             ToolBar(path: $path)
             SplitView(
-                master: ScrollView(.vertical, showsIndicators: true) {
-                    VStack(alignment: .leading) {
+                master:
+                    VStack(alignment: .leading, spacing: 0) {
                         if !error.isEmpty {
                             Text(error)
                         }
-                        SourceViewWrapper(
-                            service: SourceApplicationService(path: path),
-                            revisionOnHover: { revision in
-                                self.revision = revision
-                        })
                         if path.isEmpty {
                             RecentViewWrapper() { path in
                                 self.path = path
                             }
+                        } else {
+                            SourceViewWrapper(
+                                service: SourceApplicationService(path: path),
+                                revisionOnHover: { revision in
+                                    self.revision = revision
+                            })
                         }
-                    }
-                }.background(Color(NSColor.textBackgroundColor)),
+                    }.background(Color(NSColor.textBackgroundColor)),
                 detail: ScrollView(.vertical) {
                     VStack {
                         RevisionViewWrapper(
