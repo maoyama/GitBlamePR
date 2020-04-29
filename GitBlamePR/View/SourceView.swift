@@ -19,39 +19,57 @@ struct SourceView: View {
                 Text(model.error)
             }
             ForEach(model.lines, id: \.number) { line in
-                HStack(alignment: .top, spacing: 12) {
-                    if line.url == nil {
-                        Text(line.revision.description)
-                            .font(Font.system(.caption, design: .monospaced))
-                            .foregroundColor(.gray)
-                            .frame(width: 100, height: nil, alignment: .trailing)
-                            .onTapGesture {
-                                    NSWorkspace.shared.open(line.url!)
-                            }
-                    } else {
-                        Text(line.revision.description)
-                            .font(Font.system(.caption, design: .monospaced))
-                            .foregroundColor(.accentColor)
-                            .frame(width: 100, height: nil, alignment: .trailing)
-                            .onTapGesture {
-                                    NSWorkspace.shared.open(line.url!)
-                            }
-                            .onHover { (enters) in
-                                if enters {
-                                    self.revisionOnHover((commitHash: line.revision.commitHash, pullRequest: line.revision.pullRequest))
-                                }
-                            }
-                    }
-                    Text(line.code)
-                        .font(Font.system(.caption, design: .monospaced))
-                        .frame(width: nil, height: nil, alignment: .leading)
-                }
+                LineView(line: line, revisionOnHover: self.revisionOnHover)
             }
             HStack {
                 Spacer()
                 EmptyView()
             }
         }.padding()
+    }
+}
+
+struct LineView: View {
+    var line: (revision: SourceRevisionViewModel, url: URL?, code: String, number: String)
+    var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
+
+    var body: some View {
+        VStack {
+            HStack(alignment: .top, spacing: 12) {
+                Text(line.number)
+                    .font(Font.system(.caption, design: .monospaced))
+                    .foregroundColor(.gray)
+                    .opacity(0.8)
+                    .frame(width: 20, alignment: .trailing)
+
+
+                Text(line.code)
+                    .font(Font.system(.caption, design: .monospaced))
+
+                Spacer()
+                if line.url == nil {// e.g. Not commited
+                    Text(line.revision.description)
+                        .font(Font.system(.caption, design: .monospaced))
+                        .foregroundColor(.gray)
+                        .frame(width: 100, alignment: .leading)
+                } else {
+                    Text(line.revision.description)
+                        .font(Font.system(.caption, design: .monospaced))
+                        .foregroundColor(.accentColor)
+                        .fontWeight(.bold)
+                        .frame(width: 100, height: nil, alignment: .leading)
+                        .onTapGesture {
+                            NSWorkspace.shared.open(self.line.url!)
+                        }
+                        .onHover { (enters) in
+                            if enters {
+                                self.revisionOnHover((commitHash: self.line.revision.commitHash, pullRequest: self.line.revision.pullRequest))
+                            }
+                        }
+                }
+
+            }
+        }
     }
 }
 
@@ -65,49 +83,49 @@ struct Source_Previews: PreviewProvider {
                             revision: SourceRevisionViewModel(description: "PR #2020", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "struct ContentView: View {",
-                            number: 1
+                            number: "1"
                         ),
                         (
                             revision: SourceRevisionViewModel(description: "PR #2020", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "",
-                            number: 2
+                            number: "2"
                         ),
                         (
                             revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "    var body: some View {",
-                            number: 3
+                            number: "3"
                         ),
                         (
                             revision: SourceRevisionViewModel(description: "Not Committed", pullRequest: nil, commitHash: nil),
                             url: nil,
                             code: "        GitBlamePRView(",
-                            number: 4
+                            number: "4"
                         ),
                         (
                             revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "            model: service.viewModel,",
-                            number: 5
+                            number: "5"
                         ),
                         (
                             revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "            textOnCommit: {text in",
-                            number: 6
+                            number: "6"
                         ),
                         (
                             revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "                self.service.fullPath = text",
-                            number: 7
+                            number: "7"
                         ),
                         (
                             revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "            }",
-                            number: 8
+                            number: "8"
                         ),
                     ]
                 ),
