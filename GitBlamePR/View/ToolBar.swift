@@ -16,7 +16,7 @@ struct ToolBar: View {
             TextField("Enter full path", text: $path)
                 .lineLimit(1)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(EdgeInsets(top: 6, leading: 8, bottom: 8, trailing: 8))
+                .padding(EdgeInsets(top: 3, leading: 8, bottom: 8, trailing: 8))
             Divider()
         }
     }

@@ -14,7 +14,7 @@ struct SourceView: View {
     var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 4) {
             if !model.error.isEmpty {
                 Text(model.error)
             }
@@ -55,7 +55,7 @@ struct SourceView: View {
     }
 }
 
-struct GitBlamePRView_Previews: PreviewProvider {
+struct Source_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             SourceView(
