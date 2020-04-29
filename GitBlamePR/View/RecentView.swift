@@ -20,7 +20,7 @@ struct RecentView: View {
     }
 
     var body: some View {
-        List {
+        VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text("Recent")
                     .font(.headline)
