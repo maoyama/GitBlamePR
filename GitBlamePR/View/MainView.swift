@@ -24,15 +24,16 @@ struct MainView: View {
                         if !error.isEmpty {
                             Text(error)
                         }
-                        SourceViewWrapper(
-                            service: SourceApplicationService(path: path),
-                            revisionOnHover: { revision in
-                                self.revision = revision
-                        })
                         if path.isEmpty {
                             RecentViewWrapper() { path in
                                 self.path = path
                             }
+                        } else {
+                            SourceViewWrapper(
+                                service: SourceApplicationService(path: path),
+                                revisionOnHover: { revision in
+                                    self.revision = revision
+                            })
                         }
                     }
                 }.background(Color(NSColor.textBackgroundColor)),

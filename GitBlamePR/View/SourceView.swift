@@ -25,7 +25,8 @@ struct SourceView: View {
                 Spacer()
                 EmptyView()
             }
-        }.padding()
+        }
+        .padding(6)
     }
 }
 
@@ -37,10 +38,11 @@ struct LineView: View {
         VStack {
             HStack(alignment: .top, spacing: 12) {
                 Text(line.number)
-                    .font(Font.system(.caption, design: .monospaced))
+                    .font(Font.system(.caption, design: .monospaced)).truncationMode(.head)
                     .foregroundColor(.gray)
                     .opacity(0.8)
-                    .frame(width: 20, alignment: .trailing)
+                    .lineLimit(1)
+                    .frame(maxWidth: 30, alignment: .trailing)
 
 
                 Text(line.code)
@@ -57,6 +59,7 @@ struct LineView: View {
                         .font(Font.system(.caption, design: .monospaced))
                         .foregroundColor(.accentColor)
                         .fontWeight(.bold)
+                        .lineLimit(1)
                         .frame(width: 100, height: nil, alignment: .leading)
                         .onTapGesture {
                             NSWorkspace.shared.open(self.line.url!)
@@ -119,13 +122,13 @@ struct Source_Previews: PreviewProvider {
                             revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "                self.service.fullPath = text",
-                            number: "7"
+                            number: "9999"
                         ),
                         (
                             revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "            }",
-                            number: "8"
+                            number: "99999"
                         ),
                     ]
                 ),

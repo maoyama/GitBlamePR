@@ -37,6 +37,7 @@ struct RecentView: View {
                     }
             }
         }
+        .padding(.init(top: 16, leading: 10, bottom: 16, trailing: 10))
     }
 }
 
