@@ -46,6 +46,7 @@
 		615C393E23A46E530036FB97 /* SourceApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C393D23A46E530036FB97 /* SourceApplicationService.swift */; };
 		615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */ = {isa = PBXBuildFile; fileRef = 615C395723A4BBEF0036FB97 /* git-blame-pr.pl */; };
 		615DDE18244766BA002D2512 /* GitShowCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615DDE17244766BA002D2512 /* GitShowCommandTests.swift */; };
+		61639938245C749E00E35DA6 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61639937245C749E00E35DA6 /* SectionTitleView.swift */; };
 		6198CB1324249B4900AE0826 /* SourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198CB1224249B4900AE0826 /* SourceView.swift */; };
 		6198CB1524249EB800AE0826 /* SourceViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198CB1424249EB800AE0826 /* SourceViewWrapper.swift */; };
 		61A986D9244AA97200E13BAD /* DecodableDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A986D6244AA97200E13BAD /* DecodableDataParser.swift */; };
@@ -189,6 +190,7 @@
 		615C393D23A46E530036FB97 /* SourceApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceApplicationService.swift; sourceTree = "<group>"; };
 		615C395723A4BBEF0036FB97 /* git-blame-pr.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "git-blame-pr.pl"; sourceTree = "<group>"; };
 		615DDE17244766BA002D2512 /* GitShowCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitShowCommandTests.swift; sourceTree = "<group>"; };
+		61639937245C749E00E35DA6 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		6198CB1224249B4900AE0826 /* SourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceView.swift; sourceTree = "<group>"; };
 		6198CB1424249EB800AE0826 /* SourceViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceViewWrapper.swift; sourceTree = "<group>"; };
 		61A986D6244AA97200E13BAD /* DecodableDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodableDataParser.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				6113917D243056AB00C74954 /* CommitView.swift */,
 				611D6F272436A2B9006BAD44 /* PullRequestView.swift */,
 				6102A91D242F5259000DC3F1 /* SplitView.swift */,
+				61639937245C749E00E35DA6 /* SectionTitleView.swift */,
 				61C394692425ADC2004B1667 /* SplitSeparator.swift */,
 			);
 			path = View;
@@ -711,6 +714,7 @@
 				61C3946A2425ADC2004B1667 /* SplitSeparator.swift in Sources */,
 				61E2C96B240B404E0011CB6D /* URLScheme.swift in Sources */,
 				6114CDDC23AFBAF700EF6B88 /* RecentViewModel.swift in Sources */,
+				61639938245C749E00E35DA6 /* SectionTitleView.swift in Sources */,
 				61A986DA244AA97200E13BAD /* GitHubRequest.swift in Sources */,
 				6113917E243056AB00C74954 /* CommitView.swift in Sources */,
 				611D6F3224382DB7006BAD44 /* SourceRepository.swift in Sources */,
