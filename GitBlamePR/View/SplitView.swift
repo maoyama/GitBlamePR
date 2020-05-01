@@ -42,6 +42,10 @@ struct SplitView<Master, Detail>: View where Master : View, Detail : View {
 
 struct SplitView_Previews: PreviewProvider {
     static var previews: some View {
-        SplitView(master: Text("Master"), detail: Text("Detail"))
+        Group {
+            SplitView(master: Text("Master"), detail: Text("Detail"))
+            SplitView(master: Text("Master"), detail: Text("Detail")).background(Color(.textBackgroundColor))
+                .environment(\.colorScheme, .dark)
+        }
     }
 }

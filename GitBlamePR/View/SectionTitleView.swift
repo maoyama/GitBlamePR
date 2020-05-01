@@ -9,13 +9,17 @@
 import SwiftUI
 
 struct SectionTitleView: View {
+    var title: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(title)
+            .font(.system(size: 11))
+            .foregroundColor(.primary)
+            .opacity(0.6)
     }
 }
 
 struct SectionTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionTitleView()
+        SectionTitleView(title: "Library")
     }
 }

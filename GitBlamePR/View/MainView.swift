@@ -53,7 +53,7 @@ struct MainView: View {
                             EmptyView()
                         }
                     }
-                }
+                }.background(Color(.windowBackgroundColor))
             )
         }
     }
@@ -63,7 +63,7 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             MainView(path: "/Users/aoyama/Dropbox/GitBlamePR/GitBlamePR/View/MainView.swift", error: "")
-            MainView(path: "", error: "")
+            MainView(path: "", error: "").environment(\.colorScheme, .light)
             MainView(path: "", error: "URL not found.").environment(\.colorScheme, .dark)
         }
     }

@@ -19,6 +19,7 @@ struct ToolBar: View {
                 .padding(EdgeInsets(top: 3, leading: 8, bottom: 8, trailing: 8))
             Divider()
         }
+        .background(Color(.windowBackgroundColor))
     }
 }
 

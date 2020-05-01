@@ -26,8 +26,8 @@ struct PullRequestViewModel {
 extension PullRequestViewModel {
     init(from pr: PullRequest) {
         let f = DateFormatter()
-        f.dateStyle = .full
-        f.timeStyle = .long
+        f.dateStyle = .short
+        f.timeStyle = .none
 
         htmlURL = pr.htmlUrl
         number = "#\(pr.number)"
