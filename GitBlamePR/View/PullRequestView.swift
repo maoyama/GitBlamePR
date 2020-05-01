@@ -19,16 +19,19 @@ struct PullRequestView: View {
                 VStack(alignment: .leading) {
                     Text(model.title + " - " + model.number )
                             .fontWeight(.bold)
-                    HStack {
+                    HStack(alignment: .center) {
                         KFImage(model.userAvatarURL)
                             .cancelOnDisappear(true)
                             .resizable()
                             .renderingMode(.original)
-                            .frame(width: 20, height: 20)
+                            .frame(width: 24, height: 24)
                             .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                        Text(model.user)
+                        VStack (alignment: .leading) {
+                            Text(model.user)
+                            Text(model.mergedAt).foregroundColor(.secondary)
+                                .font(.system(size: 11))
+                        }.padding(.top, -2)
                         Spacer()
-                        Text(model.mergedAt).foregroundColor(.gray)
                     }
                     Text(model.body)
 
@@ -56,8 +59,10 @@ struct PullRequestView: View {
                 }
                 Spacer()
             }
-            .padding(8)
-        }.background(Color(.windowBackgroundColor))
+            .padding(.init(top: 2, leading: 6, bottom: 6, trailing: 6))
+        }
+        .background(Color(.windowBackgroundColor))
+        .padding(2)
     }
 }
 
@@ -92,6 +97,24 @@ struct PullRequestView_Previews: PreviewProvider {
                     user: "maoyama",
                     userAvatarURL: URL(string: "https://avatars1.githubusercontent.com/u/1035994?s=88&u=e0708d80549806332126ec2174ef2a4abf16fa22&v=4")!,
                     mergedAt: "8 days ago",
+                    conversationCount: "10",
+                    commitsCount: "7",
+                    changedFiles: "8",
+                    additionsCount: "+283",
+                    deletionsCount: "-130"
+                )
+            ).frame(width: 200)
+            .environment(\.colorScheme, .dark)
+
+            PullRequestView(model:
+                PullRequestViewModel(
+                    htmlURL: URL(string: "https://example.com")!,
+                    number: "#17",
+                    title: "Fix git blame pr command failure when not commited",
+                    body: "",
+                    user: "maoyama",
+                    userAvatarURL: URL(string: "https://avatars1.githubusercontent.com/u/1035994?s=88&u=e0708d80549806332126ec2174ef2a4abf16fa22&v=4")!,
+                    mergedAt: "2020/04/20",
                     conversationCount: "10",
                     commitsCount: "7",
                     changedFiles: "8",
