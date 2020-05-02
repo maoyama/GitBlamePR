@@ -39,7 +39,7 @@ struct LineView: View {
             HStack(alignment: .top, spacing: 12) {
                 Text(line.number)
                     .font(Font.system(.caption, design: .monospaced)).truncationMode(.head)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
                     .opacity(0.8)
                     .lineLimit(1)
                     .frame(maxWidth: 30, alignment: .trailing)
