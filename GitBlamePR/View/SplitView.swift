@@ -14,14 +14,16 @@ struct SplitView<Master, Detail>: View where Master : View, Detail : View {
 
     @State private var detailWidth: CGFloat = 200
     @State private var detailWidthOfDraggOnEnd: CGFloat = 200
+    let detailWidthMin: CGFloat = 100
 
     private var drag: some Gesture {
         DragGesture(minimumDistance: 1, coordinateSpace: .global)
             .onChanged { value in
-                self.detailWidth = self.detailWidthOfDraggOnEnd - value.translation.width
-                NSCursor.resizeLeftRight.set()
+                self.detailWidth = max(self.detailWidthOfDraggOnEnd - value.translation.width, self.detailWidthMin)
+                self.applyCoursor(dragging: true)
             }.onEnded { (value) in
-                self.detailWidthOfDraggOnEnd = self.detailWidthOfDraggOnEnd - value.translation.width
+                self.detailWidthOfDraggOnEnd = max(self.detailWidthOfDraggOnEnd - value.translation.width, self.detailWidthMin)
+                self.applyCoursor(dragging: false)
             }
     }
 
@@ -30,12 +32,24 @@ struct SplitView<Master, Detail>: View where Master : View, Detail : View {
             master
             SplitSeparator().frame(width: 1).gesture(drag).onHover { (enters) in
                 if enters {
-                    NSCursor.resizeLeftRight.set()
+                    self.applyCoursor(dragging: true)
                 } else {
-                    NSCursor.arrow.set()
+                    self.applyCoursor(dragging: false)
                 }
             }
             detail.frame(width: detailWidth)
+        }
+    }
+
+    private func applyCoursor(dragging: Bool) {
+        guard dragging else {
+            NSCursor.arrow.set()
+            return
+        }
+        if self.detailWidth == self.detailWidthMin {
+            NSCursor.resizeLeft.set()
+        } else {
+            NSCursor.resizeLeftRight.set()
         }
     }
 }
