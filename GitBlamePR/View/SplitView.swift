@@ -12,9 +12,9 @@ struct SplitView<Master, Detail>: View where Master : View, Detail : View {
     var master: Master
     var detail: Detail
 
-    @State private var detailWidth: CGFloat = 200
-    @State private var detailWidthOfDraggOnEnd: CGFloat = 200
-    let detailWidthMin: CGFloat = 100
+    @State private var detailWidth: CGFloat = 250
+    @State private var detailWidthOfDraggOnEnd: CGFloat = 250
+    let detailWidthMin: CGFloat = 160
 
     private var drag: some Gesture {
         DragGesture(minimumDistance: 1, coordinateSpace: .global)
