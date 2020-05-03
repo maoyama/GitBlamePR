@@ -15,16 +15,21 @@ struct PullRequestView: View {
     var body: some View {
         VStack(alignment: .leading) {
             SectionTitleView(title: "Pull Request")
-            VStack(alignment: .leading, spacing: 6) {
-                VStack(alignment: .leading) {
-                    Text(model.title + " - " + model.number )
+            VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(model.title)
                             .fontWeight(.bold)
+                    + Text(" " + model.number )
+                        .foregroundColor(.secondary)
+                    if !model.body.isEmpty {
+                        Text(model.body)
+                    }
                     HStack(alignment: .center) {
                         KFImage(model.userAvatarURL)
                             .cancelOnDisappear(true)
                             .resizable()
                             .renderingMode(.original)
-                            .frame(width: 24, height: 24)
+                            .frame(width: 20, height: 20)
                             .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
                         VStack (alignment: .leading) {
                             Text(model.user)
@@ -33,9 +38,9 @@ struct PullRequestView: View {
                         }.padding(.top, -2)
                         Spacer()
                     }
-                    Text(model.body)
-
                 }
+                Divider()
+                    .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
                 VStack(alignment: .leading) {
                     HStack {
                         Text(model.conversationCount).fontWeight(.bold)
@@ -112,7 +117,7 @@ struct PullRequestView_Previews: PreviewProvider {
                     number: "#17",
                     title: "Fix git blame pr command failure when not commited",
                     body: "",
-                    user: "maoyama",
+                    user: "Maoyama",
                     userAvatarURL: URL(string: "https://avatars1.githubusercontent.com/u/1035994?s=88&u=e0708d80549806332126ec2174ef2a4abf16fa22&v=4")!,
                     mergedAt: "2020/04/20",
                     conversationCount: "10",
@@ -121,7 +126,7 @@ struct PullRequestView_Previews: PreviewProvider {
                     additionsCount: "+283",
                     deletionsCount: "-130"
                 )
-            ).frame(width: 200)
+            ).frame(width: 250)
             .environment(\.colorScheme, .dark)
 
         }

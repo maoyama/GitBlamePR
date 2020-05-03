@@ -13,9 +13,6 @@ struct CommitViewModel {
     var author: String
     var authorEmail: String
     var authorDate: String
-    var committer: String
-    var committerEmail: String
-    var committerDate: String
     var titleLine: String
     var fullCommitMessage: String
 }
@@ -23,16 +20,13 @@ struct CommitViewModel {
 extension CommitViewModel {
     init(from commit: Commit) {
         let f = DateFormatter()
-        f.dateStyle = .full
-        f.timeStyle = .long
+        f.dateStyle = .short
+        f.timeStyle = .none
 
         hash = commit.hash
         author = commit.author
         authorEmail = commit.authorEmail
         authorDate = f.string(from: commit.authorDate)
-        committer = commit.committer
-        committerEmail = commit.committerEmail
-        committerDate = f.string(from: commit.committerDate)
         titleLine = commit.titleLine
         fullCommitMessage = commit.fullCommitMessage
     }
