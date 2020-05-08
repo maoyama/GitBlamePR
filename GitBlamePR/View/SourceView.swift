@@ -14,7 +14,7 @@ struct SourceView: View {
     var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        List {
             if !model.error.isEmpty {
                 Text(model.error)
             }
@@ -43,11 +43,8 @@ struct LineView: View {
                     .opacity(0.8)
                     .lineLimit(1)
                     .frame(maxWidth: 30, alignment: .trailing)
-
-
                 Text(line.code)
                     .font(Font.system(.caption, design: .monospaced))
-
                 Spacer()
                 if line.url == nil {// e.g. Not commited
                     Text(line.revision.description)
