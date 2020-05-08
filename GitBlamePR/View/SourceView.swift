@@ -12,52 +12,58 @@ import AppKit
 struct SourceView: View {
     var model: SourceViewModel
     var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
+    var rowPaddingH : CGFloat = 10
 
     var body: some View {
-        List {
-            if !model.error.isEmpty {
-                Text(model.error)
-            }
-            ForEach(model.lines, id: \.number) { line in
-                LineView(line: line, revisionOnHover: self.revisionOnHover)
-            }
-            HStack {
-                Spacer()
-                EmptyView()
+        GeometryReader { geometry in
+            List {
+                if !self.model.error.isEmpty {
+                    Text(self.model.error)
+                }
+                ForEach(self.model.lines, id: \.number) { line in
+                    LineView(line: line, revisionOnHover: self.revisionOnHover, width: geometry.frame(in: .local).size.width - self.rowPaddingH * 2)
+                }
             }
         }
-        .padding(6)
     }
 }
 
 struct LineView: View {
     var line: (revision: SourceRevisionViewModel, url: URL?, code: String, number: String)
     var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
+    var width: CGFloat
+    var numberWidth: CGFloat = 30
+    var revisionWidth: CGFloat = 90
+    var space: CGFloat = 8
+    var codeWidth: CGFloat {
+        max(width - numberWidth - revisionWidth - space * 2, 100)
+    }
 
     var body: some View {
         VStack {
-            HStack(alignment: .top, spacing: 12) {
+            HStack(alignment: .top, spacing: space) {
                 Text(line.number)
                     .font(Font.system(.caption, design: .monospaced)).truncationMode(.head)
                     .foregroundColor(.secondary)
                     .opacity(0.8)
                     .lineLimit(1)
-                    .frame(maxWidth: 30, alignment: .trailing)
-                Text(line.code)
+                    .frame(width: numberWidth, alignment: .trailing)
+                Text(self.line.code)
                     .font(Font.system(.caption, design: .monospaced))
-                Spacer()
+                    .frame(width: codeWidth, alignment: .leading)
                 if line.url == nil {// e.g. Not commited
                     Text(line.revision.description)
+                        .lineLimit(1)
                         .font(Font.system(.caption, design: .monospaced))
                         .foregroundColor(.gray)
-                        .frame(width: 100, alignment: .leading)
+                        .frame(width: revisionWidth, alignment: .leading)
                 } else {
                     Text(line.revision.description)
                         .font(Font.system(.caption, design: .monospaced))
                         .foregroundColor(.accentColor)
                         .fontWeight(.bold)
                         .lineLimit(1)
-                        .frame(width: 100, height: nil, alignment: .leading)
+                        .frame(width: revisionWidth, height: nil, alignment: .leading)
                         .onTapGesture {
                             NSWorkspace.shared.open(self.line.url!)
                         }
@@ -112,7 +118,7 @@ struct Source_Previews: PreviewProvider {
                         (
                             revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
-                            code: "            textOnCommit: {text in",
+                            code: "            textOnCommit: {text in //xxxx xxxx xxxx xxxx xx xx xxx",
                             number: "6"
                         ),
                         (
@@ -131,7 +137,7 @@ struct Source_Previews: PreviewProvider {
                 ),
                 revisionOnHover: { _ in
 
-                }
+            }
             )
         }
     }
