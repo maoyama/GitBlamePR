@@ -13,7 +13,6 @@ struct SectionTitleView: View {
     var body: some View {
         Text(title)
             .font(.system(size: 11))
-            .foregroundColor(.primary)
             .opacity(0.6)
     }
 }
