@@ -10,7 +10,9 @@ import Foundation
 
 struct Source {
     var lines: [Line]
+}
 
+extension Source {
     init?(gitRemoteStandardOutput: String, gitBlamePRStandardOutput: String) {
         guard let repoURL = GitRepository(gitRemoteStandardOutput: gitRemoteStandardOutput) else {
             return nil

@@ -71,24 +71,6 @@ class SourceApplicationService: ObservableObject {
         }
     }
 
-    private func _pathDidCommit(path: FileFullPath) {
-        do {
-            source = try sourceRepository.find(by: path)
-        } catch let e {
-            viewModel = SourceViewModel()
-            viewModel.error = e.localizedDescription
-            return
-        }
-        var history = historyRepository.findAll()
-        history.addInputFullPath(path.rawValue)
-        do {
-            try historyRepository.save(history: history)
-        } catch let e {
-            viewModel.error = e.localizedDescription
-            return
-        }
-    }
-
     private func pathDidCommit(path: FileFullPath) {
         sourceRepository.find(by: path) {[weak self] (result) in
             guard let self = self else { return }

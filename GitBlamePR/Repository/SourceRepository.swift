@@ -9,16 +9,10 @@
 import Foundation
 
 struct SourceRepository {
-    func find(by path: FileFullPath) throws -> Source {
-        let remoteOut = try Git.remote(path: path)
-        let blamePROut = try Git.blamePR(path: path)
-        guard let source = Source(gitRemoteStandardOutput: remoteOut, gitBlamePRStandardOutput: blamePROut) else {
-            throw RepositoryError.unknown
-        }
-        return source
-    }
-
     func find(by path: FileFullPath, handler: @escaping (Result<Source, Error>) -> Void) {
+        if let source = SourceCache.shared.object(forKey: path) {
+            handler(.success(source))
+        }
         DispatchQueue.global().async {
             do {
                 let remoteOut = try Git.remote(path: path)
@@ -28,6 +22,7 @@ struct SourceRepository {
                 }
                 DispatchQueue.main.async {
                     handler(.success(source))
+                    SourceCache.shared.set(source, forKey: path)
                 }
             } catch let e {
                 DispatchQueue.main.async {
@@ -36,5 +31,4 @@ struct SourceRepository {
             }
         }
     }
-
 }
