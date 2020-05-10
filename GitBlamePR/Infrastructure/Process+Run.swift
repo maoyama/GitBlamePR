@@ -24,15 +24,15 @@ extension Process {
         process.standardOutput = stdOutput
         process.standardError = stdError
         try process.run()
+        if let stdOut = String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8), !stdOut.isEmpty {
+            return stdOut
+        }
         guard let errOut = String(data: stdError.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) else {
             throw ProcessError.unknown
         }
         guard errOut.isEmpty else {
             throw ProcessError.standardError(errOut)
         }
-        guard let stdOut = String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) else {
-            throw ProcessError.unknown
-        }
-        return stdOut
+        throw ProcessError.unknown
     }
 }

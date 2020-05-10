@@ -17,4 +17,24 @@ struct SourceRepository {
         }
         return source
     }
+
+    func find(by path: FileFullPath, handler: @escaping (Result<Source, Error>) -> Void) {
+        DispatchQueue.global().async {
+            do {
+                let remoteOut = try Git.remote(path: path)
+                let blamePROut = try Git.blamePR(path: path)
+                guard let source = Source(gitRemoteStandardOutput: remoteOut, gitBlamePRStandardOutput: blamePROut) else {
+                    throw RepositoryError.unknown
+                }
+                DispatchQueue.main.async {
+                    handler(.success(source))
+                }
+            } catch let e {
+                DispatchQueue.main.async {
+                    handler(.failure(e))
+                }
+            }
+        }
+    }
+
 }

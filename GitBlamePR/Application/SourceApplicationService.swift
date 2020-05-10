@@ -71,7 +71,7 @@ class SourceApplicationService: ObservableObject {
         }
     }
 
-    private func pathDidCommit(path: FileFullPath) {
+    private func _pathDidCommit(path: FileFullPath) {
         do {
             source = try sourceRepository.find(by: path)
         } catch let e {
@@ -88,4 +88,25 @@ class SourceApplicationService: ObservableObject {
             return
         }
     }
+
+    private func pathDidCommit(path: FileFullPath) {
+        sourceRepository.find(by: path) {[weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let source):
+                self.source = source
+                var history = self.historyRepository.findAll()
+                history.addInputFullPath(path.rawValue)
+                do {
+                    try self.historyRepository.save(history: history)
+                } catch let e {
+                    self.viewModel.error = e.localizedDescription
+                    return
+                }
+            case .failure(let e):
+                self.viewModel.error = e.localizedDescription
+            }
+        }
+    }
+
 }
