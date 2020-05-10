@@ -23,7 +23,7 @@ struct FileFullPath: Equatable {
     }
 
     init?(rawValue: String) {
-        if rawValue.isEmpty {
+        if rawValue.count < 2 {
             return nil
         }
         self.rawValue = rawValue
