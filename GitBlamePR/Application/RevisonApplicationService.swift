@@ -29,7 +29,7 @@ class RevisionApplicationService: ObservableObject {
         viewModel = RevisionViewModel(commit: nil, pullRequest: nil, error: "")
         if let commitHash = commitHash {
             do {
-                let commit = try commitRepository.find(byCommitHash: commitHash, directoryURL: fullPath.directoryURL)
+                let commit = try commitRepository.find(byCommitHash: commitHash, path: fullPath)
                 viewModel.commit = CommitViewModel(from: commit)
                 return
             } catch let e {

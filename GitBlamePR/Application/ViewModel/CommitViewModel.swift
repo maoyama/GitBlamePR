@@ -15,6 +15,7 @@ struct CommitViewModel {
     var authorDate: String
     var titleLine: String
     var fullCommitMessage: String
+    var html: URL?
 }
 
 extension CommitViewModel {
@@ -29,5 +30,6 @@ extension CommitViewModel {
         authorDate = f.string(from: commit.authorDate)
         titleLine = commit.titleLine
         fullCommitMessage = commit.fullCommitMessage
+        html = commit.html
     }
 }

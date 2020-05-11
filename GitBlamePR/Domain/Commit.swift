@@ -18,4 +18,8 @@ struct Commit {
     var committerDate: Date
     var titleLine: String
     var fullCommitMessage: String
+    var repository: GitRepository?
+    var html: URL? {
+        return repository?.html.appendingPathComponent("commit").appendingPathComponent(hash)
+    }
 }

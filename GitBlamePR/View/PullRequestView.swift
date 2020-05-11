@@ -59,6 +59,16 @@ struct PullRequestView: View {
                         Text(model.deletionsCount).foregroundColor(.red)
                     }
                 }
+                Divider()
+                    .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                HStack {
+                    Spacer()
+                    Button("Open in GitHub") {
+                        NSWorkspace.shared.open(self.model.html)
+                    }
+                    Spacer()
+                }
+
                 HStack{
                     Spacer()
                 }
@@ -76,7 +86,7 @@ struct PullRequestView_Previews: PreviewProvider {
         Group {
             PullRequestView(model:
                 PullRequestViewModel(
-                    htmlURL: URL(string: "https://example.com")!,
+                    html: URL(string: "https://example.com")!,
                     number: "#17",
                     title: "Fix git blame pr command failure when not commited",
                     body: "GitBlamePR.app bundles Xcode Source Editor Extension.Files opened in Xcode can be easily opened in GitBlamePR.app.I recommend that you set a key binding for this function.",
@@ -95,7 +105,7 @@ struct PullRequestView_Previews: PreviewProvider {
 
             PullRequestView(model:
                 PullRequestViewModel(
-                    htmlURL: URL(string: "https://example.com")!,
+                    html: URL(string: "https://example.com")!,
                     number: "#17",
                     title: "Fix git blame pr command failure when not commited",
                     body: "GitBlamePR.app bundles Xcode Source Editor Extension.Files opened in Xcode can be easily opened in GitBlamePR.app.I recommend that you set a key binding for this function.",
@@ -113,7 +123,7 @@ struct PullRequestView_Previews: PreviewProvider {
 
             PullRequestView(model:
                 PullRequestViewModel(
-                    htmlURL: URL(string: "https://example.com")!,
+                    html: URL(string: "https://example.com")!,
                     number: "#17",
                     title: "Fix git blame pr command failure when not commited",
                     body: "",

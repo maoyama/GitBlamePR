@@ -22,6 +22,14 @@ struct GitError: Error, LocalizedError {
 }
 
 struct Git {
+    static func commit(from command: GitShowCommand, path: FileFullPath) throws -> Commit {
+        var commit = try command.output()
+        let remoteOut = try Self.remote(path: path)
+        let repo = GitRepository(gitRemoteStandardOutput: remoteOut)
+        commit.repository = repo
+        return commit
+    }
+
     static func remote(path: FileFullPath) throws -> String {
         return try Self.runGitProcess(
                 executableURL: URL(fileURLWithPath: "/usr/bin/git"),

@@ -32,17 +32,26 @@ struct CommitView: View {
                     .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
                 Text(model.hash)
                     .foregroundColor(.secondary)
+                Divider()
+                    .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                if model.html != nil {
+                    HStack {
+                        Spacer()
+                        Button("Open in GitHub") {
+                            NSWorkspace.shared.open(self.model.html!)
+                        }
+                        Spacer()
+                    }
+                }
                 HStack{
                     Spacer()
                 }
                 Spacer()
             }
             .padding(.init(top: 2, leading: 6, bottom: 6, trailing: 6))
-
         }
         .background(Color(.windowBackgroundColor))
         .padding(2)
-
     }
 }
 

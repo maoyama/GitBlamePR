@@ -9,8 +9,8 @@
 import Foundation
 
 struct CommitRepositiry {
-    func find(byCommitHash hash: String, directoryURL: URL) throws -> Commit {
-        let command = GitShowCommand(commitHash: hash, directoryURL: directoryURL)
-        return try command.output()
+    func find(byCommitHash hash: String, path: FileFullPath) throws -> Commit {
+        let command = GitShowCommand(commitHash: hash, directoryURL: path.directoryURL)
+        return try Git.commit(from: command, path: path)
     }
 }

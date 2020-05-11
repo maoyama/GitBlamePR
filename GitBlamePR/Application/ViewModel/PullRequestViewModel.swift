@@ -9,7 +9,7 @@
 import Foundation
 
 struct PullRequestViewModel {
-    var htmlURL: URL
+    var html: URL
     var number: String
     var title: String
     var body: String
@@ -29,7 +29,7 @@ extension PullRequestViewModel {
         f.dateStyle = .short
         f.timeStyle = .none
 
-        htmlURL = pr.htmlUrl
+        html = pr.htmlUrl
         number = "#\(pr.number)"
         title = pr.title
         body = pr.body
