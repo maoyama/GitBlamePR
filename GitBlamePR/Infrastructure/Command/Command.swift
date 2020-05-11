@@ -10,6 +10,7 @@ import Foundation
 
 struct CommandError: Error, LocalizedError {
     static var unknown = CommandError(description: "Unknown error.")
+    static var parse = CommandError(description: "Parse error.")
 
     private var description: String
     var errorDescription: String? {
@@ -26,13 +27,11 @@ struct CommandError: Error, LocalizedError {
 }
 
 protocol Command {
-    associatedtype T
     var executableURL: URL { get }
     var arguments: [String] { get }
     var directoryURL: URL { get }
 
     func standardOutput() throws -> String
-    func output() throws -> T
 }
 
 extension Command {

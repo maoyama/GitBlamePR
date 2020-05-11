@@ -13,9 +13,15 @@ struct Source {
 }
 
 extension Source {
-    init?(gitRemoteStandardOutput: String, gitBlamePRStandardOutput: String) {
+    init(from remote: GitRemoteCommand, command blamePR: GitBlamePRCommand) throws {
+        let ro = try remote.standardOutput()
+        let bo = try blamePR.standardOutput()
+        try self.init(gitRemoteStandardOutput: ro, gitBlamePRStandardOutput: bo)
+    }
+
+    init(gitRemoteStandardOutput: String, gitBlamePRStandardOutput: String) throws {
         guard let repoURL = GitRepository(gitRemoteStandardOutput: gitRemoteStandardOutput) else {
-            return nil
+            throw CommandError.parse
         }
 
         let strLines = gitBlamePRStandardOutput.components(separatedBy: .newlines).dropLast()
@@ -26,7 +32,7 @@ extension Source {
             let linePrefix = splitted[0]
             let code = line.suffix(max(line.count - (linePrefix.count + separatedBy.count), 0))
             guard let revision =  Revision(gitBlamePRStandardOutputLine: line, repository: repoURL) else {
-                throw NSError()
+                throw CommandError.parse
             }
             return Line(
                 revision: revision,
@@ -38,7 +44,7 @@ extension Source {
             self.lines = lines
             return
         }
-        return nil
+        throw CommandError.parse
     }
 }
 

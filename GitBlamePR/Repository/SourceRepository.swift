@@ -15,11 +15,9 @@ struct SourceRepository {
         }
         DispatchQueue.global().async {
             do {
-                let remoteOut = try Git.remote(path: path)
-                let blamePROut = try Git.blamePR(path: path)
-                guard let source = Source(gitRemoteStandardOutput: remoteOut, gitBlamePRStandardOutput: blamePROut) else {
-                    throw RepositoryError.unknown
-                }
+                let remote = GitRemoteCommand(directoryURL: path.directoryURL)
+                let blamePR = GitBlamePRCommand(path: path)
+                let source = try Source(from: remote, command: blamePR)
                 DispatchQueue.main.async {
                     handler(.success(source))
                     SourceCache.shared.set(source, forKey: path)

@@ -85,7 +85,7 @@ PR #10   ,    }
 """
 
     func testContentViewModelInit() {
-        let source = Source(gitRemoteStandardOutput: gitRemoteOutput, gitBlamePRStandardOutput: gitBlamePROutput)!
+        let source = try! Source(gitRemoteStandardOutput: gitRemoteOutput, gitBlamePRStandardOutput: gitBlamePROutput)
         let vm = SourceViewModel(source: source)
         XCTAssertEqual(vm.lines.count, 65)
         XCTAssertEqual(vm.lines[16].revision.description, "PR #10")

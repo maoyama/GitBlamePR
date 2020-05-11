@@ -23,3 +23,11 @@ struct Commit {
         return repository?.html.appendingPathComponent("commit").appendingPathComponent(hash)
     }
 }
+
+extension Commit {
+    init(from command: GitShowCommand, command remote: GitRemoteCommand) throws {
+        self = try command.output()
+        let repo = try remote.output()
+        self.repository = repo
+    }
+}

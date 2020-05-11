@@ -10,7 +10,8 @@ import Foundation
 
 struct CommitRepositiry {
     func find(byCommitHash hash: String, path: FileFullPath) throws -> Commit {
-        let command = GitShowCommand(commitHash: hash, directoryURL: path.directoryURL)
-        return try Git.commit(from: command, path: path)
+        let show = GitShowCommand(commitHash: hash, directoryURL: path.directoryURL)
+        let remote = GitRemoteCommand(directoryURL: path.directoryURL)
+        return try Commit(from: show, command: remote)
     }
 }
