@@ -95,7 +95,7 @@ PR #10   ,    }
         XCTAssertEqual(vm.lines[64].revision.description, "e2b41ca")
         XCTAssertEqual(vm.lines[64].code, "}")
 
-        XCTAssertEqual(vm.lines[8].revision.description, "Not Committed")
+        XCTAssertEqual(vm.lines[8].revision.description, "-")
         XCTAssertEqual(vm.lines[8].code, "")
         XCTAssertEqual(vm.lines[8].url, nil)
     }

@@ -46,14 +46,6 @@ struct Git {
         )
     }
 
-    static func show(path: FileFullPath, hash: String) throws -> String {
-        return  try Self.runGitProcess(
-            executableURL: URL(fileURLWithPath: "/usr/bin/git"),
-            arguments: ["show", "--format=\"%H%n%an%n%ai%n%aE\"", "--date=rfc", hash],
-            currentDirectoryURL: path.directoryURL
-        )
-    }
-
     static private func runGitProcess(executableURL: URL, arguments: [String], currentDirectoryURL: URL?) throws -> String {
         do {
             let out = try Process.run(executableURL: executableURL, arguments: arguments, currentDirectoryURL: currentDirectoryURL)
