@@ -8,10 +8,7 @@
 
 import Foundation
 
-protocol GitCommand: Command {
-    associatedtype T
-    func output() throws -> T
-}
+protocol GitCommand: Command {}
 
 extension GitCommand {
     var executableURL: URL {

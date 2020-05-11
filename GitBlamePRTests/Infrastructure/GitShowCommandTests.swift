@@ -17,7 +17,7 @@ class GitShowCommandTests: XCTestCase {
             commitHash: hash,
             directoryURL: Enviroment.sourceRootDirectory
         )
-        let commit = try! command.output()
+        let commit = try! Commit(from: command, command: GitRemoteCommand(directoryURL: Enviroment.sourceRootDirectory))
         XCTAssertEqual(commit.hash, hash)
         XCTAssertEqual(commit.author, "Makoto Aoyama")
         XCTAssertEqual(commit.authorEmail, "m@aoyama.dev")
@@ -35,7 +35,7 @@ class GitShowCommandTests: XCTestCase {
             commitHash: hash,
             directoryURL: Enviroment.sourceRootDirectory
         )
-        let commit = try! command.output()
+        let commit = try! Commit(from: command, command: GitRemoteCommand(directoryURL: Enviroment.sourceRootDirectory))
         XCTAssertEqual(commit.fullCommitMessage, "")
     }
 
@@ -45,7 +45,7 @@ class GitShowCommandTests: XCTestCase {
             commitHash: hash,
             directoryURL: Enviroment.sourceRootDirectory
         )
-        let commit = try! command.output()
+        let commit = try! Commit(from: command, command: GitRemoteCommand(directoryURL: Enviroment.sourceRootDirectory))
         XCTAssertEqual(
             commit.fullCommitMessage, """
 This reverts commit 44cd166895ac93832525f3f7eca6b7e1fef8fe3d, reversing

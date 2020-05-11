@@ -25,9 +25,22 @@ struct Commit {
 }
 
 extension Commit {
-    init(from command: GitShowCommand, command remote: GitRemoteCommand) throws {
-        self = try command.output()
-        let repo = try remote.output()
-        self.repository = repo
+    init(from show: GitShowCommand, command remote: GitRemoteCommand) throws {
+        let output = try show.standardOutput()
+        let l = output.components(separatedBy: show.separator)
+        hash = l[show.placeholders.firstIndex(of: .commitHash)!]
+        author = l[show.placeholders.firstIndex(of: .authorName)!]
+        authorEmail = l[show.placeholders.firstIndex(of: .authorEmail)!]
+        authorDate = ISO8601DateFormatter().date(
+            from: l[show.placeholders.firstIndex(of: .authorDate)!]
+        )!
+        committer = l[show.placeholders.firstIndex(of: .committerName)!]
+        committerEmail = l[show.placeholders.firstIndex(of: .committerEmail)!]
+        committerDate = ISO8601DateFormatter().date(
+            from: l[show.placeholders.firstIndex(of: .committerDate)!]
+        )!
+        titleLine = l[show.placeholders.firstIndex(of: .subject)!]
+        fullCommitMessage = l[show.placeholders.firstIndex(of: .body)!]
+        self.repository =  try? remote.output()
     }
 }
