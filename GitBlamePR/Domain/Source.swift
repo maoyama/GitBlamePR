@@ -10,10 +10,18 @@ import Foundation
 
 struct Source {
     var lines: [Line]
+}
 
-    init?(gitRemoteStandardOutput: String, gitBlamePRStandardOutput: String) {
-        guard let repoURL = RepositoryURL(gitRemoteStandardOutput: gitRemoteStandardOutput) else {
-            return nil
+extension Source {
+    init(from remote: GitRemoteCommand, command blamePR: GitBlamePRCommand) throws {
+        let ro = try remote.standardOutput()
+        let bo = try blamePR.standardOutput()
+        try self.init(gitRemoteStandardOutput: ro, gitBlamePRStandardOutput: bo)
+    }
+
+    init(gitRemoteStandardOutput: String, gitBlamePRStandardOutput: String) throws {
+        guard let repoURL = GitRepository(gitRemoteStandardOutput: gitRemoteStandardOutput) else {
+            throw CommandError.parse
         }
 
         let strLines = gitBlamePRStandardOutput.components(separatedBy: .newlines).dropLast()
@@ -23,8 +31,8 @@ struct Source {
             let splitted = line.components(separatedBy: separatedBy)
             let linePrefix = splitted[0]
             let code = line.suffix(max(line.count - (linePrefix.count + separatedBy.count), 0))
-            guard let revision =  Revision(gitBlamePRStandardOutputLine: line, repositoryURL: repoURL) else {
-                throw NSError()
+            guard let revision =  Revision(gitBlamePRStandardOutputLine: line, repository: repoURL) else {
+                throw CommandError.parse
             }
             return Line(
                 revision: revision,
@@ -36,7 +44,7 @@ struct Source {
             self.lines = lines
             return
         }
-        return nil
+        throw CommandError.parse
     }
 }
 
@@ -47,11 +55,11 @@ struct Line {
 }
 
 enum Revision {
-    case pullRequest(PullRequest)
-    case commit(Commit)
+    case pullRequest(SourcePullRequest)
+    case commit(SourceCommit)
     case notCommited
 
-    init?(gitBlamePRStandardOutputLine: String, repositoryURL: RepositoryURL) {
+    init?(gitBlamePRStandardOutputLine: String, repository: GitRepository) {
         let separatedBy = ","
         let splitted = gitBlamePRStandardOutputLine.components(separatedBy: separatedBy)
         let linePrefix = splitted[0]
@@ -61,7 +69,7 @@ enum Revision {
         if revisionStr.contains("PR"),
             let prNumberStr = revisionStr.components(separatedBy: "#").last,
             let prNumber = Int(prNumberStr),
-            let pr = PullRequest(number: prNumber, repositoryURL:repositoryURL)
+            let pr = SourcePullRequest(number: prNumber, repository:repository)
         {
             self = .pullRequest(pr)
             return
@@ -70,7 +78,7 @@ enum Revision {
             self = .notCommited
             return
         }
-        if let commit = Commit(hash: revisionStr, repositoryURL:repositoryURL) {
+        if let commit = SourceCommit(hash: revisionStr, repository:repository) {
             self = .commit(commit)
             return
         }
@@ -78,14 +86,14 @@ enum Revision {
         return nil
     }
 
-    var discription: String {
+    var description: String {
         switch self {
         case .pullRequest(let pr):
             return "PR #\(pr.number)"
         case .commit(let commit):
             return "\(commit.hash)"
         case .notCommited:
-            return "Not Committed"
+            return "-"
         }
     }
 
@@ -101,29 +109,32 @@ enum Revision {
     }
 }
 
-struct PullRequest {
+struct SourcePullRequest {
     private(set) var number: Int
-    private(set) var url: URL
+    private(set) var repository: GitRepository
+    var url: URL {
+        repository.html.appendingPathComponent("/pull/\(number)")
+    }
 
-    init?(number: Int, repositoryURL: RepositoryURL) {
+    init?(number: Int, repository: GitRepository) {
         if number <= 0 {
             return nil
         }
         self.number = number
-        self.url = repositoryURL.value.appendingPathComponent("/pull/\(number)")
+        self.repository = repository
     }
 }
 
-struct Commit {
+struct SourceCommit {
     private(set) var hash: String
     private(set) var url: URL
 
-    init?(hash: String, repositoryURL: RepositoryURL) {
+    init?(hash: String, repository: GitRepository) {
         if hash.count < 4 {
             return nil
         }
         self.hash = hash
-        self.url = repositoryURL.value.appendingPathComponent("/commit/\(hash)")
+        self.url = repository.html.appendingPathComponent("/commit/\(hash)")
     }
 }
 
@@ -135,25 +146,5 @@ struct LineNumber {
             return nil
         }
         self.value = value
-    }
-}
-
-struct RepositoryURL {
-    private(set) var value: URL
-
-    init?(gitRemoteStandardOutput: String) {
-        guard let repo = gitRemoteStandardOutput
-            .components(separatedBy: .newlines)[0]
-            .components(separatedBy: "github.com:")
-            .last?
-            .components(separatedBy: ".git")
-            .first
-            else {
-                return nil
-            }
-        guard let repoURL = URL(string: "https://github.com/" + repo) else {
-            return nil
-        }
-        self.value = repoURL
     }
 }

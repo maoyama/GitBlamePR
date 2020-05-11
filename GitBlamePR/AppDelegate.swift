@@ -21,8 +21,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.title = "GitBlamePR"
         window.center()
         window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: SourceViewWrapper())
+        window.contentView = NSHostingView(rootView: MainView())
         window.makeKeyAndOrderFront(nil)
+        window?.titlebarAppearsTransparent = true
+        window?.styleMask = [.closable, .resizable, .fullSizeContentView, .miniaturizable, .titled]
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
@@ -30,30 +32,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             switch urlScheme {
             case .fileFullPath(let fullPath):
                 window?.contentView = NSHostingView(
-                    rootView: SourceViewWrapper(
-                        service: SourceApplicationService(fullPath: fullPath),
-                        fullPathTextFieldValue: fullPath.rawValue
-                    )
+                    rootView: MainView(path: fullPath.rawValue)
                 )
             case .xcodeFileFullPath:
                 XcodeConnection.resume { [weak self](result) in
                     switch result {
                     case .success(let fullPath):
                         self?.window?.contentView = NSHostingView(
-                            rootView: SourceViewWrapper(
-                                service: SourceApplicationService(fullPath: fullPath),
-                                fullPathTextFieldValue: fullPath.rawValue)
+                            rootView: MainView(path: fullPath.rawValue)
                         )
                     case .failure(let error):
                         self?.window?.contentView = NSHostingView(
-                            rootView: SourceViewWrapper(service: SourceApplicationService(error: error.localizedDescription))
+                            rootView: MainView(error: error.localizedDescription)
                         )
                     }
                 }
             }
         } else {
             window?.contentView = NSHostingView(
-                rootView: SourceViewWrapper(service: SourceApplicationService(error: "URL not found."))
+                rootView: MainView(error: "URL not found.")
             )
         }
     }

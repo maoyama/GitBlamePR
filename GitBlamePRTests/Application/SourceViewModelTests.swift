@@ -85,17 +85,17 @@ PR #10   ,    }
 """
 
     func testContentViewModelInit() {
-        let source = Source(gitRemoteStandardOutput: gitRemoteOutput, gitBlamePRStandardOutput: gitBlamePROutput)!
+        let source = try! Source(gitRemoteStandardOutput: gitRemoteOutput, gitBlamePRStandardOutput: gitBlamePROutput)
         let vm = SourceViewModel(source: source)
         XCTAssertEqual(vm.lines.count, 65)
-        XCTAssertEqual(vm.lines[16].message, "PR #10")
+        XCTAssertEqual(vm.lines[16].revision.description, "PR #10")
         XCTAssertEqual(vm.lines[16].url, URL(string: "https://github.com/maoyama/GitBlamePR/pull/10")!)
         XCTAssertEqual(vm.lines[16].code, "    func applicationWillFinishLaunching(_ notification: Notification) {")
 
-        XCTAssertEqual(vm.lines[64].message, "e2b41ca")
+        XCTAssertEqual(vm.lines[64].revision.description, "e2b41ca")
         XCTAssertEqual(vm.lines[64].code, "}")
 
-        XCTAssertEqual(vm.lines[8].message, "Not Committed")
+        XCTAssertEqual(vm.lines[8].revision.description, "-")
         XCTAssertEqual(vm.lines[8].code, "")
         XCTAssertEqual(vm.lines[8].url, nil)
     }

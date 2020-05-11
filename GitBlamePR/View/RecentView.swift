@@ -8,10 +8,6 @@
 
 import SwiftUI
 
-struct RecentViewModel {
-    var fullPaths: [(value: String, id: UUID)]
-}
-
 struct RecentView: View {
     private var model: RecentViewModel
     private var textOnTap: (String) -> Void
@@ -31,7 +27,6 @@ struct RecentView: View {
                 Spacer()
                 Button("Clear") {
                     self.clearOnTap()
-
                 }
             }
             ForEach(model.fullPaths, id: \.id) { fullPath in
@@ -42,6 +37,7 @@ struct RecentView: View {
                     }
             }
         }
+        .padding(.init(top: 16, leading: 10, bottom: 16, trailing: 10))
     }
 }
 

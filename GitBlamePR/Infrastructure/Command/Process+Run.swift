@@ -8,10 +8,23 @@
 
 import Foundation
 
-enum ProcessError: Error {
-    case unknown
-    case standardError(String)
+struct ProcessError: Error, LocalizedError {
+    static var unknown = ProcessError(description: "Unknown error.")
+
+    private var description: String
+    var errorDescription: String? {
+        return description
+    }
+
+    init(description: String) {
+        self.description = description
+    }
+
+    init(error: Error) {
+        self.init(description: error.localizedDescription)
+    }
 }
+
 
 extension Process {
     static func run(executableURL: URL, arguments: [String], currentDirectoryURL: URL?) throws -> String {
@@ -24,15 +37,15 @@ extension Process {
         process.standardOutput = stdOutput
         process.standardError = stdError
         try process.run()
+        if let stdOut = String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8), !stdOut.isEmpty {
+            return stdOut
+        }
         guard let errOut = String(data: stdError.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) else {
             throw ProcessError.unknown
         }
         guard errOut.isEmpty else {
-            throw ProcessError.standardError(errOut)
+            throw ProcessError(description: errOut)
         }
-        guard let stdOut = String(data: stdOutput.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) else {
-            throw ProcessError.unknown
-        }
-        return stdOut
+        throw ProcessError.unknown
     }
 }
