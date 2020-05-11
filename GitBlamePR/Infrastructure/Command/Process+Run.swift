@@ -8,10 +8,23 @@
 
 import Foundation
 
-enum ProcessError: Error {
-    case unknown
-    case standardError(String)
+struct ProcessError: Error, LocalizedError {
+    static var unknown = ProcessError(description: "Unknown error.")
+
+    private var description: String
+    var errorDescription: String? {
+        return description
+    }
+
+    init(description: String) {
+        self.description = description
+    }
+
+    init(error: Error) {
+        self.init(description: error.localizedDescription)
+    }
 }
+
 
 extension Process {
     static func run(executableURL: URL, arguments: [String], currentDirectoryURL: URL?) throws -> String {
@@ -31,7 +44,7 @@ extension Process {
             throw ProcessError.unknown
         }
         guard errOut.isEmpty else {
-            throw ProcessError.standardError(errOut)
+            throw ProcessError(description: errOut)
         }
         throw ProcessError.unknown
     }
