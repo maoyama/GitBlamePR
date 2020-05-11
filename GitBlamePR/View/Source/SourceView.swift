@@ -68,7 +68,7 @@ struct Source_Previews: PreviewProvider {
                         (
                             revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
-                            code: "            textOnCommit: {text in //xxxx xxxx xxxx xxxx xx xx xxx",
+                            code: "            textOnCommit: {text in //xxxx xxxx xxxx xxxx xx xx xxx xxx xxx xxx Y",
                             number: "6"
                         ),
                         (

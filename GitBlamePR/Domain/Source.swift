@@ -87,7 +87,7 @@ enum Revision {
         case .commit(let commit):
             return "\(commit.hash)"
         case .notCommited:
-            return "Not Committed"
+            return "-"
         }
     }
 

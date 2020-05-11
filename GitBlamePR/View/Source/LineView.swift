@@ -13,7 +13,7 @@ struct LineView: View {
     var revisionOnSelect: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
     var width: CGFloat
     var numberWidth: CGFloat = 30
-    var revisionWidth: CGFloat = 90
+    var revisionWidth: CGFloat = 66
     var space: CGFloat = 8
     var codeWidth: CGFloat {
         max(width - numberWidth - revisionWidth - space * 2, 100)
@@ -23,7 +23,7 @@ struct LineView: View {
         VStack {
             HStack(alignment: .top, spacing: space) {
                 Text(line.number)
-                    .font(Font.system(.caption, design: .monospaced)).truncationMode(.head)
+                    .truncationMode(.head)
                     .foregroundColor(.secondary)
                     .opacity(0.8)
                     .lineLimit(1)
@@ -34,12 +34,10 @@ struct LineView: View {
                 if line.url == nil {// e.g. Not commited
                     Text(line.revision.description)
                         .lineLimit(1)
-                        .font(Font.system(.caption, design: .monospaced))
                         .foregroundColor(.gray)
                         .frame(width: revisionWidth, alignment: .leading)
                 } else {
                     Text(line.revision.description)
-                        .font(Font.system(.caption, design: .monospaced))
                         .foregroundColor(.accentColor)
                         .fontWeight(.bold)
                         .lineLimit(1)
@@ -50,6 +48,8 @@ struct LineView: View {
                 }
 
             }
-        }
+        }                    .font(Font.system(size: 12, weight: .regular, design: .monospaced))
+            .lineSpacing(9)
+
     }
 }
