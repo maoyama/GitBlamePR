@@ -70,6 +70,7 @@
 		61C4FC4C239B894B00F75B8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C4FC4A239B894B00F75B8D /* Main.storyboard */; };
 		61C4FC58239B894C00F75B8D /* SourceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4FC57239B894C00F75B8D /* SourceViewModelTests.swift */; };
 		61CD064A24698C2000688443 /* GitBlamePRCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CD064924698C2000688443 /* GitBlamePRCommand.swift */; };
+		61CD064C2469995900688443 /* Process+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */; };
 		61D790C9244DEABC00E43821 /* PullRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D790C8244DEABC00E43821 /* PullRequestViewModel.swift */; };
 		61E2C969240B31810011CB6D /* URLSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2C968240B31810011CB6D /* URLSchemeTests.swift */; };
 		61E2C96B240B404E0011CB6D /* URLScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2C96A240B404E0011CB6D /* URLScheme.swift */; };
@@ -710,6 +711,7 @@
 			files = (
 				612F669F2400AFF8001975A6 /* SourceEditorExtension.swift in Sources */,
 				612F66A12400AFF8001975A6 /* SourceEditorCommand.swift in Sources */,
+				61CD064C2469995900688443 /* Process+Run.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
