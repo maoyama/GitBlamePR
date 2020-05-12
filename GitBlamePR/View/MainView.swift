@@ -11,24 +11,32 @@ import AppKit
 
 
 struct MainView: View {
-    @State var path: String = ""
+    @State var path: String = "" {
+        didSet {
+            self.error = ""
+        }
+    }
     @State var revision: (commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?) = (commitHash: nil, pullRequest: nil)
-    var error: String = ""
+    @State var error: String = ""
 
     var body: some View {
         VStack(spacing: 0) {
             ToolBar(path: $path)
             SplitView(
                 master:
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 0) {
                     if !error.isEmpty {
                         Text(error)
+                            .padding()
+                        Divider()
                     }
                     if path.isEmpty {
-                        RecentViewWrapper() { path in
-                            self.path = path
+                        ScrollView {
+                            RecentViewWrapper() { path in
+                                self.path = path
+                            }
+                            Spacer()
                         }
-                        Spacer()
                     } else {
                         SourceViewWrapper(
                             service: SourceApplicationService(path: path),
