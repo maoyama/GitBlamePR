@@ -14,7 +14,7 @@ struct FileFullPath: Equatable {
             lhs.rawValue == rhs.rawValue
     }
 
-    var rawValue: String
+    let rawValue: String
     var trimmed: String {
         rawValue.trimmingCharacters(in: .whitespacesAndNewlines)
     }

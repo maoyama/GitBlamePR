@@ -9,25 +9,25 @@
 import Foundation
 
 struct PullRequest: Decodable {
-    var number: Int
-    var htmlUrl: URL
-    var title: String
-    var body: String
-    var user: PullRequestUser
-    var mergedAt: Date
-    var comments: Int
-    var reviewComments: Int
-    var commits: Int
-    var additions: Int
-    var deletions: Int
-    var changedFiles: Int
+    let number: Int
+    let htmlUrl: URL
+    let title: String
+    let body: String
+    let user: PullRequestUser
+    let mergedAt: Date
+    let comments: Int
+    let reviewComments: Int
+    let commits: Int
+    let additions: Int
+    let deletions: Int
+    let changedFiles: Int
     var conversationCount: Int {
         comments + reviewComments
     }
 }
 
 struct PullRequestUser: Decodable {
-    var login: String
-    var avatarUrl: URL
-    var htmlUrl: URL
+    let login: String
+    let avatarUrl: URL
+    let htmlUrl: URL
 }

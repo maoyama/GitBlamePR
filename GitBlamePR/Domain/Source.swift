@@ -9,7 +9,7 @@
 import Foundation
 
 struct Source {
-    var lines: [Line]
+    let lines: [Line]
 }
 
 extension Source {
