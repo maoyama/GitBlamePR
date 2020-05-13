@@ -9,16 +9,16 @@
 import Foundation
 
 struct Commit {
-    var hash: String
-    var author: String
-    var authorEmail: String
-    var authorDate: Date
-    var committer: String
-    var committerEmail: String
-    var committerDate: Date
-    var titleLine: String
-    var fullCommitMessage: String
-    var repository: GitRepository?
+    let hash: String
+    let author: String
+    let authorEmail: String
+    let authorDate: Date
+    let committer: String
+    let committerEmail: String
+    let committerDate: Date
+    let titleLine: String
+    let fullCommitMessage: String
+    let repository: GitRepository?
     var html: URL? {
         return repository?.html.appendingPathComponent("commit").appendingPathComponent(hash)
     }
