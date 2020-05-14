@@ -42,6 +42,35 @@ extension GitHubRequest where Response: Decodable {
 
         return try decoder.decode(Response.self, from: data)
     }
+
+    func intercept(object: Any, urlResponse: HTTPURLResponse) throws -> Any {
+        guard 200..<300 ~= urlResponse.statusCode else {
+            throw GitHubAPIError(statusCode: urlResponse.statusCode, object: object)
+        }
+        return object
+    }
+}
+
+struct GitHubAPIError: Error {
+    var statusCode: Int
+    var message: String
+
+    init(statusCode: Int, object: Any) {
+        self.statusCode = statusCode
+        guard
+            let json = object as? Data,
+            let response = try? JSONDecoder().decode(Responce.self, from: json),
+            let responseMsg = response.message
+        else {
+            message = "Unknown error."
+            return
+        }
+        message = responseMsg
+    }
+
+    private struct Responce: Decodable {
+        var message: String?
+    }
 }
 
 protocol PagingGitHubRequest: GitHubRequest {

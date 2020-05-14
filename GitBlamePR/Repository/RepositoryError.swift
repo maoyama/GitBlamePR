@@ -7,16 +7,39 @@
 //
 
 import Foundation
+import APIKit
 
 struct RepositoryError: Error, LocalizedError {
-    static var unknown = RepositoryError(description: "Unknown error.")
+    static var unknown = RepositoryError(localizedDescription: "Unknown error.")
+    var localizedDescription: String
+    var recoverySuggestion: String?
+}
 
-    private var description: String
-    var errorDescription: String? {
-        return description
-    }
-
-    init(description: String) {
-        self.description = description
+extension RepositoryError {
+    init(from error: SessionTaskError) {
+        switch error {
+        case .connectionError(_):
+            localizedDescription = "GitHubAPI Connection Error"
+        case .requestError(_):
+            localizedDescription = "GitHubAPI Request Error"
+        case .responseError(let e as GitHubAPIError):
+            localizedDescription = "GitHubAPI Error: \(e.statusCode ) " + e.message
+            if e.statusCode == 404 || e.statusCode == 403 {
+                // 404: Maybe a private repository
+                // 403: Maybe rate limit
+                recoverySuggestion = "You may need to authenticate with GitHub."
+            }
+        case .responseError(let e as ResponseError):
+            switch e {
+            case .nonHTTPURLResponse(_):
+                localizedDescription = "GitHubAPI response that fails to down-cast "
+            case .unexpectedObject(_):
+                localizedDescription = "GitHubAPI response is unexpected."
+            case .unacceptableStatusCode(let status):
+                localizedDescription = "GitHubAPI Error: \(status) "  + HTTPURLResponse.localizedString(forStatusCode: status)
+            }
+        default:
+            self = Self.unknown
+        }
     }
 }

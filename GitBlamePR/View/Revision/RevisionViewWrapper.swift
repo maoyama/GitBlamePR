@@ -12,13 +12,6 @@ struct RevisionViewWrapper: View {
     @ObservedObject var service: RevisionApplicationService
 
     var body: some View {
-        VStack {
-            if service.viewModel.commit != nil {
-                CommitView(model: service.viewModel.commit!)
-            }
-            if service.viewModel.pullRequest != nil {
-                PullRequestView(model: service.viewModel.pullRequest!)
-            }
-        }
+        RevisionView(model: service.viewModel)
     }
 }

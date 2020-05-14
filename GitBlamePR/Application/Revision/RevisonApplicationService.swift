@@ -23,14 +23,14 @@ class RevisionApplicationService: ObservableObject {
         self.commitRepository = CommitRepositiry()
         self.prRepository = PullRequestRepository()
         guard let fullPath = FileFullPath(rawValue: fullPathTextFieldValue) else {
-            viewModel = RevisionViewModel(commit: nil, error: "Full path text error.")
+            viewModel = RevisionViewModel(commit: nil, error: "")
             return
         }
         viewModel = RevisionViewModel(commit: nil, pullRequest: nil, error: "")
         if let commitHash = commitHash {
             do {
                 let commit = try commitRepository.find(byCommitHash: commitHash, path: fullPath)
-                viewModel.commit = CommitViewModel(from: commit)
+                viewModel = RevisionViewModel(commit: CommitViewModel(from: commit))
                 return
             } catch let e {
                 viewModel.error = e.localizedDescription
@@ -41,12 +41,7 @@ class RevisionApplicationService: ObservableObject {
             let prOwner = pullRequestOwner,
             let prRepositoryName = pullRequestRepositoryName {
             prRepository.find(byNumber: prNumber, repositoryName: prRepositoryName, ownerName: prOwner) {[weak self] (result) in
-                switch result {
-                case .success(let pr):
-                    self?.viewModel.pullRequest = PullRequestViewModel(from: pr)
-                case .failure(let e):
-                    self?.viewModel.error = e.localizedDescription
-                }
+                self?.viewModel = RevisionViewModel(from: result)
             }
         }
     }
