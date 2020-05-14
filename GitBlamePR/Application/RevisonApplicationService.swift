@@ -23,7 +23,7 @@ class RevisionApplicationService: ObservableObject {
         self.commitRepository = CommitRepositiry()
         self.prRepository = PullRequestRepository()
         guard let fullPath = FileFullPath(rawValue: fullPathTextFieldValue) else {
-            viewModel = RevisionViewModel(commit: nil, error: "Full path text error.")
+            viewModel = RevisionViewModel(commit: nil, error: "")
             return
         }
         viewModel = RevisionViewModel(commit: nil, pullRequest: nil, error: "")

@@ -14,6 +14,7 @@ struct MainView: View {
     @State var path: String = "" {
         didSet {
             self.error = ""
+            self.revision = (commitHash: nil, pullRequest: nil)
         }
     }
     @State var revision: (commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?) = (commitHash: nil, pullRequest: nil)
