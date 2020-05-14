@@ -290,6 +290,35 @@
 			path = workflows;
 			sourceTree = "<group>";
 		};
+		6113A3EF246D895A001CB6DB /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				615C393D23A46E530036FB97 /* SourceApplicationService.swift */,
+				61375FDB23AFA4D900BFD5F9 /* SourceViewModel.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		6113A3F0246D896C001CB6DB /* Resent */ = {
+			isa = PBXGroup;
+			children = (
+				610BD6F4245423DB0019C371 /* RecentApplicationService.swift */,
+				6114CDDB23AFBAF700EF6B88 /* RecentViewModel.swift */,
+			);
+			path = Resent;
+			sourceTree = "<group>";
+		};
+		6113A3F1246D8987001CB6DB /* Revision */ = {
+			isa = PBXGroup;
+			children = (
+				6150B9BA244A0626008FC18C /* RevisonApplicationService.swift */,
+				6150B9BE244A0923008FC18C /* RevisionViewModel.swift */,
+				6150B9BC244A08D1008FC18C /* CommitViewModel.swift */,
+				61D790C8244DEABC00E43821 /* PullRequestViewModel.swift */,
+			);
+			path = Revision;
+			sourceTree = "<group>";
+		};
 		611D6F3024382CFA006BAD44 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,24 +411,11 @@
 		6198CB0E2424987600AE0826 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				615C393D23A46E530036FB97 /* SourceApplicationService.swift */,
-				610BD6F4245423DB0019C371 /* RecentApplicationService.swift */,
-				6150B9BA244A0626008FC18C /* RevisonApplicationService.swift */,
-				6198CB0F2424989500AE0826 /* ViewModel */,
+				6113A3F0246D896C001CB6DB /* Resent */,
+				6113A3EF246D895A001CB6DB /* Source */,
+				6113A3F1246D8987001CB6DB /* Revision */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		6198CB0F2424989500AE0826 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				6114CDDB23AFBAF700EF6B88 /* RecentViewModel.swift */,
-				61375FDB23AFA4D900BFD5F9 /* SourceViewModel.swift */,
-				6150B9BE244A0923008FC18C /* RevisionViewModel.swift */,
-				6150B9BC244A08D1008FC18C /* CommitViewModel.swift */,
-				61D790C8244DEABC00E43821 /* PullRequestViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		6198CB10242498B700AE0826 /* Domain */ = {
