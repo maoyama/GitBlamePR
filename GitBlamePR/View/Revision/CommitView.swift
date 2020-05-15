@@ -14,14 +14,17 @@ struct CommitView: View {
     var body: some View {
         VStack(alignment: .leading) {
             SectionTitleView(title: "Commit")
-            VStack(alignment: .leading, spacing: 4) {
-                VStack(alignment: .leading) {
-                    Text(model.titleLine)
-                        .fontWeight(.bold)
-                    if !model.fullCommitMessage.isEmpty {
-                        Text(model.fullCommitMessage)
-                    }
+            VStack(alignment: .leading) {
+                Text(model.titleLine)
+                    .fontWeight(.bold)
+                    .padding(.top, 4)
+                if !model.fullCommitMessage.isEmpty {
+                    Text(model.fullCommitMessage)
+                        .padding(.top, 4)
                 }
+
+                Divider()
+                    .padding(.bottom, 2)
                 VStack(alignment: .leading) {
                     Text(model.author)
                     Text(model.authorEmail)
@@ -29,11 +32,11 @@ struct CommitView: View {
                     Text(model.authorDate)
                 }
                 Divider()
-                    .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                    .padding(.bottom, 3)
                 Text(model.hash)
                     .foregroundColor(.secondary)
                 Divider()
-                    .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                    .padding(.bottom, 3)
                 if model.html != nil {
                     HStack {
                         Spacer()
@@ -66,7 +69,9 @@ struct CommitView_Previews: PreviewProvider {
                     authorEmail: "m@aoyama.dev",
                     authorDate: "2020/04/20",
                     titleLine: "title for commit",
-                    fullCommitMessage: "message for commit.")
+                    fullCommitMessage: "message for commit.",
+                    html: URL(string: "https://example.com")
+                )
                 )
                 .frame(width: 200)
             CommitView(
