@@ -9,28 +9,41 @@
 import SwiftUI
 
 struct LineView: View {
-    var line: (revision: SourceRevisionViewModel, url: URL?, code: String, number: String)
+    var line: LineViewModel
     var width: CGFloat
-    var selected: Bool
-    var related: Bool
     var numberTextColor: Color {
-        selected ? Color(NSColor.textBackgroundColor) : .secondary
+        switch line.status {
+        case .selected:
+            return Color(NSColor.textBackgroundColor)
+        case .none, .related:
+            return.secondary
+        }
     }
     var codeTextColor: Color {
-        selected ? Color(NSColor.textBackgroundColor) : .primary
+        switch line.status {
+        case .selected:
+            return Color(NSColor.textBackgroundColor)
+        case .none, .related:
+            return .primary
+        }
     }
     var revisionTextColor: Color {
-        selected ? Color(NSColor.textBackgroundColor) : .secondary
+        switch line.status {
+        case .selected:
+            return Color(NSColor.textBackgroundColor)
+        case .none, .related:
+            return .secondary
+        }
     }
     var background: some View {
-        if selected {
-             return Color.blue
-
-        }
-        if related {
+        switch line.status {
+        case .selected:
+            return Color.blue
+        case .related:
             return Color(NSColor.windowBackgroundColor)
+        case .none:
+            return Color(NSColor.textBackgroundColor)
         }
-        return Color(NSColor.textBackgroundColor)
     }
     var numberWidth: CGFloat = 34
     var revisionWidth: CGFloat = 70
@@ -42,7 +55,7 @@ struct LineView: View {
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: space) {
-                Text(line.number)
+                Text("\(line.number)")
                     .truncationMode(.head)
                     .foregroundColor(numberTextColor)
                     .opacity(0.8)

@@ -22,7 +22,10 @@ struct SourceViewWrapper: View {
     var body: some View {
         SourceView(
             model: service.viewModel,
-            lineOnSelect: revisionOnHover
+            lineOnSelect: revisionOnHover,
+            lineOnSelect2: {
+                self.service.lineDidSelect(lineNumber: $0)
+            }
         )
     }
 

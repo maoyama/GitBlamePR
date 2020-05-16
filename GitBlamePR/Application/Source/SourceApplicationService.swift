@@ -42,33 +42,14 @@ class SourceApplicationService: ObservableObject {
         pathDidCommit(path: path)
     }
 
-    func revisionDidHover(lineNumber: Int) {
-        guard let revision = source?.lines[lineNumber - 1].revision else {
+    func lineDidSelect(lineNumber: Int) {
+        guard let number = LineNumber(lineNumber) else {
             return
         }
-        switch revision {
-        case .commit(let commit):
-            viewModel.hoveredRevision = (
-                commitHash: commit.hash,
-                pullRequestNumber: nil,
-                pullRequestOwner: nil,
-                pullRequestRepositoryName: nil
-            )
-        case .pullRequest(let pr):
-            viewModel.hoveredRevision = (
-                commitHash: nil,
-                pullRequestNumber: pr.number,
-                pullRequestOwner: pr.repository.ownerName,
-                pullRequestRepositoryName: pr.repository.name
-            )
-        case .notCommited:
-            viewModel.hoveredRevision = (
-                commitHash: nil,
-                pullRequestNumber: nil,
-                pullRequestOwner: nil,
-                pullRequestRepositoryName: nil
-            )
+        guard let selected = source?.selected(by: number) else {
+            return
         }
+        source = selected
     }
 
     private func pathDidCommit(path: FileFullPath) {
