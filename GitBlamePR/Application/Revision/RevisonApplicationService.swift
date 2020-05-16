@@ -42,7 +42,7 @@ class RevisionApplicationService: ObservableObject {
                         return
                     }
                 case .pullRequest(let pr):
-                    self.prRepository.find(byNumber: pr.number, repositoryName: pr.repository.name, ownerName: pr.repository.ownerName) {[weak self] (result) in
+                    self.prRepository.find(byNumber: pr.number, in: pr.repository) {[weak self] (result) in
                         self?.viewModel = RevisionViewModel(from: result)
                     }
                     return
