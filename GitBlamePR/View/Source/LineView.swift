@@ -13,7 +13,7 @@ struct LineView: View {
     var revisionOnSelect: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
     var width: CGFloat
     var numberWidth: CGFloat = 30
-    var revisionWidth: CGFloat = 66
+    var revisionWidth: CGFloat = 70
     var space: CGFloat = 8
     var codeWidth: CGFloat {
         max(width - numberWidth - revisionWidth - space * 2, 100)

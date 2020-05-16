@@ -54,13 +54,13 @@ struct Source_Previews: PreviewProvider {
                             number: "3"
                         ),
                         (
-                            revision: SourceRevisionViewModel(description: "Not Committed", pullRequest: nil, commitHash: nil),
+                            revision: SourceRevisionViewModel(description: "-", pullRequest: nil, commitHash: nil),
                             url: nil,
                             code: "        GitBlamePRView(",
                             number: "4"
                         ),
                         (
-                            revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
+                            revision: SourceRevisionViewModel(description: "fe21fe299", pullRequest: nil, commitHash: nil),
                             url: URL(string: "https://github.com")!,
                             code: "            model: service.viewModel,",
                             number: "5"
