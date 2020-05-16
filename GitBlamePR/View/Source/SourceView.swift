@@ -26,6 +26,12 @@ struct SourceView: View {
                         width: geometry.frame(in: .local).size.width - self.rowPaddingH * 2
                     )
                         .onTapGesture {
+                            if line.status == .selected {
+                                if let url = line.url {
+                                    NSWorkspace.shared.open(url)
+                                    return
+                                }
+                            }
                             self.lineOnSelect(line.number)
                         }
                 }
