@@ -11,7 +11,7 @@ import AppKit
 
 struct SourceView: View {
     var model: SourceViewModel
-    var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
+    var lineOnSelect: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
     var rowPaddingH : CGFloat = 10
 
     var body: some View {
@@ -21,7 +21,15 @@ struct SourceView: View {
                     Text(self.model.error)
                 }
                 ForEach(self.model.lines, id: \.number) { line in
-                    LineView(line: line, revisionOnSelect: self.revisionOnHover, width: geometry.frame(in: .local).size.width - self.rowPaddingH * 2)
+                    LineView(
+                        line: line,
+                        width: geometry.frame(in: .local).size.width - self.rowPaddingH * 2,
+                        selected: false,
+                        related: false
+                    )
+                        .onTapGesture {
+                            self.lineOnSelect((commitHash: line.revision.commitHash, pullRequest: line.revision.pullRequest))
+                        }
                 }
             }
         }
@@ -85,7 +93,7 @@ struct Source_Previews: PreviewProvider {
                         ),
                     ]
                 ),
-                revisionOnHover: { _ in
+                lineOnSelect: { _ in
 
             }
             )

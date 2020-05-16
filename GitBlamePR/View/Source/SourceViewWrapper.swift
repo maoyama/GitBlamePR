@@ -22,7 +22,7 @@ struct SourceViewWrapper: View {
     var body: some View {
         SourceView(
             model: service.viewModel,
-            revisionOnHover: revisionOnHover
+            lineOnSelect: revisionOnHover
         )
     }
 

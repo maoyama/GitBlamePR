@@ -65,6 +65,60 @@ struct PullRequestView: View {
     }
 }
 
+private struct Author: View {
+    var userAvatarURL: URL
+    var user: String
+    var mergedAt: String
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack(alignment: .center) {
+                KFImage(userAvatarURL)
+                    .cancelOnDisappear(true)
+                    .resizable()
+                    .renderingMode(.original)
+                    .frame(width: 20, height: 20)
+                    .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+                VStack (alignment: .leading) {
+                    Text(user)
+                    Text(mergedAt).foregroundColor(.secondary)
+                        .font(.system(size: 11))
+                }.padding(.top, -2)
+                Spacer()
+            }
+        }
+    }
+}
+
+private struct Counter: View {
+    var conversationCount: String
+    var commitsCount: String
+    var changedFiles: String
+    var additionsCount: String
+    var deletionsCount: String
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text(conversationCount).fontWeight(.bold)
+                Text("Conversation").foregroundColor(.secondary).font(.caption)
+            }
+            HStack {
+                Text(commitsCount).fontWeight(.bold)
+                Text("Commits").foregroundColor(.secondary).font(.caption)
+            }
+            HStack {
+                Text(changedFiles).fontWeight(.bold)
+                Text("File changed").foregroundColor(.secondary).font(.caption)
+            }
+            HStack {
+                Text(additionsCount).foregroundColor(.green)
+                Text(deletionsCount).foregroundColor(.red)
+            }
+        }
+    }
+}
+
 struct PullRequestView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -127,56 +181,3 @@ struct PullRequestView_Previews: PreviewProvider {
     }
 }
 
-private struct Author: View {
-    var userAvatarURL: URL
-    var user: String
-    var mergedAt: String
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            HStack(alignment: .center) {
-                KFImage(userAvatarURL)
-                    .cancelOnDisappear(true)
-                    .resizable()
-                    .renderingMode(.original)
-                    .frame(width: 20, height: 20)
-                    .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                VStack (alignment: .leading) {
-                    Text(user)
-                    Text(mergedAt).foregroundColor(.secondary)
-                        .font(.system(size: 11))
-                }.padding(.top, -2)
-                Spacer()
-            }
-        }
-    }
-}
-
-private struct Counter: View {
-    var conversationCount: String
-    var commitsCount: String
-    var changedFiles: String
-    var additionsCount: String
-    var deletionsCount: String
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text(conversationCount).fontWeight(.bold)
-                Text("Conversation").foregroundColor(.secondary).font(.caption)
-            }
-            HStack {
-                Text(commitsCount).fontWeight(.bold)
-                Text("Commits").foregroundColor(.secondary).font(.caption)
-            }
-            HStack {
-                Text(changedFiles).fontWeight(.bold)
-                Text("File changed").foregroundColor(.secondary).font(.caption)
-            }
-            HStack {
-                Text(additionsCount).foregroundColor(.green)
-                Text(deletionsCount).foregroundColor(.red)
-            }
-        }
-    }
-}
