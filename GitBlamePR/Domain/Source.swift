@@ -10,6 +10,30 @@ import Foundation
 
 struct Source {
     let lines: [Line]
+
+    func selected(by number: LineNumber) -> Source {
+        guard let selectedLine = line(by: number) else {
+            return self
+        }
+        let selectedLines = lines.map { (l) -> Line in
+            var new = l
+            if new.number == number {
+                new.status = .selected
+                return new
+            }
+            if new.revision == selectedLine.revision {
+                new.status = .related
+                return new
+            }
+            new.status = .none
+            return new
+        }
+        return Source(lines: selectedLines)
+    }
+
+    func line(by number:LineNumber) -> Line? {
+        return lines.first(where: { $0.number == number })
+    }
 }
 
 extension Source {
@@ -36,8 +60,9 @@ extension Source {
             }
             return Line(
                 revision: revision,
-                number: LineNumber(value: index + 1)!,
-                code: String(code)
+                number: LineNumber(index + 1)!,
+                code: String(code),
+                status: .none
             )
         }
         if let lines = lines {
@@ -52,13 +77,53 @@ struct Line {
     var revision: Revision
     var number: LineNumber
     var code: String
+    var status: LineStatus
 }
 
-enum Revision {
+enum LineStatus {
+    case selected, related, none
+}
+
+
+enum Revision: Equatable {
+    static func == (lhs: Revision, rhs: Revision) -> Bool {
+        guard
+            let lhsURL = lhs.url,
+            let rhsURL = rhs.url
+        else {
+            return false
+        }
+        return lhsURL == rhsURL
+    }
+
     case pullRequest(SourcePullRequest)
     case commit(SourceCommit)
     case notCommited
 
+    var description: String {
+        switch self {
+        case .pullRequest(let pr):
+            return "PR #\(pr.number)"
+        case .commit(let commit):
+            return "\(commit.hash)"
+        case .notCommited:
+            return "-"
+        }
+    }
+
+    var url: URL? {
+        switch self {
+        case .pullRequest(let pr):
+            return pr.url
+        case .commit(let commit):
+            return commit.url
+        case .notCommited:
+            return nil
+        }
+    }
+}
+
+extension Revision {
     init?(gitBlamePRStandardOutputLine: String, repository: GitRepository) {
         let separatedBy = ","
         let splitted = gitBlamePRStandardOutputLine.components(separatedBy: separatedBy)
@@ -84,28 +149,6 @@ enum Revision {
         }
 
         return nil
-    }
-
-    var description: String {
-        switch self {
-        case .pullRequest(let pr):
-            return "PR #\(pr.number)"
-        case .commit(let commit):
-            return "\(commit.hash)"
-        case .notCommited:
-            return "-"
-        }
-    }
-
-    var url: URL? {
-        switch self {
-        case .pullRequest(let pr):
-            return pr.url
-        case .commit(let commit):
-            return commit.url
-        case .notCommited:
-            return nil
-        }
     }
 }
 
@@ -138,13 +181,18 @@ struct SourceCommit {
     }
 }
 
-struct LineNumber {
+struct LineNumber: Equatable {
+    static func == (lhs: LineNumber, rhs: LineNumber) -> Bool {
+        return lhs.value == rhs.value
+    }
+
     private(set) var value: Int
 
-    init?(value: Int) {
+    init?(_ value: Int) {
         if value <= 0 {
             return nil
         }
         self.value = value
     }
+
 }

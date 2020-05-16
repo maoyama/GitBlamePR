@@ -10,8 +10,8 @@ import Foundation
 import APIKit
 
 struct PullRequestRepository {
-    func find(byNumber number: Int, repositoryName: String,  ownerName: String, handler: @escaping (Result<PullRequest, RepositoryError>) -> Void) {
-        let req = PullRequestRequest(owner: ownerName, repos: repositoryName, number: number)
+    func find(byNumber number: Int, in repo: GitRepository , handler: @escaping (Result<PullRequest, RepositoryError>) -> Void) {
+        let req = PullRequestRequest(owner: repo.ownerName, repos: repo.name, number: number)
         Session.send(req, handler: handler)
     }
 }

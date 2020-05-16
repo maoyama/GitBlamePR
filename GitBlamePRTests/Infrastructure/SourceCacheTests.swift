@@ -15,7 +15,7 @@ class SourceCacheTests: XCTestCase {
         XCTAssertNil(SourceCache.shared.object(forKey: key))
         let code = "// Hello!"
         let source = Source(
-            lines: [.init(revision: .notCommited, number: LineNumber(value: 1)!, code: code)]
+            lines: [.init(revision: .notCommited, number: LineNumber(1)!, code: code, status: .none)]
         )
         SourceCache.shared.set(source, forKey: key)
         let cached = SourceCache.shared.object(forKey: key)!

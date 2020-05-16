@@ -11,7 +11,7 @@ import AppKit
 
 struct SourceView: View {
     var model: SourceViewModel
-    var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
+    var lineOnSelect: (_ lineNumber: Int) -> Void
     var rowPaddingH : CGFloat = 10
 
     var body: some View {
@@ -21,7 +21,19 @@ struct SourceView: View {
                     Text(self.model.error)
                 }
                 ForEach(self.model.lines, id: \.number) { line in
-                    LineView(line: line, revisionOnSelect: self.revisionOnHover, width: geometry.frame(in: .local).size.width - self.rowPaddingH * 2)
+                    LineView(
+                        line: line,
+                        width: geometry.frame(in: .local).size.width - self.rowPaddingH * 2
+                    )
+                        .onTapGesture {
+                            if line.status == .selected {
+                                if let url = line.url {
+                                    NSWorkspace.shared.open(url)
+                                    return
+                                }
+                            }
+                            self.lineOnSelect(line.number)
+                        }
                 }
             }
         }
@@ -30,65 +42,79 @@ struct SourceView: View {
 
 
 struct Source_Previews: PreviewProvider {
+    static var model = SourceViewModel(
+        lines: [
+            LineViewModel(
+                revision: SourceRevisionViewModel(description: "PR #2020", pullRequest: nil, commitHash: nil),
+                url: URL(string: "https://github.com")!,
+                code: "struct ContentView: View {",
+                number: 1,
+                status: .none
+            ),
+            LineViewModel(
+                revision: SourceRevisionViewModel(description: "PR #2020", pullRequest: nil, commitHash: nil),
+                url: URL(string: "https://github.com")!,
+                code: "",
+                number: 2,
+                status: .none
+            ),
+            LineViewModel(
+                revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
+                url: URL(string: "https://github.com")!,
+                code: "    var body: some View {",
+                number: 3,
+                status: .none
+            ),
+            LineViewModel(
+                revision: SourceRevisionViewModel(description: "-", pullRequest: nil, commitHash: nil),
+                url: nil,
+                code: "        GitBlamePRView(",
+                number: 4,
+                status: .none
+            ),
+            LineViewModel(
+                revision: SourceRevisionViewModel(description: "fe21fe299", pullRequest: nil, commitHash: nil),
+                url: URL(string: "https://github.com")!,
+                code: "            model: service.viewModel,",
+                number: 5,
+                status: .related
+            ),
+            LineViewModel(
+                revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
+                url: URL(string: "https://github.com")!,
+                code: "            textOnCommit: {text in //xxxx xxxx xxxx xxxx xx xx xxx xxx xxx xxx Y",
+                number: 6,
+                status: .selected
+            ),
+            LineViewModel(
+                revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
+                url: URL(string: "https://github.com")!,
+                code: "                self.service.fullPath = text",
+                number: 9999,
+                status: .none
+            ),
+            LineViewModel(
+                revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
+                url: URL(string: "https://github.com")!,
+                code: "            }",
+                number: 99999,
+                status: .none
+            ),
+        ]
+    )
     static var previews: some View {
         Group {
             SourceView(
-                model: SourceViewModel(
-                    lines: [
-                        (
-                            revision: SourceRevisionViewModel(description: "PR #2020", pullRequest: nil, commitHash: nil),
-                            url: URL(string: "https://github.com")!,
-                            code: "struct ContentView: View {",
-                            number: "1"
-                        ),
-                        (
-                            revision: SourceRevisionViewModel(description: "PR #2020", pullRequest: nil, commitHash: nil),
-                            url: URL(string: "https://github.com")!,
-                            code: "",
-                            number: "2"
-                        ),
-                        (
-                            revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
-                            url: URL(string: "https://github.com")!,
-                            code: "    var body: some View {",
-                            number: "3"
-                        ),
-                        (
-                            revision: SourceRevisionViewModel(description: "Not Committed", pullRequest: nil, commitHash: nil),
-                            url: nil,
-                            code: "        GitBlamePRView(",
-                            number: "4"
-                        ),
-                        (
-                            revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
-                            url: URL(string: "https://github.com")!,
-                            code: "            model: service.viewModel,",
-                            number: "5"
-                        ),
-                        (
-                            revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
-                            url: URL(string: "https://github.com")!,
-                            code: "            textOnCommit: {text in //xxxx xxxx xxxx xxxx xx xx xxx xxx xxx xxx Y",
-                            number: "6"
-                        ),
-                        (
-                            revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
-                            url: URL(string: "https://github.com")!,
-                            code: "                self.service.fullPath = text",
-                            number: "9999"
-                        ),
-                        (
-                            revision: SourceRevisionViewModel(description: "fe21fe29", pullRequest: nil, commitHash: nil),
-                            url: URL(string: "https://github.com")!,
-                            code: "            }",
-                            number: "99999"
-                        ),
-                    ]
-                ),
-                revisionOnHover: { _ in
-
-            }
+                model: model,
+                lineOnSelect: { _ in}
             )
+            .environment(\.colorScheme, .light)
+            SourceView(
+                model: model,
+                lineOnSelect: { _ in}
+            )
+            .environment(\.colorScheme, .dark)
+
         }
     }
 }

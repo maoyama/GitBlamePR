@@ -12,17 +12,17 @@ import AppKit
 
 struct SourceViewWrapper: View {
     @ObservedObject private var service: SourceApplicationService
-    private var revisionOnHover: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
+    private var lineOnSelect: (_ lineNumber:Int) -> Void
 
-    init(service:SourceApplicationService, revisionOnHover: @escaping ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void){
+    init(service:SourceApplicationService, lineOnSelect: @escaping (_ lineNumber:Int) -> Void){
         self.service = service
-        self.revisionOnHover = revisionOnHover
+        self.lineOnSelect = lineOnSelect
     }
 
     var body: some View {
         SourceView(
             model: service.viewModel,
-            revisionOnHover: revisionOnHover
+            lineOnSelect: lineOnSelect
         )
     }
 

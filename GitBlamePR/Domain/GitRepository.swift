@@ -17,7 +17,9 @@ struct GitRepository {
     }
     let ownerName: String
     let name: String
+}
 
+extension GitRepository {
     init?(gitRemoteStandardOutput: String) {
         guard let path = gitRemoteStandardOutput
             .components(separatedBy: .newlines)[0]

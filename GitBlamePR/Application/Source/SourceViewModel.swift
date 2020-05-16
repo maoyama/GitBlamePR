@@ -9,9 +9,8 @@
 import Foundation
 
 struct SourceViewModel {
-    var lines: [(revision: SourceRevisionViewModel, url: URL?, code: String, number: String)]
+    var lines: [LineViewModel]
     var error = ""
-    var hoveredRevision: (commitHash: String?, pullRequestNumber: Int?, pullRequestOwner: String?, pullRequestRepositoryName: String?) 
 }
 
 extension SourceViewModel {
@@ -21,15 +20,38 @@ extension SourceViewModel {
     }
 
     init(source: Source) {
-        self.lines = source.lines.map { (line) -> (revision: SourceRevisionViewModel, url: URL?, code: String, number: String) in
-            return (
+        self.lines = source.lines.map { (line) -> LineViewModel in
+            return LineViewModel(
                 revision: SourceRevisionViewModel(from: line.revision),
                 url: line.revision.url,
                 code: line.code,
-                number: "\(line.number.value)"
+                number: line.number.value,
+                status: .init(from: line.status)
             )
         }
     }
+}
+
+struct LineViewModel {
+    enum Status {
+        case selected, related, none
+        init(from status: LineStatus) {
+            switch status {
+            case .selected:
+                self = .selected
+            case .related:
+                self = .related
+            case .none:
+                self = .none
+            }
+        }
+    }
+
+    var revision: SourceRevisionViewModel
+    var url: URL?
+    var code: String
+    var number: Int
+    var status: Status
 }
 
 struct SourceRevisionViewModel {

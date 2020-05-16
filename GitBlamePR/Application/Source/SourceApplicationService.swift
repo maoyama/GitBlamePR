@@ -12,18 +12,6 @@ class SourceApplicationService: ObservableObject {
     @Published private(set) var viewModel: SourceViewModel
     private var historyRepository: HistoryRepository
     private var sourceRepository: SourceRepository
-    private var source: Source? {
-        didSet {
-            guard let source = source else {
-                viewModel = SourceViewModel(
-                    lines: [],
-                    error: ""
-                )
-                return
-            }
-            viewModel = SourceViewModel(source: source)
-        }
-    }
 
     init(error: String="") {
         self.historyRepository = HistoryRepository()
@@ -34,49 +22,21 @@ class SourceApplicationService: ObservableObject {
         )
     }
 
-    convenience init(path: String) {
+    convenience init(fullPath: String, lineNumber: Int?) {
         self.init()
-        guard let path = FileFullPath(rawValue: path) else {
+        guard let path = FileFullPath(rawValue: fullPath) else {
+            viewModel = SourceViewModel(lines: [], error: "")
             return
         }
-        pathDidCommit(path: path)
-    }
-
-    func revisionDidHover(lineNumber: Int) {
-        guard let revision = source?.lines[lineNumber - 1].revision else {
-            return
-        }
-        switch revision {
-        case .commit(let commit):
-            viewModel.hoveredRevision = (
-                commitHash: commit.hash,
-                pullRequestNumber: nil,
-                pullRequestOwner: nil,
-                pullRequestRepositoryName: nil
-            )
-        case .pullRequest(let pr):
-            viewModel.hoveredRevision = (
-                commitHash: nil,
-                pullRequestNumber: pr.number,
-                pullRequestOwner: pr.repository.ownerName,
-                pullRequestRepositoryName: pr.repository.name
-            )
-        case .notCommited:
-            viewModel.hoveredRevision = (
-                commitHash: nil,
-                pullRequestNumber: nil,
-                pullRequestOwner: nil,
-                pullRequestRepositoryName: nil
-            )
-        }
-    }
-
-    private func pathDidCommit(path: FileFullPath) {
         sourceRepository.find(by: path) {[weak self] (result) in
             guard let self = self else { return }
             switch result {
-            case .success(let source):
-                self.source = source
+            case .success(let s):
+                var source = s
+                if let lineNumber = lineNumber, let lineNumberModel = LineNumber(lineNumber) {
+                    source = source.selected(by: lineNumberModel)
+                }
+                self.viewModel = SourceViewModel(source: source)
                 var history = self.historyRepository.findAll()
                 history.addInputFullPath(path.rawValue)
                 do {
@@ -90,5 +50,4 @@ class SourceApplicationService: ObservableObject {
             }
         }
     }
-
 }

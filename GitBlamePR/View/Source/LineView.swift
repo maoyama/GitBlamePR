@@ -9,47 +9,78 @@
 import SwiftUI
 
 struct LineView: View {
-    var line: (revision: SourceRevisionViewModel, url: URL?, code: String, number: String)
-    var revisionOnSelect: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
+    var line: LineViewModel
     var width: CGFloat
-    var numberWidth: CGFloat = 30
-    var revisionWidth: CGFloat = 66
-    var space: CGFloat = 8
-    var codeWidth: CGFloat {
+    private var numberTextColor: Color {
+        switch line.status {
+        case .selected:
+            return Color(NSColor.textBackgroundColor)
+        case .none, .related:
+            return .secondary
+        }
+    }
+    private var codeTextColor: Color {
+        switch line.status {
+        case .selected:
+            return Color(NSColor.textBackgroundColor)
+        case .none, .related:
+            return .primary
+        }
+    }
+    private var revisionTextColor: Color {
+        switch line.status {
+        case .selected:
+            return Color(NSColor.textBackgroundColor)
+        case .none, .related:
+            return .secondary
+        }
+    }
+    private var background: some View {
+        switch line.status {
+        case .selected:
+            return Color.accentColor
+        case .related:
+            return Color.accentColor.opacity(0.1)
+        case .none:
+            return Color.white.opacity(0.0001) // 0.0001 is workarround for ui event enable
+        }
+    }
+    private let numberWidth: CGFloat = 34
+    private let revisionWidth: CGFloat = 70
+    private let space: CGFloat = 8
+    private var codeWidth: CGFloat {
         max(width - numberWidth - revisionWidth - space * 2, 100)
     }
 
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: space) {
-                Text(line.number)
+                Text("\(line.number)")
                     .truncationMode(.head)
-                    .foregroundColor(.secondary)
-                    .opacity(0.8)
+                    .foregroundColor(numberTextColor)
                     .lineLimit(1)
                     .frame(width: numberWidth, alignment: .trailing)
                 Text(self.line.code)
                     .font(Font.system(.caption, design: .monospaced))
+                    .foregroundColor(codeTextColor)
                     .frame(width: codeWidth, alignment: .leading)
-                if line.url == nil {// e.g. Not commited
-                    Text(line.revision.description)
-                        .lineLimit(1)
-                        .foregroundColor(.gray)
-                        .frame(width: revisionWidth, alignment: .leading)
-                } else {
-                    Text(line.revision.description)
-                        .foregroundColor(.accentColor)
-                        .fontWeight(.bold)
-                        .lineLimit(1)
-                        .frame(width: revisionWidth, height: nil, alignment: .leading)
-                        .onTapGesture {
-                            self.revisionOnSelect((commitHash: self.line.revision.commitHash, pullRequest: self.line.revision.pullRequest))
-                        }
-                }
-
+                Text(line.revision.description)
+                    .foregroundColor(revisionTextColor)
+                    .fontWeight(.bold)
+                    .lineLimit(1)
+                    .frame(width: revisionWidth, alignment: .leading)
             }
-        }                    .font(Font.system(size: 12, weight: .regular, design: .monospaced))
+        }
+            .font(Font.system(size: 12, weight: .regular, design: .monospaced))
             .lineSpacing(9)
-
+            .background(background)
+            .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
+            .onHover { (enter) in
+                if (enter) {
+                    NSCursor.pointingHand.set()
+                } else {
+                    NSCursor.arrow.set()
+                }
+            }
     }
 }

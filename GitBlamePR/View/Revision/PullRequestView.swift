@@ -15,52 +15,36 @@ struct PullRequestView: View {
     var body: some View {
         VStack(alignment: .leading) {
             SectionTitleView(title: "Pull Request")
-            VStack(alignment: .leading, spacing: 4) {
-                VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading) {
+                Group {
                     Text(model.title)
                             .fontWeight(.bold)
                     + Text(" " + model.number )
-                        .foregroundColor(.secondary)
-                    if !model.body.isEmpty {
+                    .foregroundColor(.secondary)
+                }
+                    .padding(.top, 4)
+                if !model.body.isEmpty {
+                    Group {
                         Text(model.body)
                     }
-                    HStack(alignment: .center) {
-                        KFImage(model.userAvatarURL)
-                            .cancelOnDisappear(true)
-                            .resizable()
-                            .renderingMode(.original)
-                            .frame(width: 20, height: 20)
-                            .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                        VStack (alignment: .leading) {
-                            Text(model.user)
-                            Text(model.mergedAt).foregroundColor(.secondary)
-                                .font(.system(size: 11))
-                        }.padding(.top, -2)
-                        Spacer()
-                    }
+                        .padding(.top, 4)
                 }
+
+                Author(
+                    userAvatarURL: model.userAvatarURL,
+                    user: model.user,
+                    mergedAt: model.mergedAt)
                 Divider()
-                    .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(model.conversationCount).fontWeight(.bold)
-                        Text("Conversation").foregroundColor(.secondary).font(.caption)
-                    }
-                    HStack {
-                        Text(model.commitsCount).fontWeight(.bold)
-                        Text("Commits").foregroundColor(.secondary).font(.caption)
-                    }
-                    HStack {
-                        Text(model.changedFiles).fontWeight(.bold)
-                        Text("File changed").foregroundColor(.secondary).font(.caption)
-                    }
-                    HStack {
-                        Text(model.additionsCount).foregroundColor(.green)
-                        Text(model.deletionsCount).foregroundColor(.red)
-                    }
-                }
+                    .padding(.bottom, 3)
+                Counter(
+                    conversationCount: model.conversationCount,
+                    commitsCount: model.commitsCount,
+                    changedFiles: model.changedFiles,
+                    additionsCount: model.additionsCount,
+                    deletionsCount: model.deletionsCount
+                )
                 Divider()
-                    .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                    .padding(.bottom, 3)
                 HStack {
                     Spacer()
                     Button("Open in GitHub") {
@@ -78,6 +62,60 @@ struct PullRequestView: View {
         }
         .background(Color(.windowBackgroundColor))
         .padding(2)
+    }
+}
+
+private struct Author: View {
+    var userAvatarURL: URL
+    var user: String
+    var mergedAt: String
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack(alignment: .center) {
+                KFImage(userAvatarURL)
+                    .cancelOnDisappear(true)
+                    .resizable()
+                    .renderingMode(.original)
+                    .frame(width: 20, height: 20)
+                    .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+                VStack (alignment: .leading) {
+                    Text(user)
+                    Text(mergedAt).foregroundColor(.secondary)
+                        .font(.system(size: 11))
+                }.padding(.top, -2)
+                Spacer()
+            }
+        }
+    }
+}
+
+private struct Counter: View {
+    var conversationCount: String
+    var commitsCount: String
+    var changedFiles: String
+    var additionsCount: String
+    var deletionsCount: String
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text(conversationCount).fontWeight(.bold)
+                Text("Conversation").foregroundColor(.secondary).font(.caption)
+            }
+            HStack {
+                Text(commitsCount).fontWeight(.bold)
+                Text("Commits").foregroundColor(.secondary).font(.caption)
+            }
+            HStack {
+                Text(changedFiles).fontWeight(.bold)
+                Text("File changed").foregroundColor(.secondary).font(.caption)
+            }
+            HStack {
+                Text(additionsCount).foregroundColor(.green)
+                Text(deletionsCount).foregroundColor(.red)
+            }
+        }
     }
 }
 
@@ -142,3 +180,4 @@ struct PullRequestView_Previews: PreviewProvider {
         }
     }
 }
+
