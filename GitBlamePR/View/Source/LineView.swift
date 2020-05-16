@@ -42,7 +42,7 @@ struct LineView: View {
         case .related:
             return Color.accentColor.opacity(0.1)
         case .none:
-            return Color.white.opacity(0)
+            return Color.white.opacity(0.0001) // 0.0001 is workarround for ui event enable
         }
     }
     private let numberWidth: CGFloat = 34
