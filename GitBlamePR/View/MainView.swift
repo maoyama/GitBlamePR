@@ -45,7 +45,8 @@ struct MainView: View {
                                 self.line = line
                         })
                     }
-                }.background(Color(NSColor.textBackgroundColor)),
+                }
+                    .background(Color(NSColor.textBackgroundColor)),
                 detail: ScrollView(.vertical) {
                     VStack {
                         RevisionViewWrapper(

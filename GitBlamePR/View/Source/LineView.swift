@@ -16,7 +16,7 @@ struct LineView: View {
         case .selected:
             return Color(NSColor.textBackgroundColor)
         case .none, .related:
-            return.secondary
+            return .secondary
         }
     }
     private var codeTextColor: Color {
@@ -38,11 +38,11 @@ struct LineView: View {
     private var background: some View {
         switch line.status {
         case .selected:
-            return Color.blue
+            return Color.accentColor
         case .related:
-            return Color(NSColor.windowBackgroundColor)
+            return Color.accentColor.opacity(0.1)
         case .none:
-            return Color(NSColor.textBackgroundColor)
+            return Color.white.opacity(0)
         }
     }
     private let numberWidth: CGFloat = 34
@@ -58,7 +58,6 @@ struct LineView: View {
                 Text("\(line.number)")
                     .truncationMode(.head)
                     .foregroundColor(numberTextColor)
-                    .opacity(0.8)
                     .lineLimit(1)
                     .frame(width: numberWidth, alignment: .trailing)
                 Text(self.line.code)
@@ -68,7 +67,6 @@ struct LineView: View {
                 Text(line.revision.description)
                     .foregroundColor(revisionTextColor)
                     .fontWeight(.bold)
-                    .opacity(0.8)
                     .lineLimit(1)
                     .frame(width: revisionWidth, alignment: .leading)
             }
