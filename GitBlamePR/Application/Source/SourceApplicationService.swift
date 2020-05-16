@@ -12,18 +12,6 @@ class SourceApplicationService: ObservableObject {
     @Published private(set) var viewModel: SourceViewModel
     private var historyRepository: HistoryRepository
     private var sourceRepository: SourceRepository
-    private var source: Source? {
-        didSet {
-            guard let source = source else {
-                viewModel = SourceViewModel(
-                    lines: [],
-                    error: ""
-                )
-                return
-            }
-            viewModel = SourceViewModel(source: source)
-        }
-    }
 
     init(error: String="") {
         self.historyRepository = HistoryRepository()
@@ -34,30 +22,21 @@ class SourceApplicationService: ObservableObject {
         )
     }
 
-    convenience init(path: String) {
+    convenience init(path: String, lineNumber: Int?) {
         self.init()
         guard let path = FileFullPath(rawValue: path) else {
+            viewModel = SourceViewModel(lines: [], error: "")
             return
         }
-        pathDidCommit(path: path)
-    }
-
-    func lineDidSelect(lineNumber: Int) {
-        guard let number = LineNumber(lineNumber) else {
-            return
-        }
-        guard let selected = source?.selected(by: number) else {
-            return
-        }
-        source = selected
-    }
-
-    private func pathDidCommit(path: FileFullPath) {
         sourceRepository.find(by: path) {[weak self] (result) in
             guard let self = self else { return }
             switch result {
-            case .success(let source):
-                self.source = source
+            case .success(let s):
+                var source = s
+                if let lineNumber = lineNumber, let lineNumberModel = LineNumber(lineNumber) {
+                    source = source.selected(by: lineNumberModel)
+                }
+                self.viewModel = SourceViewModel(source: source)
                 var history = self.historyRepository.findAll()
                 history.addInputFullPath(path.rawValue)
                 do {
@@ -71,5 +50,4 @@ class SourceApplicationService: ObservableObject {
             }
         }
     }
-
 }

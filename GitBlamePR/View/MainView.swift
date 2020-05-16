@@ -14,10 +14,10 @@ struct MainView: View {
     @State var path: String = "" {
         didSet {
             self.error = ""
-            self.revision = (commitHash: nil, pullRequest: nil)
+            self.line = nil
         }
     }
-    @State var revision: (commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?) = (commitHash: nil, pullRequest: nil)
+    @State var line: Int?
     @State var error: String = ""
 
     var body: some View {
@@ -40,9 +40,9 @@ struct MainView: View {
                         }
                     } else {
                         SourceViewWrapper(
-                            service: SourceApplicationService(path: path),
-                            revisionOnHover: { revision in
-                                self.revision = revision
+                            service: SourceApplicationService(path: path, lineNumber: line),
+                            lineOnSelect: { line in
+                                self.line = line
                         })
                     }
                 }.background(Color(NSColor.textBackgroundColor)),
@@ -50,10 +50,7 @@ struct MainView: View {
                     VStack {
                         RevisionViewWrapper(
                             service: RevisionApplicationService(
-                                commitHash: revision.commitHash,
-                                pullRequestNumber: revision.pullRequest?.number,
-                                pullRequestOwner: revision.pullRequest?.owner,
-                                pullRequestRepositoryName: revision.pullRequest?.repository,
+                                lineNumber: line,
                                 fullPathTextFieldValue: path
                             )
                         )

@@ -11,8 +11,7 @@ import AppKit
 
 struct SourceView: View {
     var model: SourceViewModel
-    var lineOnSelect: ((commitHash: String?, pullRequest: (number: Int, owner: String, repository: String)?)) -> Void
-    var lineOnSelect2: (_ lineNumber: Int) -> Void
+    var lineOnSelect: (_ lineNumber: Int) -> Void
     var rowPaddingH : CGFloat = 10
 
     var body: some View {
@@ -27,8 +26,7 @@ struct SourceView: View {
                         width: geometry.frame(in: .local).size.width - self.rowPaddingH * 2
                     )
                         .onTapGesture {
-                            self.lineOnSelect((commitHash: line.revision.commitHash, pullRequest: line.revision.pullRequest))
-                            self.lineOnSelect2(line.number)
+                            self.lineOnSelect(line.number)
                         }
                 }
             }
@@ -103,7 +101,7 @@ struct Source_Previews: PreviewProvider {
                 ),
                 lineOnSelect: { _ in
 
-            }, lineOnSelect2: {_ in }
+                }
             )
         }
     }

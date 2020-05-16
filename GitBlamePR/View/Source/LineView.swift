@@ -11,7 +11,7 @@ import SwiftUI
 struct LineView: View {
     var line: LineViewModel
     var width: CGFloat
-    var numberTextColor: Color {
+    private var numberTextColor: Color {
         switch line.status {
         case .selected:
             return Color(NSColor.textBackgroundColor)
@@ -19,7 +19,7 @@ struct LineView: View {
             return.secondary
         }
     }
-    var codeTextColor: Color {
+    private var codeTextColor: Color {
         switch line.status {
         case .selected:
             return Color(NSColor.textBackgroundColor)
@@ -27,7 +27,7 @@ struct LineView: View {
             return .primary
         }
     }
-    var revisionTextColor: Color {
+    private var revisionTextColor: Color {
         switch line.status {
         case .selected:
             return Color(NSColor.textBackgroundColor)
@@ -35,7 +35,7 @@ struct LineView: View {
             return .secondary
         }
     }
-    var background: some View {
+    private var background: some View {
         switch line.status {
         case .selected:
             return Color.blue
@@ -45,10 +45,10 @@ struct LineView: View {
             return Color(NSColor.textBackgroundColor)
         }
     }
-    var numberWidth: CGFloat = 34
-    var revisionWidth: CGFloat = 70
-    var space: CGFloat = 8
-    var codeWidth: CGFloat {
+    private let numberWidth: CGFloat = 34
+    private let revisionWidth: CGFloat = 70
+    private let space: CGFloat = 8
+    private var codeWidth: CGFloat {
         max(width - numberWidth - revisionWidth - space * 2, 100)
     }
 

@@ -12,7 +12,7 @@ struct Source {
     let lines: [Line]
 
     func selected(by number: LineNumber) -> Source {
-        guard let selectedLine = lines.first(where: { $0.number == number }) else {
+        guard let selectedLine = line(by: number) else {
             return self
         }
         let selectedLines = lines.map { (l) -> Line in
@@ -29,6 +29,10 @@ struct Source {
             return new
         }
         return Source(lines: selectedLines)
+    }
+
+    func line(by number:LineNumber) -> Line? {
+        return lines.first(where: { $0.number == number })
     }
 }
 
