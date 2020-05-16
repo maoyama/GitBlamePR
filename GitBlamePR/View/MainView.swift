@@ -40,7 +40,7 @@ struct MainView: View {
                         }
                     } else {
                         SourceViewWrapper(
-                            service: SourceApplicationService(path: path, lineNumber: line),
+                            service: SourceApplicationService(fullPath: path, lineNumber: line),
                             lineOnSelect: { line in
                                 self.line = line
                         })
@@ -50,8 +50,8 @@ struct MainView: View {
                     VStack {
                         RevisionViewWrapper(
                             service: RevisionApplicationService(
-                                lineNumber: line,
-                                fullPathTextFieldValue: path
+                                fullPath: path,
+                                lineNumber: line
                             )
                         )
                         HStack {

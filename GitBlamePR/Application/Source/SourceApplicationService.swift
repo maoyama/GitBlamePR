@@ -22,9 +22,9 @@ class SourceApplicationService: ObservableObject {
         )
     }
 
-    convenience init(path: String, lineNumber: Int?) {
+    convenience init(fullPath: String, lineNumber: Int?) {
         self.init()
-        guard let path = FileFullPath(rawValue: path) else {
+        guard let path = FileFullPath(rawValue: fullPath) else {
             viewModel = SourceViewModel(lines: [], error: "")
             return
         }

@@ -14,10 +14,10 @@ class RevisionApplicationService: ObservableObject {
     private var prRepository = PullRequestRepository()
     private var sourceRepository = SourceRepository()
 
-    init(lineNumber: Int?, fullPathTextFieldValue: String) {
+    init(fullPath: String, lineNumber: Int?) {
         viewModel = RevisionViewModel(commit: nil, pullRequest: nil, error: "")
         guard
-            let path = FileFullPath(rawValue: fullPathTextFieldValue),
+            let path = FileFullPath(rawValue: fullPath),
             let lineNumber = lineNumber,
             let ln = LineNumber(lineNumber)
         else {
