@@ -35,7 +35,7 @@
 		61375FE023AFA84B00BFD5F9 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FDF23AFA84B00BFD5F9 /* History.swift */; };
 		61375FE223AFB7F700BFD5F9 /* UserDefaults+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */; };
 		6137ECEC246850D0005FC166 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6137ECEB246850D0005FC166 /* LineView.swift */; };
-		6144A1C424753A0F007A75DB /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6144A1C324753A0F007A75DB /* AccessToken.swift */; };
+		6144A1C424753A0F007A75DB /* PersonalAccessTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6144A1C324753A0F007A75DB /* PersonalAccessTokenView.swift */; };
 		614894BB2401344D00AB4788 /* XcodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 614894BA2401344D00AB4788 /* XcodeHelper.m */; };
 		614894BD2401344D00AB4788 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 614894BC2401344D00AB4788 /* main.m */; };
 		614894C12401344D00AB4788 /* XcodeHelper.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 614894B62401344D00AB4788 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -185,7 +185,7 @@
 		61375FDF23AFA84B00BFD5F9 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift"; sourceTree = "<group>"; };
 		6137ECEB246850D0005FC166 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
-		6144A1C324753A0F007A75DB /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		6144A1C324753A0F007A75DB /* PersonalAccessTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalAccessTokenView.swift; sourceTree = "<group>"; };
 		614894B62401344D00AB4788 /* XcodeHelper.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = XcodeHelper.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		614894B82401344D00AB4788 /* XcodeHelperProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XcodeHelperProtocol.h; sourceTree = "<group>"; };
 		614894B92401344D00AB4788 /* XcodeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XcodeHelper.h; sourceTree = "<group>"; };
@@ -351,14 +351,13 @@
 		61375FE323AFB86D00BFD5F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				610BD6F024508ABF0019C371 /* MainView.swift */,
-				610BD6F224508BCB0019C371 /* ToolBar.swift */,
 				6137ECEA246850B5005FC166 /* Source */,
 				61CAC26B246D853000C0BCE5 /* Revision */,
-				610BD6F6245427670019C371 /* RecentViewWrapper.swift */,
+				6144A1C524753BF6007A75DB /* Recent */,
+				6144A1C624753C3E007A75DB /* PersonalAccessToken */,
+				610BD6F024508ABF0019C371 /* MainView.swift */,
+				610BD6F224508BCB0019C371 /* ToolBar.swift */,
 				61714B7C24735F9A00F864F2 /* DetailFooter.swift */,
-				6144A1C324753A0F007A75DB /* AccessToken.swift */,
-				61375FD723AE71A000BFD5F9 /* RecentView.swift */,
 				6102A91D242F5259000DC3F1 /* SplitView.swift */,
 				61639937245C749E00E35DA6 /* SectionTitleView.swift */,
 				61C394692425ADC2004B1667 /* SplitSeparator.swift */,
@@ -374,6 +373,23 @@
 				6137ECEB246850D0005FC166 /* LineView.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		6144A1C524753BF6007A75DB /* Recent */ = {
+			isa = PBXGroup;
+			children = (
+				610BD6F6245427670019C371 /* RecentViewWrapper.swift */,
+				61375FD723AE71A000BFD5F9 /* RecentView.swift */,
+			);
+			path = Recent;
+			sourceTree = "<group>";
+		};
+		6144A1C624753C3E007A75DB /* PersonalAccessToken */ = {
+			isa = PBXGroup;
+			children = (
+				6144A1C324753A0F007A75DB /* PersonalAccessTokenView.swift */,
+			);
+			path = PersonalAccessToken;
 			sourceTree = "<group>";
 		};
 		614894B72401344D00AB4788 /* XcodeHelper */ = {
@@ -786,7 +802,7 @@
 				6150B9B9244A05CA008FC18C /* RevisionViewWrapper.swift in Sources */,
 				6198CB1524249EB800AE0826 /* SourceViewWrapper.swift in Sources */,
 				61A986D9244AA97200E13BAD /* DecodableDataParser.swift in Sources */,
-				6144A1C424753A0F007A75DB /* AccessToken.swift in Sources */,
+				6144A1C424753A0F007A75DB /* PersonalAccessTokenView.swift in Sources */,
 				6150B9BF244A0923008FC18C /* RevisionViewModel.swift in Sources */,
 				61375FDA23AFA3AF00BFD5F9 /* Process+Run.swift in Sources */,
 				61375FE023AFA84B00BFD5F9 /* History.swift in Sources */,

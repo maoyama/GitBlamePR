@@ -20,7 +20,7 @@ struct DetailFooter: View {
 
         }
             .popover(isPresented: $show) {
-                AccessTokenView(hasToken: false)
+                PersonalAccessTokenView(hasToken: false)
             }
 
     }

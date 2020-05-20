@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AccessTokenView: View {
+struct PersonalAccessTokenView: View {
     @State var token: String = ""
     var hasToken: Bool
     var body: some View {
@@ -43,11 +43,11 @@ struct AccessTokenView: View {
     }
 }
 
-struct AccessToken_Previews: PreviewProvider {
+struct PersonalAccessTokenView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AccessTokenView(hasToken: false)
-            AccessTokenView(hasToken: true)
+            PersonalAccessTokenView(hasToken: false)
+            PersonalAccessTokenView(hasToken: true)
         }
     }
 }
