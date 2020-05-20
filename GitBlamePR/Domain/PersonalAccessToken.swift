@@ -8,12 +8,7 @@
 
 import Foundation
 
-struct PersonalAccessToken: Equatable {
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        return
-            lhs.rawValue == rhs.rawValue
-    }
-
+struct PersonalAccessToken {
     let rawValue: String
 
     init?(_ rawValue: String) {

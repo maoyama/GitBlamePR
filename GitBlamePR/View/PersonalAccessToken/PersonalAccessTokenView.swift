@@ -9,8 +9,12 @@
 import SwiftUI
 
 struct PersonalAccessTokenView: View {
-    @State var token: String = ""
+    @State private var token = ""
     var hasToken: Bool
+    var error = ""
+    var saveButtonAction: (_ token: String) -> Void
+    var removeButtonAction: () -> Void
+
     var body: some View {
         VStack {
             Text("Personal access token")
@@ -24,9 +28,7 @@ struct PersonalAccessTokenView: View {
                 HStack {
                     Text("There are previously saved token.")
                         .foregroundColor(.secondary)
-                    Button("Delete Token") {
-                        print(self.token)
-                    }
+                    Button("Remove", action: removeButtonAction)
                 }
             } else {
                 HStack {
@@ -34,9 +36,12 @@ struct PersonalAccessTokenView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(minWidth: 300)
                     Button("Save") {
-                        print(self.token)
+                        self.saveButtonAction(self.token)
                     }
                 }
+            }
+            if !error.isEmpty {
+                Text(error)
             }
         }
             .padding()
@@ -46,8 +51,22 @@ struct PersonalAccessTokenView: View {
 struct PersonalAccessTokenView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PersonalAccessTokenView(hasToken: false)
-            PersonalAccessTokenView(hasToken: true)
+            PersonalAccessTokenView(
+                hasToken: false,
+                saveButtonAction: {_ in },
+                removeButtonAction: {}
+            )
+            PersonalAccessTokenView(
+                hasToken: true,
+                saveButtonAction: {_ in },
+                removeButtonAction: {}
+            )
+            PersonalAccessTokenView(
+                hasToken: true,
+                error: "Some error occurred",
+                saveButtonAction: {_ in },
+                removeButtonAction: {}
+            )
         }
     }
 }

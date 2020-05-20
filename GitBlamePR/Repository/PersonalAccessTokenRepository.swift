@@ -13,9 +13,9 @@ struct PersonalAccessTokenRepository {
     private let db = Keychain()
     private let key = "PrivateAccessToken"
 
-    func find() throws  -> PersonalAccessToken {
+    func find() throws  -> PersonalAccessToken? {
         guard let raw = try db.get(key) else {
-            throw RepositoryError.unknown
+            return nil
         }
         guard let token = PersonalAccessToken(raw) else {
             throw RepositoryError.unknown
