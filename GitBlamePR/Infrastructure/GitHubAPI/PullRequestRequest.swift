@@ -20,4 +20,11 @@ struct PullRequestRequest: GitHubRequest {
     var owner: String
     var repos: String
     var number: Int
+    var token: PersonalAccessToken?
+    var headerFields: [String: String] {
+        guard let token = token else {
+            return [:]
+        }
+        return ["Authorization": "token " + token.rawValue]
+    }
 }

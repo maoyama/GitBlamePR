@@ -55,7 +55,7 @@ struct LineView: View {
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: space) {
-                Text("\(line.number)")
+                Text(line.numberLabel)
                     .truncationMode(.head)
                     .foregroundColor(numberTextColor)
                     .lineLimit(1)

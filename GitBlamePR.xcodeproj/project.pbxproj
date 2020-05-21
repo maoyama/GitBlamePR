@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6102A91E242F5259000DC3F1 /* SplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6102A91D242F5259000DC3F1 /* SplitView.swift */; };
+		610B41F92475710000A84556 /* PersonalAccessTokenViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B41F82475710000A84556 /* PersonalAccessTokenViewWrapper.swift */; };
 		610BD6EC244F49570019C371 /* main.yml in Resources */ = {isa = PBXBuildFile; fileRef = 610BD6EB244F49570019C371 /* main.yml */; };
 		610BD6EF245086A20019C371 /* APIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 610BD6EE245086A20019C371 /* APIKit */; };
 		610BD6F124508ABF0019C371 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610BD6F024508ABF0019C371 /* MainView.swift */; };
@@ -35,6 +36,12 @@
 		61375FE023AFA84B00BFD5F9 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FDF23AFA84B00BFD5F9 /* History.swift */; };
 		61375FE223AFB7F700BFD5F9 /* UserDefaults+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */; };
 		6137ECEC246850D0005FC166 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6137ECEB246850D0005FC166 /* LineView.swift */; };
+		6144A1C424753A0F007A75DB /* PersonalAccessTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6144A1C324753A0F007A75DB /* PersonalAccessTokenView.swift */; };
+		6144A1C824753D55007A75DB /* PersonalAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6144A1C724753D55007A75DB /* PersonalAccessToken.swift */; };
+		6144A1CB2475423B007A75DB /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 6144A1CA2475423B007A75DB /* KeychainAccess */; };
+		6144A1CD247542F0007A75DB /* PersonalAccessTokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6144A1CC247542F0007A75DB /* PersonalAccessTokenRepository.swift */; };
+		6144A1CF2475580F007A75DB /* PersonalAccessTokenApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6144A1CE2475580F007A75DB /* PersonalAccessTokenApplicationService.swift */; };
+		6144A1D124756D63007A75DB /* PersonalAccessTokenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6144A1D024756D63007A75DB /* PersonalAccessTokenViewModel.swift */; };
 		614894BB2401344D00AB4788 /* XcodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 614894BA2401344D00AB4788 /* XcodeHelper.m */; };
 		614894BD2401344D00AB4788 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 614894BC2401344D00AB4788 /* main.m */; };
 		614894C12401344D00AB4788 /* XcodeHelper.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 614894B62401344D00AB4788 /* XcodeHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -47,6 +54,7 @@
 		615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */ = {isa = PBXBuildFile; fileRef = 615C395723A4BBEF0036FB97 /* git-blame-pr.pl */; };
 		615DDE18244766BA002D2512 /* GitShowCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615DDE17244766BA002D2512 /* GitShowCommandTests.swift */; };
 		61639938245C749E00E35DA6 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61639937245C749E00E35DA6 /* SectionTitleView.swift */; };
+		61714B7D24735F9A00F864F2 /* DetailFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61714B7C24735F9A00F864F2 /* DetailFooter.swift */; };
 		617EC55B24683F68009D828C /* SourceCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617EC55A24683F68009D828C /* SourceCacheTests.swift */; };
 		6198CB1324249B4900AE0826 /* SourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198CB1224249B4900AE0826 /* SourceView.swift */; };
 		6198CB1524249EB800AE0826 /* SourceViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198CB1424249EB800AE0826 /* SourceViewWrapper.swift */; };
@@ -156,6 +164,7 @@
 
 /* Begin PBXFileReference section */
 		6102A91D242F5259000DC3F1 /* SplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitView.swift; sourceTree = "<group>"; };
+		610B41F82475710000A84556 /* PersonalAccessTokenViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalAccessTokenViewWrapper.swift; sourceTree = "<group>"; };
 		610BD6EB244F49570019C371 /* main.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = main.yml; sourceTree = "<group>"; };
 		610BD6F024508ABF0019C371 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		610BD6F224508BCB0019C371 /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
@@ -183,6 +192,11 @@
 		61375FDF23AFA84B00BFD5F9 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		61375FE123AFB7F700BFD5F9 /* UserDefaults+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift"; sourceTree = "<group>"; };
 		6137ECEB246850D0005FC166 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		6144A1C324753A0F007A75DB /* PersonalAccessTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalAccessTokenView.swift; sourceTree = "<group>"; };
+		6144A1C724753D55007A75DB /* PersonalAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalAccessToken.swift; sourceTree = "<group>"; };
+		6144A1CC247542F0007A75DB /* PersonalAccessTokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalAccessTokenRepository.swift; sourceTree = "<group>"; };
+		6144A1CE2475580F007A75DB /* PersonalAccessTokenApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalAccessTokenApplicationService.swift; sourceTree = "<group>"; };
+		6144A1D024756D63007A75DB /* PersonalAccessTokenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalAccessTokenViewModel.swift; sourceTree = "<group>"; };
 		614894B62401344D00AB4788 /* XcodeHelper.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = XcodeHelper.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		614894B82401344D00AB4788 /* XcodeHelperProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XcodeHelperProtocol.h; sourceTree = "<group>"; };
 		614894B92401344D00AB4788 /* XcodeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XcodeHelper.h; sourceTree = "<group>"; };
@@ -198,6 +212,7 @@
 		615C395723A4BBEF0036FB97 /* git-blame-pr.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "git-blame-pr.pl"; sourceTree = "<group>"; };
 		615DDE17244766BA002D2512 /* GitShowCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitShowCommandTests.swift; sourceTree = "<group>"; };
 		61639937245C749E00E35DA6 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
+		61714B7C24735F9A00F864F2 /* DetailFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFooter.swift; sourceTree = "<group>"; };
 		617EC55A24683F68009D828C /* SourceCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceCacheTests.swift; sourceTree = "<group>"; };
 		6198CB1224249B4900AE0826 /* SourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceView.swift; sourceTree = "<group>"; };
 		6198CB1424249EB800AE0826 /* SourceViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceViewWrapper.swift; sourceTree = "<group>"; };
@@ -263,6 +278,7 @@
 			files = (
 				610BD6EF245086A20019C371 /* APIKit in Frameworks */,
 				611D6F2B2437E538006BAD44 /* KingfisherSwiftUI in Frameworks */,
+				6144A1CB2475423B007A75DB /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +292,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		610B41F72475709600A84556 /* PersonalAccessToken */ = {
+			isa = PBXGroup;
+			children = (
+				6144A1CE2475580F007A75DB /* PersonalAccessTokenApplicationService.swift */,
+				6144A1D024756D63007A75DB /* PersonalAccessTokenViewModel.swift */,
+			);
+			path = PersonalAccessToken;
+			sourceTree = "<group>";
+		};
 		610BD6E9244F49570019C371 /* .github */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,12 +372,13 @@
 		61375FE323AFB86D00BFD5F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				610BD6F024508ABF0019C371 /* MainView.swift */,
-				610BD6F224508BCB0019C371 /* ToolBar.swift */,
 				6137ECEA246850B5005FC166 /* Source */,
 				61CAC26B246D853000C0BCE5 /* Revision */,
-				610BD6F6245427670019C371 /* RecentViewWrapper.swift */,
-				61375FD723AE71A000BFD5F9 /* RecentView.swift */,
+				6144A1C524753BF6007A75DB /* Recent */,
+				6144A1C624753C3E007A75DB /* PersonalAccessToken */,
+				610BD6F024508ABF0019C371 /* MainView.swift */,
+				610BD6F224508BCB0019C371 /* ToolBar.swift */,
+				61714B7C24735F9A00F864F2 /* DetailFooter.swift */,
 				6102A91D242F5259000DC3F1 /* SplitView.swift */,
 				61639937245C749E00E35DA6 /* SectionTitleView.swift */,
 				61C394692425ADC2004B1667 /* SplitSeparator.swift */,
@@ -368,6 +394,24 @@
 				6137ECEB246850D0005FC166 /* LineView.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		6144A1C524753BF6007A75DB /* Recent */ = {
+			isa = PBXGroup;
+			children = (
+				610BD6F6245427670019C371 /* RecentViewWrapper.swift */,
+				61375FD723AE71A000BFD5F9 /* RecentView.swift */,
+			);
+			path = Recent;
+			sourceTree = "<group>";
+		};
+		6144A1C624753C3E007A75DB /* PersonalAccessToken */ = {
+			isa = PBXGroup;
+			children = (
+				610B41F82475710000A84556 /* PersonalAccessTokenViewWrapper.swift */,
+				6144A1C324753A0F007A75DB /* PersonalAccessTokenView.swift */,
+			);
+			path = PersonalAccessToken;
 			sourceTree = "<group>";
 		};
 		614894B72401344D00AB4788 /* XcodeHelper */ = {
@@ -417,6 +461,7 @@
 				6113A3F0246D896C001CB6DB /* Resent */,
 				6113A3EF246D895A001CB6DB /* Source */,
 				6113A3F1246D8987001CB6DB /* Revision */,
+				610B41F72475709600A84556 /* PersonalAccessToken */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -431,6 +476,7 @@
 				61C23083244C25760047CD99 /* GitRepository.swift */,
 				611D6F3624386659006BAD44 /* Commit.swift */,
 				61A986DF244AC76300E13BAD /* PullRequest.swift */,
+				6144A1C724753D55007A75DB /* PersonalAccessToken.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -442,8 +488,9 @@
 				611D6F3124382DB7006BAD44 /* SourceRepository.swift */,
 				61B5611224443CFD00962999 /* CommitRepository.swift */,
 				61A986E1244AC85D00E13BAD /* PullRequestRepository.swift */,
-				61C23085244C529D0047CD99 /* Session+Send.swift */,
+				6144A1CC247542F0007A75DB /* PersonalAccessTokenRepository.swift */,
 				611D6F3324382F88006BAD44 /* RepositoryError.swift */,
+				61C23085244C529D0047CD99 /* Session+Send.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -633,6 +680,7 @@
 			packageProductDependencies = (
 				611D6F2A2437E538006BAD44 /* KingfisherSwiftUI */,
 				610BD6EE245086A20019C371 /* APIKit */,
+				6144A1CA2475423B007A75DB /* KeychainAccess */,
 			);
 			productName = GitBlamePR;
 			productReference = 61C4FC3E239B894700F75B8D /* GitBlamePR.app */;
@@ -695,6 +743,7 @@
 			packageReferences = (
 				611D6F292437E538006BAD44 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				610BD6ED245086A20019C371 /* XCRemoteSwiftPackageReference "APIKit" */,
+				6144A1C92475423B007A75DB /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 61C4FC3F239B894700F75B8D /* Products */;
 			projectDirPath = "";
@@ -780,6 +829,7 @@
 				6150B9B9244A05CA008FC18C /* RevisionViewWrapper.swift in Sources */,
 				6198CB1524249EB800AE0826 /* SourceViewWrapper.swift in Sources */,
 				61A986D9244AA97200E13BAD /* DecodableDataParser.swift in Sources */,
+				6144A1C424753A0F007A75DB /* PersonalAccessTokenView.swift in Sources */,
 				6150B9BF244A0923008FC18C /* RevisionViewModel.swift in Sources */,
 				61375FDA23AFA3AF00BFD5F9 /* Process+Run.swift in Sources */,
 				61375FE023AFA84B00BFD5F9 /* History.swift in Sources */,
@@ -788,10 +838,12 @@
 				6102A91E242F5259000DC3F1 /* SplitView.swift in Sources */,
 				61C23086244C529D0047CD99 /* Session+Send.swift in Sources */,
 				61EA84C2244190D800EE20D7 /* Command.swift in Sources */,
+				6144A1CD247542F0007A75DB /* PersonalAccessTokenRepository.swift in Sources */,
 				615C393E23A46E530036FB97 /* SourceApplicationService.swift in Sources */,
 				61C23080244C1F670047CD99 /* GitRemoteCommand.swift in Sources */,
 				6150B9BD244A08D1008FC18C /* CommitViewModel.swift in Sources */,
 				61C23082244C1F9C0047CD99 /* GitCommand.swift in Sources */,
+				61714B7D24735F9A00F864F2 /* DetailFooter.swift in Sources */,
 				61A986DB244AA97200E13BAD /* PageNumber.swift in Sources */,
 				610BD6F324508BCB0019C371 /* ToolBar.swift in Sources */,
 				61375FDE23AFA62B00BFD5F9 /* HistoryRepository.swift in Sources */,
@@ -800,8 +852,11 @@
 				61F6009E2427761E004155A4 /* Source.swift in Sources */,
 				61375FD823AE71A000BFD5F9 /* RecentView.swift in Sources */,
 				61375FDC23AFA4D900BFD5F9 /* SourceViewModel.swift in Sources */,
+				610B41F92475710000A84556 /* PersonalAccessTokenViewWrapper.swift in Sources */,
 				61A986E0244AC76300E13BAD /* PullRequest.swift in Sources */,
 				611D6F3424382F88006BAD44 /* RepositoryError.swift in Sources */,
+				6144A1CF2475580F007A75DB /* PersonalAccessTokenApplicationService.swift in Sources */,
+				6144A1C824753D55007A75DB /* PersonalAccessToken.swift in Sources */,
 				61C3946A2425ADC2004B1667 /* SplitSeparator.swift in Sources */,
 				61E2C96B240B404E0011CB6D /* URLScheme.swift in Sources */,
 				6114CDDC23AFBAF700EF6B88 /* RecentViewModel.swift in Sources */,
@@ -810,6 +865,7 @@
 				6113917E243056AB00C74954 /* CommitView.swift in Sources */,
 				611D6F3224382DB7006BAD44 /* SourceRepository.swift in Sources */,
 				611D6F282436A2B9006BAD44 /* PullRequestView.swift in Sources */,
+				6144A1D124756D63007A75DB /* PersonalAccessTokenViewModel.swift in Sources */,
 				610BD6F5245423DB0019C371 /* RecentApplicationService.swift in Sources */,
 				61C23084244C25760047CD99 /* GitRepository.swift in Sources */,
 				6150B9BB244A0626008FC18C /* RevisonApplicationService.swift in Sources */,
@@ -1244,6 +1300,14 @@
 				minimumVersion = 5.13.3;
 			};
 		};
+		6144A1C92475423B007A75DB /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1256,6 +1320,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 611D6F292437E538006BAD44 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = KingfisherSwiftUI;
+		};
+		6144A1CA2475423B007A75DB /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6144A1C92475423B007A75DB /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

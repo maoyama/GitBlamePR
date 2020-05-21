@@ -51,6 +51,7 @@ struct LineViewModel {
     var url: URL?
     var code: String
     var number: Int
+    var numberLabel: String { "\(number)"}
     var status: Status
 }
 

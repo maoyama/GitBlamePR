@@ -47,20 +47,25 @@ struct MainView: View {
                     }
                 }
                     .background(Color(NSColor.textBackgroundColor)),
-                detail: ScrollView(.vertical) {
-                    VStack {
-                        RevisionViewWrapper(
-                            service: RevisionApplicationService(
-                                fullPath: path,
-                                lineNumber: line
+                detail:
+                VStack(spacing: 0) {
+                    ScrollView(.vertical) {
+                        VStack {
+                            RevisionViewWrapper(
+                                service: RevisionApplicationService(
+                                    fullPath: path,
+                                    lineNumber: line
+                                )
                             )
-                        )
-                        HStack {
-                            Spacer()
-                            EmptyView()
+                            HStack {
+                                Spacer()
+                                EmptyView()
+                            }
                         }
                     }
-                }.background(Color(.windowBackgroundColor))
+                    DetailFooter()
+                }
+                    .background(Color(.windowBackgroundColor))
             )
         }
     }
@@ -75,3 +80,4 @@ struct MainView_Previews: PreviewProvider {
         }
     }
 }
+

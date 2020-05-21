@@ -11,7 +11,8 @@ import APIKit
 
 struct PullRequestRepository {
     func find(byNumber number: Int, in repo: GitRepository , handler: @escaping (Result<PullRequest, RepositoryError>) -> Void) {
-        let req = PullRequestRequest(owner: repo.ownerName, repos: repo.name, number: number)
+        let token = try? PersonalAccessTokenRepository().find()
+        let req = PullRequestRequest(owner: repo.ownerName, repos: repo.name, number: number, token: token)
         Session.send(req, handler: handler)
     }
 }
