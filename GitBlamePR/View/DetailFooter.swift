@@ -19,10 +19,11 @@ struct DetailFooter: View {
                     .renderingMode(.original)
                     .frame(width: 20, height: 20)
                 Text("Personal access token")
-                    .onTapGesture {
-                        self.show = true
-                }
+                    .lineLimit(1)
             }
+                .onTapGesture {
+                    self.show = true
+                }
                 .padding(8)
         }
             .popover(isPresented: $show) {
