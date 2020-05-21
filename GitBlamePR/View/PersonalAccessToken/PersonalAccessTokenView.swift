@@ -16,9 +16,16 @@ struct PersonalAccessTokenView: View {
     var removeButtonAction: () -> Void
 
     var body: some View {
-        VStack {
-            Text("Personal access token")
-                .fontWeight(.bold)
+        VStack() {
+            HStack {
+                Image("GitHub-Mark-L")
+                    .resizable()
+                    .renderingMode(.original)
+                    .frame(width: 26, height: 26)
+
+                Text("Personal access token")
+                    .font(.headline)
+            }
             Text("""
                 Token are needed to get a Pull Request for the following reasons:
                 - To avoid api limit
@@ -45,6 +52,8 @@ struct PersonalAccessTokenView: View {
             }
         }
             .padding()
+            .background(Color(.windowBackgroundColor))
+
     }
 }
 
@@ -56,17 +65,41 @@ struct PersonalAccessTokenView_Previews: PreviewProvider {
                 saveButtonAction: {_ in },
                 removeButtonAction: {}
             )
+                .environment(\.colorScheme, .light)
             PersonalAccessTokenView(
                 hasToken: true,
                 saveButtonAction: {_ in },
                 removeButtonAction: {}
             )
+                .environment(\.colorScheme, .light)
             PersonalAccessTokenView(
                 hasToken: true,
                 error: "Some error occurred",
                 saveButtonAction: {_ in },
                 removeButtonAction: {}
             )
+                .environment(\.colorScheme, .light)
+
+            PersonalAccessTokenView(
+                hasToken: false,
+                saveButtonAction: {_ in },
+                removeButtonAction: {}
+            )
+                .environment(\.colorScheme, .dark)
+            PersonalAccessTokenView(
+                hasToken: true,
+                saveButtonAction: {_ in },
+                removeButtonAction: {}
+            )
+                .environment(\.colorScheme, .dark)
+            PersonalAccessTokenView(
+                hasToken: true,
+                error: "Some error occurred",
+                saveButtonAction: {_ in },
+                removeButtonAction: {}
+            )
+                .environment(\.colorScheme, .dark)
+
         }
     }
 }
