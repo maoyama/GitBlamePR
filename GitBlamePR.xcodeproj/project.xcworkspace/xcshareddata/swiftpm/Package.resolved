@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "Ink",
+        "repositoryURL": "https://github.com/maoyama/Ink.git",
+        "state": {
+          "branch": "master",
+          "revision": "3040aa302a9d71d0457a554070ada101493d8715",
+          "version": null
+        }
+      },
+      {
         "package": "KeychainAccess",
         "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
         "state": {
