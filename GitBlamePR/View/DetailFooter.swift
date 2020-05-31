@@ -17,14 +17,14 @@ struct DetailFooter: View {
                 Image("GitHub-Mark-S")
                     .resizable()
                     .renderingMode(.original)
-                    .frame(width: 20, height: 20)
+                    .frame(width: 16, height: 16)
                 Text("Personal access token")
                     .lineLimit(1)
             }
                 .onTapGesture {
                     self.show = true
                 }
-                .padding(8)
+                .padding(6)
         }
             .popover(isPresented: $show) {
                 PersonalAccessTokenViewWrapper()
