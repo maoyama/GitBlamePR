@@ -16,10 +16,11 @@ struct PullRequestView: View {
         viewMaker: .init(image: { (str) -> AnyView in
             let urlStr = str.split(separator: " ")[0]
             return AnyView(
-                    KFImage(URL(string: String(urlStr)))
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                )
+                KFImage(URL(string: String(urlStr)))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(minWidth: 0, idealWidth: nil, maxWidth: 800, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .top)
+            )
         }),
         viewModifier: .init(link: { (link) -> AnyView in
             let urlStr = link.url.split(separator: " ")[0]
