@@ -81,7 +81,6 @@
 		61CAC26A246D821400C0BCE5 /* RevisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC269246D821300C0BCE5 /* RevisionView.swift */; };
 		61CD064A24698C2000688443 /* GitBlamePRCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CD064924698C2000688443 /* GitBlamePRCommand.swift */; };
 		61CD064C2469995900688443 /* Process+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61375FD923AFA3AF00BFD5F9 /* Process+Run.swift */; };
-		61D49D90247D71AC0002A47B /* Ink in Frameworks */ = {isa = PBXBuildFile; productRef = 61D49D8F247D71AC0002A47B /* Ink */; };
 		61D790C9244DEABC00E43821 /* PullRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D790C8244DEABC00E43821 /* PullRequestViewModel.swift */; };
 		61E2C969240B31810011CB6D /* URLSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2C968240B31810011CB6D /* URLSchemeTests.swift */; };
 		61E2C96B240B404E0011CB6D /* URLScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2C96A240B404E0011CB6D /* URLScheme.swift */; };
@@ -278,7 +277,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				610BD6EF245086A20019C371 /* APIKit in Frameworks */,
-				61D49D90247D71AC0002A47B /* Ink in Frameworks */,
 				611D6F2B2437E538006BAD44 /* KingfisherSwiftUI in Frameworks */,
 				6144A1CB2475423B007A75DB /* KeychainAccess in Frameworks */,
 			);
@@ -683,7 +681,6 @@
 				611D6F2A2437E538006BAD44 /* KingfisherSwiftUI */,
 				610BD6EE245086A20019C371 /* APIKit */,
 				6144A1CA2475423B007A75DB /* KeychainAccess */,
-				61D49D8F247D71AC0002A47B /* Ink */,
 			);
 			productName = GitBlamePR;
 			productReference = 61C4FC3E239B894700F75B8D /* GitBlamePR.app */;
@@ -747,7 +744,6 @@
 				611D6F292437E538006BAD44 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				610BD6ED245086A20019C371 /* XCRemoteSwiftPackageReference "APIKit" */,
 				6144A1C92475423B007A75DB /* XCRemoteSwiftPackageReference "KeychainAccess" */,
-				61D49D8E247D71AC0002A47B /* XCRemoteSwiftPackageReference "Ink" */,
 			);
 			productRefGroup = 61C4FC3F239B894700F75B8D /* Products */;
 			projectDirPath = "";
@@ -1312,14 +1308,6 @@
 				minimumVersion = 4.2.0;
 			};
 		};
-		61D49D8E247D71AC0002A47B /* XCRemoteSwiftPackageReference "Ink" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/maoyama/Ink.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1337,11 +1325,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6144A1C92475423B007A75DB /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
-		};
-		61D49D8F247D71AC0002A47B /* Ink */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 61D49D8E247D71AC0002A47B /* XCRemoteSwiftPackageReference "Ink" */;
-			productName = Ink;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
