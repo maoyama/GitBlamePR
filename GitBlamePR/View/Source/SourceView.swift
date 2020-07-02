@@ -114,7 +114,6 @@ struct Source_Previews: PreviewProvider {
                 lineOnSelect: { _ in}
             )
             .environment(\.colorScheme, .dark)
-
         }
     }
 }
