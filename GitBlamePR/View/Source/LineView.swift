@@ -11,6 +11,7 @@ import SwiftUI
 struct LineView: View {
     var line: LineViewModel
     var width: CGFloat
+    @State var isHovered: Bool = false
     private var numberTextColor: Color {
         switch line.status {
         case .selected:
@@ -42,6 +43,9 @@ struct LineView: View {
         case .related:
             return Color.accentColor.opacity(0.1)
         case .none:
+            if isHovered {
+                return Color.gray.opacity(0.2)
+            }
             return Color.white.opacity(0.0001) // 0.0001 is workarround for ui event enable
         }
     }
@@ -77,10 +81,56 @@ struct LineView: View {
             .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
             .onHover { (enter) in
                 if (enter) {
-                    NSCursor.pointingHand.set()
+                    self.isHovered = true
                 } else {
-                    NSCursor.arrow.set()
+                    self.isHovered = false
                 }
             }
+    }
+}
+
+struct LineView_Previews: PreviewProvider {
+    static var model: LineViewModel {
+        LineViewModel(
+            revision: SourceRevisionViewModel(
+                description: "#PR 1",
+                pullRequest: (number: 1, owner: "owner", repository: "repo"),
+                commitHash: "1e1e1e"
+            ),
+            url: nil,
+            code: "print(hello)",
+            number: 2,
+            status: .none
+        )
+    }
+    static var selected: LineViewModel {
+        var m = model
+        m.status = .selected
+        return m
+    }
+    static var related: LineViewModel {
+        var m = model
+        m.status = .related
+        return m
+    }
+
+    static var previews: some View {
+        Group {
+            Group {
+                LineView(line: model, width: 300)
+                LineView(line: selected, width: 300)
+                LineView(line: related, width: 300)
+            }
+                .previewDisplayName("Light Mode")
+                .background(Color(.windowBackgroundColor))
+            Group {
+                LineView(line: model, width: 300)
+                LineView(line: selected, width: 300)
+                LineView(line: related, width: 300)
+            }
+                .previewDisplayName("Dark Mode")
+                .background(Color(.windowBackgroundColor))
+                .environment(\.colorScheme, .dark)
+        }
     }
 }
