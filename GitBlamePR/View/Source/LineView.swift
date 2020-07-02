@@ -41,10 +41,10 @@ struct LineView: View {
         case .selected:
             return Color.accentColor
         case .related:
-            return Color.accentColor.opacity(0.1)
+            return Color.accentColor.opacity(0.15)
         case .none:
             if isHovered {
-                return Color.gray.opacity(0.2)
+                return Color.gray.opacity(0.15)
             }
             return Color.white.opacity(0.0001) // 0.0001 is workarround for ui event enable
         }
