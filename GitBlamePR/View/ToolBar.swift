@@ -13,9 +13,22 @@ struct ToolBar: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            TextField("Enter full path", text: $path)
-                .lineLimit(1)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            HStack {
+                Image(nsImage: NSImage(named: NSImage.revealFreestandingTemplateName)!)
+                    .onTapGesture {
+                        let panel = NSOpenPanel(filePath: self.path)
+                        panel.begin { (response) in
+                            if response == .OK {
+                                for fileURL in panel.urls {
+                                    self.path = fileURL.path
+                                }
+                            }
+                        }
+                    }
+                TextField("Enter full path", text: $path)
+                    .lineLimit(1)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
                 .padding(EdgeInsets(top: 3, leading: 8, bottom: 8, trailing: 8))
             Divider()
         }
