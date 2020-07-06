@@ -30,11 +30,13 @@ struct RecentView: View {
                 }
             }
             ForEach(model.fullPaths, id: \.id) { fullPath in
-                Text(fullPath.value)
+                Button(action: {
+                    self.textOnTap(fullPath.value)
+                }) {
+                    Text(fullPath.value)
+                }
+                    .buttonStyle(PlainButtonStyle())
                     .foregroundColor(.accentColor)
-                    .onTapGesture {
-                        self.textOnTap(fullPath.value)
-                    }
             }
         }
         .padding(.init(top: 16, leading: 10, bottom: 16, trailing: 10))

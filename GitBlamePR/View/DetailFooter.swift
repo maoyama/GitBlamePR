@@ -13,18 +13,21 @@ struct DetailFooter: View {
     var body: some View {
         VStack(spacing: 0) {
             Divider()
-            HStack {
-                Image("GitHub-Mark-S")
-                    .resizable()
-                    .renderingMode(.original)
-                    .frame(width: 16, height: 16)
-                Text("Personal access token")
-                    .lineLimit(1)
-            }
-                .onTapGesture {
-                    self.show = true
+            Button(action: {
+                self.show = true
+            }) {
+                HStack {
+                    Image("GitHub-Mark-S")
+                        .resizable()
+                        .renderingMode(.original)
+                        .frame(width: 15, height: 15)
+                    Text("Personal access token")
+                        .lineLimit(1)
                 }
+            }
+                .buttonStyle(PlainButtonStyle())
                 .padding(6)
+
         }
             .popover(isPresented: $show) {
                 PersonalAccessTokenViewWrapper()
