@@ -17,7 +17,7 @@ struct DetailFooter: View {
                 Image("GitHub-Mark-S")
                     .resizable()
                     .renderingMode(.original)
-                    .frame(width: 16, height: 16)
+                    .frame(width: 15, height: 15)
                 Text("Personal access token")
                     .lineLimit(1)
             }
