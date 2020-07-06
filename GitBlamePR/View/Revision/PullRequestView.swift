@@ -76,13 +76,14 @@ private struct Author: View {
                     .cancelOnDisappear(true)
                     .resizable()
                     .renderingMode(.original)
-                    .frame(width: 20, height: 20)
-                    .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+                    .frame(width: 24, height: 24)
+                    .clipShape(Circle())
                 VStack (alignment: .leading) {
                     Text(user)
                     Text(mergedAt).foregroundColor(.secondary)
                         .font(.system(size: 11))
-                }.padding(.top, -2)
+                }
+                    .padding(.top, -2)
                 Spacer()
             }
         }
