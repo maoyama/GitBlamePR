@@ -22,7 +22,9 @@ struct MainView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ToolBar(path: $path)
+            ToolBar(path: $path, pathWillChange: {
+                self.line = nil
+            })
             SplitView(
                 master:
                 VStack(alignment: .leading, spacing: 0) {
