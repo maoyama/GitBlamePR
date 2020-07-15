@@ -1,9 +1,9 @@
 # GitBlamePR
-Mac app that shows pull request last modified each line of a file.
+Mac app that shows pull request last modified each line of a file.Written in SwiftUI.
 
 ![Dec-20-2019 23-50-30](./Captures/c1.gif)
 
-## Installing
+## Installation
 Download the latest [release](https://github.com/maoyama/GitBlamePR/releases), unzip, and run GitBlamePR.app.
 
 ## Xcode Source Editor Extension
