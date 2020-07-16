@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ToolBar: View {
     @Binding var path:  String
+    var pathWillChange = {}
 
     var body: some View {
         VStack(spacing: 0) {
@@ -19,6 +20,7 @@ struct ToolBar: View {
                     panel.begin { (response) in
                         if response == .OK {
                             for fileURL in panel.urls {
+                                self.pathWillChange()
                                 self.path = fileURL.path
                             }
                         }
@@ -26,7 +28,9 @@ struct ToolBar: View {
                 }) {
                     Image(nsImage: NSImage(named: NSImage.revealFreestandingTemplateName)!)
                 }
-                TextField("Enter full path", text: $path)
+                TextField("Enter full path", text: $path, onEditingChanged: { (_) in
+                    self.pathWillChange()
+                })
                     .lineLimit(1)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
