@@ -3,9 +3,6 @@ Mac app that shows pull request last modified each line of a file.Written in Swi
 
 ![Dec-20-2019 23-50-30](./Captures/c1.gif)
 
-## Installation
-Download the latest [release](https://github.com/maoyama/GitBlamePR/releases), unzip, and run GitBlamePR.app.
-
 ## Xcode Source Editor Extension
 GitBlamePR.app bundles Xcode Source Editor Extension.  
 
@@ -25,6 +22,8 @@ So you can easily open the specified file using command line, e.g:
 $ open gitblamepr://$(realpath example.txt | nkf -WwMQ | tr = %)
 ```
 
+## Installation
+Download the latest [release](https://github.com/maoyama/GitBlamePR/releases), unzip, and run GitBlamePR.app.
 
 ## Requirements
 macOS Catalina
