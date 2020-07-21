@@ -46,6 +46,6 @@ extension Process {
         guard errOut.isEmpty else {
             throw ProcessError(description: errOut)
         }
-        throw ProcessError.unknown
+        return ""
     }
 }
