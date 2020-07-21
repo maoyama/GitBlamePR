@@ -21,17 +21,25 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         xcode.currentFileFullPath { (fullPath) in
             if let fullPath = fullPath {
                 let encoded = fullPath.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-                let _ = try! Process.run(
-                    executableURL: URL(fileURLWithPath: "/usr/bin/open"),
-                    arguments: ["gitblamepr://\(encoded)"],
-                    currentDirectoryURL: nil
-                )
+                do {
+                    let _ = try Process.run(
+                        executableURL: URL(fileURLWithPath: "/usr/bin/open"),
+                        arguments: ["gitblamepr://\(encoded)"],
+                        currentDirectoryURL: nil
+                    )
+                } catch {
+                    print("Unexpected error: \(error).")
+                }
             } else {
-                let _ = try! Process.run(
-                    executableURL: URL(fileURLWithPath: "/usr/bin/open"),
-                    arguments: ["gitblamepr://access/xcode"],
-                    currentDirectoryURL: nil
-                )
+                do {
+                    let _ = try Process.run(
+                        executableURL: URL(fileURLWithPath: "/usr/bin/open"),
+                        arguments: ["gitblamepr://access/xcode"],
+                        currentDirectoryURL: nil
+                    )
+                } catch {
+                    print("Unexpected error: \(error).")
+                }
             }
             semaphore.signal()
         }
