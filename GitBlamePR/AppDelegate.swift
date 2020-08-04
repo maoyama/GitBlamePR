@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.title = "GitBlamePR"
         window.center()
         window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: MainView())
+        window.contentView = MainHostingView(rootView: MainView())
         window.makeKeyAndOrderFront(nil)
         window.titlebarAppearsTransparent = true
     }
@@ -30,25 +30,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let urlScheme = URLScheme(url: urls[0]) {
             switch urlScheme {
             case .fileFullPath(let fullPath):
-                window?.contentView = NSHostingView(
+                window?.contentView = MainHostingView(
                     rootView: MainView(path: fullPath.rawValue)
                 )
             case .xcodeFileFullPath:
                 XcodeConnection.resume { [weak self](result) in
                     switch result {
                     case .success(let fullPath):
-                        self?.window?.contentView = NSHostingView(
+                        self?.window?.contentView = MainHostingView(
                             rootView: MainView(path: fullPath.rawValue)
                         )
                     case .failure(let error):
-                        self?.window?.contentView = NSHostingView(
+                        self?.window?.contentView = MainHostingView(
                             rootView: MainView(error: error.localizedDescription)
                         )
                     }
                 }
             }
         } else {
-            window?.contentView = NSHostingView(
+            window?.contentView = MainHostingView(
                 rootView: MainView(error: "URL not found.")
             )
         }
