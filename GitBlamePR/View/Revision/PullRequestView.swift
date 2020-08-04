@@ -22,11 +22,25 @@ struct PullRequestView: View {
                     .foregroundColor(.secondary)
                 }
                     .padding(.top, 4)
+                    .contextMenu {
+                        Button("Copy Title") {
+                            NSPasteboard.setString(self.model.title)
+                        }
+                        Button("Copy Number") {
+                            NSPasteboard.setString(self.model.number)
+                        }
+                    }
+
                 if !model.body.isEmpty {
                     Group {
                         Text(model.body)
                     }
                         .padding(.top, 4)
+                        .contextMenu {
+                            Button("Copy") {
+                                NSPasteboard.setString(self.model.body)
+                            }
+                        }
                 }
 
                 Author(

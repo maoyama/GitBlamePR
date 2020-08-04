@@ -53,6 +53,7 @@
 		615C393E23A46E530036FB97 /* SourceApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C393D23A46E530036FB97 /* SourceApplicationService.swift */; };
 		615C395823A4BBEF0036FB97 /* git-blame-pr.pl in Resources */ = {isa = PBXBuildFile; fileRef = 615C395723A4BBEF0036FB97 /* git-blame-pr.pl */; };
 		615DDE18244766BA002D2512 /* GitShowCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615DDE17244766BA002D2512 /* GitShowCommandTests.swift */; };
+		6162069D24D9A9E90054ABAC /* NSPastebord+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6162069C24D9A9E90054ABAC /* NSPastebord+String.swift */; };
 		61639938245C749E00E35DA6 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61639937245C749E00E35DA6 /* SectionTitleView.swift */; };
 		61714B7D24735F9A00F864F2 /* DetailFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61714B7C24735F9A00F864F2 /* DetailFooter.swift */; };
 		617EC55B24683F68009D828C /* SourceCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617EC55A24683F68009D828C /* SourceCacheTests.swift */; };
@@ -213,6 +214,7 @@
 		615C393D23A46E530036FB97 /* SourceApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceApplicationService.swift; sourceTree = "<group>"; };
 		615C395723A4BBEF0036FB97 /* git-blame-pr.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "git-blame-pr.pl"; sourceTree = "<group>"; };
 		615DDE17244766BA002D2512 /* GitShowCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitShowCommandTests.swift; sourceTree = "<group>"; };
+		6162069C24D9A9E90054ABAC /* NSPastebord+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPastebord+String.swift"; sourceTree = "<group>"; };
 		61639937245C749E00E35DA6 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		61714B7C24735F9A00F864F2 /* DetailFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFooter.swift; sourceTree = "<group>"; };
 		617EC55A24683F68009D828C /* SourceCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceCacheTests.swift; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 				6198CB0E2424987600AE0826 /* Application */,
 				61375FE323AFB86D00BFD5F9 /* View */,
 				61C4FC41239B894700F75B8D /* AppDelegate.swift */,
+				6162069C24D9A9E90054ABAC /* NSPastebord+String.swift */,
 				61F1FB99241D32D900BFA44D /* XcodeConnection.swift */,
 				615C395723A4BBEF0036FB97 /* git-blame-pr.pl */,
 				61C4FC45239B894B00F75B8D /* Assets.xcassets */,
@@ -847,6 +850,7 @@
 				61C23086244C529D0047CD99 /* Session+Send.swift in Sources */,
 				61EA84C2244190D800EE20D7 /* Command.swift in Sources */,
 				6144A1CD247542F0007A75DB /* PersonalAccessTokenRepository.swift in Sources */,
+				6162069D24D9A9E90054ABAC /* NSPastebord+String.swift in Sources */,
 				615C393E23A46E530036FB97 /* SourceApplicationService.swift in Sources */,
 				61C23080244C1F670047CD99 /* GitRemoteCommand.swift in Sources */,
 				6150B9BD244A08D1008FC18C /* CommitViewModel.swift in Sources */,
