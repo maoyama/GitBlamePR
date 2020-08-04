@@ -18,9 +18,20 @@ struct CommitView: View {
                 Text(model.titleLine)
                     .fontWeight(.bold)
                     .padding(.top, 4)
+                    .contextMenu {
+                            Button("Copy Title Line") {
+                                NSPasteboard.setString(self.model.titleLine)
+                            }
+                    }
+
                 if !model.fullCommitMessage.isEmpty {
                     Text(model.fullCommitMessage)
                         .padding(.top, 4)
+                        .contextMenu {
+                                Button("Copy Full Commit Message") {
+                                    NSPasteboard.setString(self.model.fullCommitMessage)
+                                }
+                        }
                 }
 
                 Divider()
@@ -35,6 +46,11 @@ struct CommitView: View {
                     .padding(.bottom, 3)
                 Text(model.hash)
                     .foregroundColor(.secondary)
+                .contextMenu {
+                        Button("Copy Commit Hash") {
+                            NSPasteboard.setString(self.model.hash)
+                        }
+                }
                 Divider()
                     .padding(.bottom, 3)
                 if model.html != nil {

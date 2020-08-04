@@ -59,6 +59,20 @@ struct SourceRevisionViewModel {
     var description: String
     var pullRequest: (number: Int, owner: String, repository: String)?
     var commitHash: String?
+    var numberLabel: String {
+        if let _ = pullRequest {
+            return "Pull Request Number"
+        } else {
+            return "Commit Hash"
+        }
+    }
+    var numberValue: String {
+        if let p = pullRequest {
+            return "\(p.number)"
+        } else {
+            return commitHash ?? ""
+        }
+    }
 }
 
 extension SourceRevisionViewModel {

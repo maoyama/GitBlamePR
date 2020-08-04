@@ -34,9 +34,21 @@ struct SourceView: View {
                             }
                             self.lineOnSelect(line.number)
                         }
+                        .contextMenu {
+                            Button("Copy Line Number") {
+                                NSPasteboard.setString(line.numberLabel)
+                            }
+                            Button("Copy Code") {
+                                NSPasteboard.setString(line.code)
+                            }
+                            Button("Copy " + line.revision.numberLabel) {
+                                NSPasteboard.setString(line.revision.numberValue)
+                            }
+                        }
                 }
             }
         }
+
     }
 }
 
