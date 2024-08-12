@@ -1,34 +1,32 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "APIKit",
-        "repositoryURL": "https://github.com/ishkawa/APIKit.git",
-        "state": {
-          "branch": null,
-          "revision": "f24f05616f8972fec937c2f069491468a8fabf85",
-          "version": "5.1.0"
-        }
-      },
-      {
-        "package": "KeychainAccess",
-        "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
-        "state": {
-          "branch": null,
-          "revision": "3d0ea2c0806791abcc5d7f0d9f62f1cfd4a7264d",
-          "version": "4.2.0"
-        }
-      },
-      {
-        "package": "Kingfisher",
-        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
-        "state": {
-          "branch": null,
-          "revision": "7ccfb6cefdb6180cde839310e3dbd5b2d6fefee5",
-          "version": "5.13.3"
-        }
+  "pins" : [
+    {
+      "identity" : "apikit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ishkawa/APIKit.git",
+      "state" : {
+        "revision" : "f24f05616f8972fec937c2f069491468a8fabf85",
+        "version" : "5.1.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "keychainaccess",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kishikawakatsumi/KeychainAccess.git",
+      "state" : {
+        "revision" : "3d0ea2c0806791abcc5d7f0d9f62f1cfd4a7264d",
+        "version" : "4.2.0"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "20d21b3fd7192a42851d7951453e96b41e4e1ed1",
+        "version" : "5.13.3"
+      }
+    }
+  ],
+  "version" : 2
 }
